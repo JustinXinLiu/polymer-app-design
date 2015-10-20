@@ -1,0 +1,109 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="report-card">
+	<template>
+		<style include="shared-styles"></style>
+		<style>
+			:host {
+				display: block;
+				position: relative;
+				margin: 12px;
+				@apply(--layout-horizontal);
+			}
+			
+			paper-material {
+				border-radius: 8px;
+				background-color: var(--light-primary-color);
+				--paper-card-header-color: var(--secondary-text-color);
+			}
+			
+			paper-ripple {
+				border-radius: 8px;
+			}
+			
+			paper-icon-button {
+				color: var(--dark-primary-color);
+			}
+			
+			.card .title {
+				color: var(--secondary-text-color);
+				font-size: 16px;
+				font-weight: 600;
+				margin: 12px 0 40px 16px;
+				text-transform: uppercase;
+			}
+			
+			.card .icon {
+				margin: 4px;
+			}
+			
+			.card .percent,
+			.card .money {
+				color: var(--primary-text-color);
+				font-weight: 600;
+				font-size: 28px;
+				margin-left: 8px;
+			}
+			
+			.card .percent::after {
+				font-size: 16px;
+				content: '%';
+			}
+			
+			.card .money::before {
+				font-size: 16px;
+				content: '$ ';
+			}
+			
+			.card .small {
+				color: var(--primary-text-color);
+				font-size: 10px;
+				margin: 0 0 4px 10px;
+				font-weight: 600;
+				text-transform: uppercase;
+			}
+			
+			.card .circle {
+				color: var(--text-primary-color);
+				background-color: var(--accent-color);
+				font-size: 24px;
+				font-weight: 600;
+				border-radius: 50%;
+				height: 48px;
+				width: 48px;
+				margin: 0 0 8px 16px;
+			}
+			
+			paper-progress {
+				--paper-progress-active-color: var(--secondary-accent-color);
+				--paper-progress-container-color: var(--divider-color);
+			}
+		</style>
+
+		<paper-material class="card flex vertical layout" elevation="0">
+			<section class="flex">
+				<div class="title">Report Name</div>
+
+				<div class="horizontal layout">
+					<div class="circle center-center vertical layout">V</div>
+					<div class="vertical layout">
+						<div class="percent">12</div>
+						<div class="small">This Week</div>
+					</div>
+				</div>
+
+				<paper-ripple elevation="0"></paper-ripple>
+			</section>
+
+			<div class="horizontal layout">
+				<paper-progress class="flex" value="60"></paper-progress>
+			</div>
+
+			<div class="horizontal layout end-justified">
+				<paper-icon-button class="icon" icon="favorite"></paper-icon-button>
+			</div>
+		</paper-material>
+	</template>
+
+	<script src="report-card.js"></script>
+</dom-module>
