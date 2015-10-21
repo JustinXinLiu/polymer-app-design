@@ -1,6 +1,6 @@
-class ReportCard {
+class SectionDetail {
 	beforeRegister() {
-		this.is = 'report-card';
+		this.is = 'section-detail';
 		this.properties = {
 			name: {
 				type: String,
@@ -36,4 +36,4 @@ class ReportCard {
 	attributeChanged() { }
 }
 
-Polymer(ReportCard);
+Polymer(SectionDetail);

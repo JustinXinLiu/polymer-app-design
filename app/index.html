@@ -74,27 +74,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <!-- Drawer Content -->
         <paper-menu class="list" attr-for-selected="data-route" selected="[[route]]">
-          <a data-route="home" href="/" on-click="onDataRouteClick">
+          <a data-route="home" href="/" on-tap="onDataRouteTap">
             <iron-icon icon="assignment"></iron-icon>
             <span>Module 1</span>
           </a>
 
-          <a data-route="users" href="/users" on-click="onDataRouteClick">
+          <a data-route="users" href="/users" on-tap="onDataRouteTap">
             <iron-icon icon="assignment"></iron-icon>
             <span>Module 2</span>
           </a>
 
-          <a data-route="contact" href="/contact" on-click="onDataRouteClick">
+          <a data-route="contact" href="/contact" on-tap="onDataRouteTap">
             <iron-icon icon="assignment"></iron-icon>
             <span>Module 3</span>
           </a>
 
-          <a data-route="contact" href="/contact" on-click="onDataRouteClick">
+          <a data-route="contact" href="/contact" on-tap="onDataRouteTap">
             <iron-icon icon="assignment"></iron-icon>
             <span>Module 4</span>
           </a>
 
-          <a data-route="contact" href="/contact" on-click="onDataRouteClick">
+          <a data-route="contact" href="/contact" on-tap="onDataRouteTap">
             <iron-icon icon="assignment"></iron-icon>
             <span>Module 5</span>
           </a>
@@ -127,17 +127,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <!-- Main Content -->
         <div class="content">
-          <iron-pages attr-for-selected="data-route" selected="{{route}}">
+          <neon-animated-pages attr-for-selected="data-route" selected="{{route}}" entry-animation="[[entryAnimation]]" exit-animation="[[exitAnimation]]">
 
             <section data-route="home">
-              <!--<paper-material elevation="0">
-                <p class="paper-font-subhead">Title here</p>
-                <p class="paper-font-body2">Content goes here</p>
-              </paper-material>-->
+              <report-card-list></report-card-list>
+            </section>
 
-              <report-card></report-card>
-              <report-card></report-card>
-              <report-card></report-card>
+            <section data-route="sections">
+              <section-card-list></section-card-list>
             </section>
 
             <section data-route="users">
@@ -164,7 +161,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </paper-material>
             </section>
 
-          </iron-pages>
+          </neon-animated-pages>
         </div>
       </paper-scroll-header-panel>
     </paper-drawer-panel>

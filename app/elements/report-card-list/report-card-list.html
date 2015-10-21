@@ -1,0 +1,20 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="report-card-list">
+	<template>
+		<style include="shared-styles"></style>
+		<style>
+			:host {
+				display: block;
+				position: relative;
+			}
+		</style>
+
+		<template is="dom-repeat" items="[[cards]]" as="card">
+			<report-card name="[[card.name]]" main-figure-value="[[card.mainFigureValue]]" main-figure-abbr="[[card.mainFigureAbbr]]"
+			main-figure-comparison-value="[[card.mainFigureComparisonValue]]" main-figure-desc="[[card.mainFigureDesc]]" on-tap="onCardTap"></report-card>
+		</template>
+	</template>
+
+	<script src="report-card-list.js"></script>
+</dom-module>

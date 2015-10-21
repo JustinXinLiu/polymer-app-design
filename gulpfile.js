@@ -68,7 +68,7 @@ var imageOptimizeTask = function (src, dest) {
 };
 
 var optimizeHtmlTask = function (src, dest) {
-  var assets = $.useref.assets({searchPath: ['.tmp', 'dist']});
+  var assets = $.useref.assets();
 
   return gulp.src(src)
     // Replace path for vulcanized assets
@@ -163,7 +163,7 @@ gulp.task('fonts', function () {
 // Scan your HTML for assets & optimize them
 gulp.task('html', function () {
   return optimizeHtmlTask(
-    ['app/**/*.html', '!app/{elements,test}/**/*.html'],
+    ['dist/**/*.html', '!dist/{elements,test}/**/*.html'],
     'dist');
 });
 
@@ -267,7 +267,7 @@ gulp.task('serve', ['styles', 'elements', 'images', 'js'], function () {
   gulp.watch(['app/**/*.html'], ['js', reload]);
   gulp.watch(['app/styles/**/*.css'], ['styles', reload]);
   gulp.watch(['app/elements/**/*.css'], ['elements', reload]);
-  gulp.watch(['app/{scripts,elements}/**/{*.js,*.html}'], ['jshint', 'js']);
+  gulp.watch(['app/{scripts,elements}/**/*.js'], ['jshint', 'js']);
   gulp.watch(['app/images/**/*'], reload);
 });
 
