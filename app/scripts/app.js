@@ -25,7 +25,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       document.querySelector('#caching-complete').show();
     }
   };
-
+  
   // Listen for template bound event to know when bindings
   // have resolved and content has been stamped to the page
   app.addEventListener('dom-change', () => {
@@ -36,7 +36,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   window.addEventListener('WebComponentsReady', () => {
     // imports are loaded and elements have been registered
   });
-
+  
   // Main area's paper-scroll-header-panel custom condensing transformation of
   // the appName in the middle-container and the bottom title in the bottom-container.
   // The appName is moved to top and shrunk on condensing. The bottom sub title
@@ -67,7 +67,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   // Close drawer after menu item is selected if drawerPanel is narrow
   app.onDataRouteTap = () => {
-    // Reset page transition animations
+    console.log('data route tapped!');
+
     app.entryAnimation = 'slide-from-right-animation';
     app.exitAnimation = 'slide-left-animation';
 
@@ -77,15 +78,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
   };
   
-  // When the back button is tapped, we need to reverse the slide animations
+  // After the MENU button has transitioned into a BACK button, the action
+  // is changed from poping up the drawer to go back to previous page
   app.onBackTap = () => {
-    app.entryAnimation = 'slide-from-right-animation';
-    app.exitAnimation = 'slide-left-animation';
+    var toggle = document.getElementById('paperToggle');
+    
+    if (toggle.icon === 'menu') {
+      app.pageAnimationForward();
+    }
+    else {
+      app.pageAnimationBackward();   
+      page.back();
+    }
   };
 
   // Scroll page to top and expand header
   app.scrollPageToTop = () => {
     document.getElementById('mainContainer').scrollTop = 0;
+  };
+  
+  app.pageAnimationForward = () => {
+    app.entryAnimation = 'slide-from-right-animation';
+    app.exitAnimation = 'slide-left-animation';
+  };
+  
+  app.pageAnimationBackward = () => {
+    app.entryAnimation = 'slide-from-left-animation';
+    app.exitAnimation = 'slide-right-animation';
   };
 
 })(document);

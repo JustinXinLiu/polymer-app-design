@@ -84,12 +84,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <span>Module 2</span>
           </a>
 
-          <a data-route="contact" href="/contact" on-tap="onDataRouteTap">
+          <a data-route="contact" href="/sections" on-tap="onDataRouteTap">
             <iron-icon icon="assignment"></iron-icon>
             <span>Module 3</span>
           </a>
 
-          <a data-route="contact" href="/contact" on-tap="onDataRouteTap">
+          <a data-route="contact" href="/sections/test" on-tap="onDataRouteTap">
             <iron-icon icon="assignment"></iron-icon>
             <span>Module 4</span>
           </a>
@@ -106,7 +106,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <!-- Main Toolbar -->
         <paper-toolbar id="mainToolbar" class="tall">
-          <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
+          <icon-transition-button id="paperToggle" icon="menu" route="[[route]]" on-tap="onBackTap" paper-drawer-toggle></icon-transition-button>
+
           <span class="flex"></span>
 
           <!-- Toolbar icons -->
@@ -114,7 +115,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
           <!-- Application name -->
           <div class="middle middle-container center horizontal layout">
-            <div class="app-name">Module Name</div>
+            <div class="app-name">[[route]]</div>
           </div>
 
           <!-- Application sub title -->
@@ -137,6 +138,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <section-card-list></section-card-list>
             </section>
 
+            <section data-route="section-detail">
+              <section-detail name="[[params.name]]"></section-detail>
+            </section>
+
             <section data-route="users">
               <paper-material elevation="1">
                 <h2 class="page-title">Users</h2>
@@ -148,9 +153,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <section data-route="user-info">
               <paper-material elevation="1">
                 <h2 class="page-title">
-                User:<span>{{params.name}}</span>
+                User:<span>[[params.name]]</span>
                 </h2>
-                <div>This is <span>{{params.name}}</span>'s section</div>
+                <div>This is <span>[[params.name]]</span>'s section</div>
               </paper-material>
             </section>
 

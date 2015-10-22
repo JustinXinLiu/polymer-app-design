@@ -27,7 +27,8 @@ class ReportCardList {
 	attributeChanged() { }
 	
 	onCardTap() {
-		app.route = 'sections';
+		app.pageAnimationForward();
+		page('/sections');
 	}
 }
 

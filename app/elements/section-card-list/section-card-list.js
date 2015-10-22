@@ -27,8 +27,8 @@ class SectionCardList {
 	attributeChanged() { }
 	
 	onCardTap() {
-		console.log('route', app.route);
-		app.route = 'sections';
+		app.pageAnimationForward();
+		page('/sections/test');
 	}
 }
 
