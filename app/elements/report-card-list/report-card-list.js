@@ -1,10 +1,12 @@
+/* global page */
+/* global app */
+
 class ReportCardList {
 	beforeRegister() {
 		this.is = 'report-card-list';
 		this.properties = {
 			cards: {
-				type: Array,
-				value: []
+				type: Array
 			}
 		};
 	}
@@ -26,7 +28,7 @@ class ReportCardList {
 	detached() { }
 	attributeChanged() { }
 	
-	onCardTap() {
+	_onCardTap() {
 		app.pageAnimationForward();
 		page('/sections');
 	}

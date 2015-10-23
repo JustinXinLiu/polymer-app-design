@@ -7,6 +7,8 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 */
 
+/* global Polymer */
+
 ((document) => {
   'use strict';
 
@@ -67,8 +69,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   // Close drawer after menu item is selected if drawerPanel is narrow
   app.onDataRouteTap = () => {
-    console.log('data route tapped!');
-
     app.entryAnimation = 'slide-from-right-animation';
     app.exitAnimation = 'slide-left-animation';
 
@@ -88,7 +88,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
     else {
       app.pageAnimationBackward();   
-      page.back();
+      history.go(-1);
     }
   };
 

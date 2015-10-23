@@ -3,28 +3,23 @@ class ReportCard {
 		this.is = 'report-card';
 		this.properties = {
 			name: {
-				type: String,
-				value: ''
+				type: String
 			},
 
 			mainFigureValue: {
-				type: Number,
-				value: 0
+				type: Number
 			},
 
 			mainFigureAbbr: {
-				type: String,
-				value: ''
+				type: String
 			},
 
 			mainFigureDesc: {
-				type: String,
-				value: ''
+				type: String
 			},
 			
 			mainFigureComparisonValue: {
-				type: Number,
-				value: 0				
+				type: Number			
 			}
 		};
 	}

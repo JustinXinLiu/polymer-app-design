@@ -27,10 +27,16 @@
 			
 			.card .title {
 				color: var(--secondary-text-color);
-				font-size: 16px;
+				font-size: 14px;
 				font-weight: 600;
 				margin: 12px 0 40px 16px;
 				text-transform: uppercase;
+			}
+			
+			.card .title iron-icon {
+				width: 12px;
+				height: 12px;
+				margin: 1px 4px 0 0;
 			}
 			
 			.card .icon {
@@ -78,30 +84,47 @@
 				--paper-progress-active-color: var(--secondary-accent-color);
 				--paper-progress-container-color: var(--divider-color);
 			}
+			
+			#chart {
+				height: 80px;
+			}
 		</style>
 
 		<paper-material class="card flex vertical layout" elevation="0">
 			<section class="flex">
-				<div class="title">[[name]]</div>
+				<div class="title horizontal layout">
+					<iron-icon icon="shopping-basket"></iron-icon>
+					<div">[[name]]</div>
+				</div>
 
 				<div class="horizontal layout">
-					<div class="circle center-center vertical layout">[[mainFigureAbbr]]</div>
-					<div class="vertical layout">
-						<div class="percent">[[mainFigureValue]]</div>
-						<div class="small">[[mainFigureDesc]]</div>
+					<div class="horizontal layout flex">
+						<div class="circle center-center vertical layout">[[mainFigureAbbr]]</div>
+						<div class="vertical layout">
+							<div class="percent">[[mainFigureValue]]</div>
+							<div class="small">[[mainFigureDesc]]</div>
+						</div>
+					</div>
+
+					<div class="horizontal layout flex">
+						<div class="circle center-center vertical layout">[[mainFigureAbbr]]</div>
+						<div class="vertical layout">
+							<div class="percent">[[mainFigureValue]]</div>
+							<div class="small">[[mainFigureDesc]]</div>
+						</div>
 					</div>
 				</div>
 
 				<paper-ripple elevation="0"></paper-ripple>
 			</section>
 
-			<div class="horizontal layout">
+			<!--<div class="horizontal layout">
 				<paper-progress class="flex" value="[[mainFigureComparisonValue]]"></paper-progress>
-			</div>
+			</div>-->
 
-			<div class="horizontal layout end-justified">
-				<paper-icon-button class="icon" icon="favorite"></paper-icon-button>
-			</div>
+				<line-chart id="chart" class="flex" labels='["Jun", "Jul", "Aug", "Sep", "Oct"]'
+				values="[ [25, 22, 20, 17, 19], [22, 23, 20, 17, 18]]">
+				</line-chart>
 		</paper-material>
 	</template>
 

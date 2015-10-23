@@ -2,9 +2,13 @@ class SectionCardList {
 	beforeRegister() {
 		this.is = 'section-card-list';
 		this.properties = {
+			name: {
+				type: String,
+				observer: '_onNameChange'
+			},
+			
 			cards: {
-				type: Array,
-				value: []
+				type: Array
 			}
 		};
 	}
@@ -26,9 +30,13 @@ class SectionCardList {
 	detached() { }
 	attributeChanged() { }
 	
-	onCardTap() {
+	_onCardTap() {
 		app.pageAnimationForward();
 		page('/sections/test');
+	}
+	
+	_onNameChange(newValue) {
+		console.log('name changed: ' + newValue);
 	}
 }
 
