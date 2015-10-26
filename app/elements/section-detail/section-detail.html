@@ -25,7 +25,7 @@
 				color: var(--dark-primary-color);
 			}
 			
-			.card .title {
+			.title {
 				color: var(--secondary-text-color);
 				font-size: 16px;
 				font-weight: 600;
@@ -33,29 +33,28 @@
 				text-transform: uppercase;
 			}
 			
-			.card .icon {
+			.icon {
 				margin: 4px;
 			}
 			
-			.card .percent,
-			.card .money {
+			.percent, .money {
 				color: var(--primary-text-color);
 				font-weight: 600;
 				font-size: 28px;
 				margin-left: 8px;
 			}
 			
-			.card .percent::after {
+			.percent::after {
 				font-size: 16px;
 				content: '%';
 			}
 			
-			.card .money::before {
+			.money::before {
 				font-size: 16px;
 				content: '$ ';
 			}
 			
-			.card .small {
+			.small {
 				color: var(--primary-text-color);
 				font-size: 10px;
 				margin: 0 0 4px 10px;
@@ -63,7 +62,7 @@
 				text-transform: uppercase;
 			}
 			
-			.card .circle {
+			.circle {
 				color: var(--text-primary-color);
 				background-color: var(--accent-color);
 				font-size: 24px;
@@ -80,7 +79,7 @@
 			}
 		</style>
 
-		<paper-material class="card flex vertical layout" elevation="0">
+		<paper-material class="flex vertical layout" elevation="0">
 			<section class="flex">
 				<div class="title">[[name]]</div>
 

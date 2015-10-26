@@ -1,0 +1,43 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="home-last-visited">
+	<template>
+		<style include="shared-styles"></style>
+		<style>
+			:host {
+				display: block;
+				position: relative;
+				@apply(--layout-vertical);
+			}
+			
+			.heading {
+				color: var(--text-primary-color);
+				background-color: var(--primary-text-color);
+				font-size: 12px;
+				font-weight: 800;
+				text-transform: uppercase;
+				padding: 16px 24px;
+				margin: 0 0 -12px 0;
+			}
+			
+			module-card,
+			report-card,
+			section-card {
+				margin-top: 0;
+			}
+		</style>
+
+		<div class="heading">Your last visited module</div>
+		<module-card name="[[module.name]]" number-of-reports="[[module.numberOfReports]]" desc="[[module.desc]]" on-tap="_onModuleTap"></module-card>
+
+		<div class="heading">Your last visited report</div>
+		<report-card name="[[report.name]]" main-figure-value="[[report.mainFigureValue]]" main-figure-abbr="[[report.mainFigureAbbr]]"
+		main-figure-comparison-value="[[report.mainFigureComparisonValue]]" main-figure-desc="[[report.mainFigureDesc]]" on-tap="_onreportTap"></report-card>
+
+		<div class="heading">Your last visited section</div>
+		<section-card name="[[report.name]]" main-figure-value="[[report.mainFigureValue]]" main-figure-abbr="[[report.mainFigureAbbr]]"
+		main-figure-comparison-value="[[report.mainFigureComparisonValue]]" main-figure-desc="[[report.mainFigureDesc]]" on-tap="_onSectionTap"></section-card>
+	</template>
+
+	<script src="home-last-visited.js"></script>
+</dom-module>
