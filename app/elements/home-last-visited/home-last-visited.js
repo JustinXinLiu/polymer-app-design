@@ -21,7 +21,7 @@ class HomeLastVisited {
 	
 	_onModuleTap() {
 		app.pageAnimationForward();
-		page('/reports');
+		page(`/${this.module.name}`);
 	}
 	
 	_onReportTap() {

@@ -10,7 +10,7 @@
 			}
 		</style>
 
-		<template is="dom-repeat" items="[[cards]]" as="card">
+		<template id="cards" is="dom-repeat" items="[[cards]]" as="card">
 			<section-card name="[[card.name]]" main-figure-value="[[card.mainFigureValue]]" main-figure-abbr="[[card.mainFigureAbbr]]"
 			main-figure-comparison-value="[[card.mainFigureComparisonValue]]" main-figure-desc="[[card.mainFigureDesc]]" on-tap="_onCardTap"></report-card>
 		</template>

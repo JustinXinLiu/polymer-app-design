@@ -115,7 +115,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
           <!-- Application name -->
           <div class="middle middle-container center horizontal layout">
-            <div class="app-name">[[route]]</div>
+            <div class="app-name">[[heading]]</div>
           </div>
 
           <!-- Application sub title -->
@@ -134,15 +134,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <home-last-visited></home-last-visited>
             </section>
             
-            <section data-route="reports">
+            <section data-route="module">
               <report-card-list></report-card-list>
             </section>           
 
-            <section data-route="sections">
-              <section-card-list name=[[params.name]]></section-card-list>
+            <section data-route="report">
+              <section-card-list name="[[params.name]]"></section-card-list>
             </section>
 
-            <section data-route="section-detail">
+            <section data-route="section">
               <section-detail name="[[params.name]]"></section-detail>
             </section>
 

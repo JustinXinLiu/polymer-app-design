@@ -28,9 +28,11 @@ class ReportCardList {
 	detached() { }
 	attributeChanged() { }
 	
-	_onCardTap() {
+	_onCardTap(e) {
 		app.pageAnimationForward();
-		page('/sections');
+		
+		var item = this.$.cards.itemForElement(e.target);
+		page(`${page.current}/${item.name}`);
 	}
 }
 
