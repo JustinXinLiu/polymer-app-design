@@ -13,7 +13,7 @@
 			
 			paper-material {
 				border-radius: 8px;
-				background-color: var(--light-primary-color);
+				background-color: var(--secondary-accent-color);
 				border: 1px solid var(--divider-color);
 			}
 			
@@ -25,12 +25,27 @@
 				color: var(--dark-primary-color);
 			}
 			
+			#chart {
+				margin: 0 12px 4px 12px;
+			}
+			
+			.bottom {
+				background-color: var(--light-primary-color);
+				border-radius: 0 0 8px 8px;
+				padding: 16px 16px 24px 16px;
+			}
+			
 			.title {
-				color: var(--secondary-text-color);
+				color: var(--primary-text-color);
 				font-size: 14px;
 				font-weight: 600;
-				margin: 12px 0 40px 16px;
+				margin: 12px 0 24px 16px;
 				text-transform: uppercase;
+			}
+			
+			.title.light {
+				color: var(--secondary-text-color);
+				margin: 0 0 16px 0;
 			}
 			
 			.title iron-icon {
@@ -40,9 +55,9 @@
 			}
 			
 			hr {
-				width: 100%;
 				border: 0;
-				border-top: 1px solid rgba(181, 187, 179, 0.4);
+				border-left: 1px solid var(--divider-color);
+				margin-left: 1px;
 			}
 			
 			.icon {
@@ -75,20 +90,11 @@
 				text-transform: uppercase;
 			}
 			
-			.circle {
-				color: var(--text-primary-color);
-				background-color: var(--accent-color);
-				font-size: 24px;
-				font-weight: 600;
-				border-radius: 50%;
-				height: 48px;
-				width: 48px;
-				margin: 0 0 8px 16px;
-			}
-			
 			paper-progress {
-				--paper-progress-active-color: var(--secondary-accent-color);
+				--paper-progress-active-color: var(--accent-color);
 				--paper-progress-container-color: var(--divider-color);
+				--paper-progress-height: 2px;
+				margin: 0 10px;
 			}
 			
 			#chart {
@@ -97,42 +103,47 @@
 		</style>
 
 		<paper-material class="flex vertical layout" elevation="0">
-			<section class="flex">
+			<section class="vertical layout">
 				<div class="title horizontal layout">
 					<iron-icon icon="shopping-basket"></iron-icon>
-					<div ">[[name]]</div>
+					<div>[[name]]</div>
 				</div>
 
-				<div class="horizontal layout ">
-					<div class="horizontal layout flex ">
-						<div class="circle center-center vertical layout ">[[mainFigureAbbr]]</div>
-						<div class="vertical layout ">
-							<div class="percent ">[[mainFigureValue]]</div>
-							<div class="small ">[[mainFigureDesc]]</div>
-						</div>
-					</div>
-
-					<div class="horizontal layout flex ">
-						<div class="circle center-center vertical layout ">[[mainFigureAbbr]]</div>
-						<div class="vertical layout ">
-							<div class="percent ">[[mainFigureValue]]</div>
-							<div class="small ">[[mainFigureDesc]]</div>
-						</div>
-					</div>
-				</div>
-
-				<paper-ripple elevation="0 "></paper-ripple>
+				<line-chart id="chart" labels='["Jun","Jul","Aug","Sep","Oct"]' values="[ [25, 22, 20, 17, 19]]"></line-chart>
 			</section>
 
-			<!--<div class="horizontal layout ">
-				<paper-progress class="flex " value="[[mainFigureComparisonValue]] "></paper-progress>
-			</div>-->
+			<section class="bottom flex vertical layout">
 
-				<line-chart id="chart " class="flex " labels='["Jun ", "Jul ", "Aug ", "Sep ", "Oct "]'
-				values="[ [25, 22, 20, 17, 19], [22, 23, 20, 17, 18]] ">
-				</line-chart>
+				<div class="title light">Last five months</div>
+
+				<div class="horizontal layout">
+					<div class="flex">
+						<div class="vertical layout">
+							<div class="percent">[[mainFigureValue]]</div>
+							<div class="small">[[mainFigureDesc]]</div>
+							<div class="horizontal layout">
+								<paper-progress class="flex" value="[[mainFigureComparisonValue]]"></paper-progress>
+							</div>
+						</div>
+					</div>
+
+					<!--<hr>-->
+
+					<div class="flex">
+						<div class="vertical layout">
+							<div class="percent">[[mainFigureValue]]</div>
+							<div class="small">[[mainFigureDesc]]</div>
+							<div class="horizontal layout">
+								<paper-progress class="flex" value="[[mainFigureComparisonValue]]"></paper-progress>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<paper-ripple elevation="0"></paper-ripple>
+			</section>
 		</paper-material>
 	</template>
 
-	<script src="section-card.js "></script>
+	<script src="section-card.js"></script>
 </dom-module>

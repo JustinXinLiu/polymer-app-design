@@ -17,6 +17,9 @@ class HomeLastVisited {
 		
 		this.report = { name: 'awesome report', mainFigureValue: 34, mainFigureAbbr: 'B',
 			mainFigureDesc: 'This Week', mainFigureComparisonValue: 12 };
+	
+		this.section = { name: 'section 1', mainFigureValue: 34, mainFigureAbbr: 'B',
+			mainFigureDesc: 'This Week', mainFigureComparisonValue: 12 };	
 	}
 	
 	_onModuleTap() {

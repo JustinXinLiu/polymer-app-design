@@ -1,12 +1,3 @@
-/*
-Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
-*/
-
 /* global Polymer */
 
 ((document) => {
@@ -82,12 +73,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   // is changed from poping up the drawer to go back to previous page
   app.onBackTap = () => {
     var toggle = document.getElementById('paperToggle');
-    
+
     if (toggle.icon === 'menu') {
       app.pageAnimationForward();
     }
     else {
-      app.pageAnimationBackward();   
+      app.pageAnimationBackward();
       history.go(-1);
     }
   };
@@ -96,12 +87,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   app.scrollPageToTop = () => {
     document.getElementById('mainContainer').scrollTop = 0;
   };
-  
+
   app.pageAnimationForward = () => {
     app.entryAnimation = 'slide-from-right-animation';
     app.exitAnimation = 'slide-left-animation';
   };
-  
+
   app.pageAnimationBackward = () => {
     app.entryAnimation = 'slide-from-left-animation';
     app.exitAnimation = 'slide-right-animation';

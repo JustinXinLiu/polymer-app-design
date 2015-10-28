@@ -1,1 +1,129 @@
-<script src="../../bower_components/chartjs/Chart.js"></script>
+<script src="../../bower_components/chartjs2/Chart.js"></script>
+<script>
+  /* global Chart */
+
+	Chart.defaults.global = {
+    responsive: true,
+    responsiveAnimationDuration: 1000,
+    maintainAspectRatio: false,
+    events: ['mousemove', 'mouseout', 'click', 'touchstart', 'touchmove', 'touchend'],
+    hover: {
+      onHover: null,
+      mode: 'single',
+      animationDuration: 400,
+    },
+    onClick: null,
+    defaultColor: 'rgba(0,0,0,0.1)',
+
+    // Element defaults defined in element extensions
+    elements: {
+      arc: {
+        backgroundColor: Chart.defaults.global.defaultColor,
+        borderColor: '#fff',
+        borderWidth: 2
+      },
+      line: {
+        tension: 0.4,
+        backgroundColor: Chart.defaults.global.defaultColor,
+        borderWidth: 2,
+        borderColor: Chart.defaults.global.defaultColor,
+        borderCapStyle: 'butt',
+        borderDash: [],
+        borderDashOffset: 0.0,
+        borderJoinStyle: 'miter',
+        fill: true, // do we fill in the area between the line and its base axis
+        skipNull: true,
+        drawNull: false,
+      },
+      point: {
+        radius: 4,
+        backgroundColor: Chart.defaults.global.defaultColor,
+        borderWidth: 2,
+        borderColor: Chart.defaults.global.defaultColor,
+        // Hover
+        hitRadius: 4,
+        hoverRadius: 6,
+        hoverBorderWidth: 2,
+      },
+      rectangle: {
+        backgroundColor: Chart.defaults.global.defaultColor,
+        borderWidth: 0,
+        borderColor: Chart.defaults.global.defaultColor,
+      }
+    },
+
+    animation: {
+      duration: 1000,
+      easing: 'easeOutQuart'
+    },
+
+    tooltips: {
+      enabled: true,
+      custom: null,
+      backgroundColor: 'rgba(0, 0, 0, .8)',
+      fontFamily: '"Roboto", "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif',
+      fontSize: 10,
+      fontStyle: 'normal',
+      fontColor: '#fff',
+      titleFontFamily: '"Roboto", "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif',
+      titleFontSize: 12,
+      titleFontStyle: 'bold',
+      titleFontColor: '#fff',
+      yPadding: 6,
+      xPadding: 6,
+      caretSize: 8,
+      cornerRadius: 6,
+      xOffset: 10,
+      multiKeyBackground: '#fff',
+    }
+  };
+  
+  Chart.defaults.scale = {
+    display: true,
+  
+    // grid line settings
+    gridLines: {
+        show: true,
+        color: 'rgba(0, 0, 0, .05)',
+        lineWidth: 2,
+        drawOnChartArea: true,
+        drawTicks: false,
+        zeroLineWidth: 2,
+        zeroLineColor: 'rgba(0, 0, 0, .05)',
+        offsetGridLines: false,
+    },
+  
+    // scale label
+    scaleLabel: {
+        fontColor: 'rgba(0, 0, 0, .4)',
+        fontFamily: '"Roboto", "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif',
+        fontSize: 12,
+        fontStyle: 'normal',
+  
+        // actual label
+        labelString: '',
+  
+        // display property
+        show: false,
+    },
+  
+    // label settings
+    ticks: {
+        beginAtZero: false,
+        fontSize: 12,
+        fontStyle: 'normal',
+        fontColor: 'rgba(0, 0, 0, .4)',
+        fontFamily: '"Roboto", "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif',
+        maxRotation: 90,
+        minRotation: 20,
+        mirror: false,
+        padding: 12,
+        reverse: false,
+        show: true,
+			  callback: value => {
+				  return '' + value;
+			  }
+    }
+  };
+  
+  </script>
