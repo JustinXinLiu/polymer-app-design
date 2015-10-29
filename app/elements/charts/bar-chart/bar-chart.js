@@ -1,22 +1,22 @@
+/* global Chart */
+
 class BarChart {
     beforeRegister() {
         this.is = 'bar-chart';
         this.properties = {
             values: {
                 type: Array,
-                value: function () { return []; },
                 observer: 'update'
             },
 
             labels: {
                 type: Array,
-                value: function () { return []; },
                 observer: 'update'
             },
 
             colors: {
                 type: Array,
-                value: ['217, 194, 117', '68, 178, 161'],
+                value: ['250, 50, 0', '170, 207, 228'],
                 observer: 'update'
             }
         };
@@ -37,14 +37,14 @@ class BarChart {
 
         this.datasets = [];
 
-        this.values.forEach(function (val, i) {
+        this.values.forEach((val, i) => {
             this.datasets.push({
-                fillColor: `rgba${this.colors[i]}, 0.6)`,
-                strokeColor: `rgba${this.colors[i]}, 0.8)`,
-                pointColor: '#fff',
-                pointStrokeColor: `rgba${this.colors[i]}, 1)`,
-                pointHighlightFill: `rgba${this.colors[i]}, 1)`,
-                pointHighlightStroke: '#fff',
+                backgroundColor: `rgba(${this.colors[i]}, .8)`,
+                borderColor: `rgba(${this.colors[i]}, 1)`,
+                pointBackgroundColor: `rgba(${this.colors[i]}, 1)`,
+                pointBorderColor: 'rgba(241, 235, 130, 1)',
+                pointHoverBackgroundColor: `rgba(${this.colors[i]}, 1)`,
+                pointHoverBorderColor: '#fff',
                 data: this.values[i]
             });
         }, this);
@@ -54,28 +54,20 @@ class BarChart {
         this.ctx = this.$.canvas.getContext('2d');
 
         this.options = {
-            responsive: true,
-            maintainAspectRatio: false,
-
-            showScale: false,
-            scaleLineColor: 'rgba(255, 255, 255, 0.2)',
-            scaleFontColor: 'rgba(255, 255, 255, 0.4)',
-
-            tooltipFillColor: 'rgba(0, 0, 0, 0.8)',
-            tooltipCornerRadius: 8,
-            tooltipTitleFontStyle: 'normal',
-            tooltipYPadding: 16,
-            tooltipXPadding: 24,
-            tooltipTitleFontFamily: '"Roboto", "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif',
-
-            pointDotRadius: 5,
-            pointDotStrokeWidth: 3,
-            datasetStrokeWidth: 3,
+            // maintainAspectRatio: false,
+            xAxes: [{
+                show: false
+            }]
         };
 
-        this.chart = new Chart(this.ctx).Bar(this.data, this.options); // jshint ignore: line
-
-        //this.resize();
+        this.chart = new Chart(this.ctx, {
+            type: 'bar',
+            data: this.data,
+            options: this.options
+        });
+ 
+        //         this.async(() => this.resize(), 2000);
+        //         this.async(() => this.update(), 3000);
     }
 
     resize() {

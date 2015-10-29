@@ -1,6 +1,6 @@
-<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
 
-<dom-module id="section-card">
+<dom-module id="value-card-chart">
 	<template>
 		<style include="shared-styles"></style>
 		<style>
@@ -23,10 +23,6 @@
 			
 			paper-icon-button {
 				color: var(--dark-primary-color);
-			}
-			
-			#chart {
-				margin: 0 12px 4px 12px;
 			}
 			
 			.bottom {
@@ -97,8 +93,9 @@
 				margin: 0 10px;
 			}
 			
-			#chart {
+			.chart {
 				height: 120px;
+				margin: 0 12px 4px 12px;
 			}
 		</style>
 
@@ -109,7 +106,13 @@
 					<div>[[name]]</div>
 				</div>
 
-				<line-chart id="chart" labels='["Jun","Jul","Aug","Sep","Oct"]' values="[ [25, 22, 20, 17, 19]]"></line-chart>
+				<template is="dom-if" if="[[_line(type)]]">
+					<line-chart class="chart" labels='["Jun","Jul","Aug","Sep","Oct"]' values="[ [25, 22, 20, 17, 19]]"></line-chart>
+				</template>
+
+				<template is="dom-if" if="[[_bar(type)]]">
+					<bar-chart class="chart" labels='["Jun","Jul","Aug","Sep","Oct"]' values="[ [25, 22, 20, 17, 19]]"></bar-chart>
+				</template>
 			</section>
 
 			<section class="bottom flex vertical layout">
@@ -145,5 +148,5 @@
 		</paper-material>
 	</template>
 
-	<script src="section-card.js"></script>
+	<script src="value-card-chart.js"></script>
 </dom-module>

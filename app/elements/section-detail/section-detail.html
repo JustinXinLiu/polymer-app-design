@@ -7,101 +7,23 @@
 			:host {
 				display: block;
 				position: relative;
-				margin: 12px;
-				@apply(--layout-horizontal);
+				@apply(--layout-vertical);
 			}
 			
-			paper-material {
-				border-radius: 8px;
-				background-color: var(--light-primary-color);
-				border: 1px solid var(--divider-color);
-			}
-			
-			paper-ripple {
-				border-radius: 8px;
-			}
-			
-			paper-icon-button {
-				color: var(--dark-primary-color);
-			}
-			
-			.title {
-				color: var(--secondary-text-color);
-				font-size: 16px;
-				font-weight: 600;
-				margin: 12px 0 40px 16px;
-				text-transform: uppercase;
-			}
-			
-			.icon {
-				margin: 4px;
-			}
-			
-			.percent, .money {
-				color: var(--primary-text-color);
-				font-weight: 600;
-				font-size: 28px;
-				margin-left: 8px;
-			}
-			
-			.percent::after {
-				font-size: 16px;
-				content: '%';
-			}
-			
-			.money::before {
-				font-size: 16px;
-				content: '$ ';
-			}
-			
-			.small {
-				color: var(--primary-text-color);
-				font-size: 10px;
-				margin: 0 0 4px 10px;
-				font-weight: 600;
-				text-transform: uppercase;
-			}
-			
-			.circle {
-				color: var(--text-primary-color);
-				background-color: var(--accent-color);
-				font-size: 24px;
-				font-weight: 600;
-				border-radius: 50%;
-				height: 48px;
-				width: 48px;
-				margin: 0 0 8px 16px;
-			}
-			
-			paper-progress {
-				--paper-progress-active-color: var(--secondary-accent-color);
-				--paper-progress-container-color: var(--divider-color);
+			value-card-number {
+				margin-top: 0;
 			}
 		</style>
 
-		<paper-material class="flex vertical layout" elevation="0">
-			<section class="flex">
-				<div class="title">[[name]]</div>
+		<secondary-heading name="Something important here" first></secondary-heading>
 
-				<div class="horizontal layout">
-					<div class="circle center-center vertical layout">[[mainFigureAbbr]]</div>
-					<div class="vertical layout">
-						<div class="percent">[[mainFigureValue]]</div>
-						<div class="small">[[mainFigureDesc]]</div>
-					</div>
-				</div>
+		<value-card-number name="value 1" main-figure-value="12" main-figure-desc="Last Week" main-figure-comparison-value="37"></value-card-number>
 
-				<paper-ripple elevation="0"></paper-ripple>
-			</section>
-
-			<div class="horizontal layout">
-				<paper-progress class="flex" value="[[mainFigureComparisonValue]]"></paper-progress>
-			</div>
-
-			<div class="horizontal layout end-justified">
-				<paper-icon-button class="icon" icon="favorite"></paper-icon-button>
-			</div>
-		</paper-material>
+		<value-card-chart name="value 2" type="line" main-figure-value="54" main-figure-desc="Last Week" main-figure-comparison-value="37"></value-card-chart>
+		
+		<value-card-chart name="value 3" type="bar" main-figure-value="77" main-figure-desc="Last Week" main-figure-comparison-value="37"></value-card-chart>
+	
+		<data-grid name="detailed data"></data-grid>
 	</template>
 
 	<script src="section-detail.js"></script>

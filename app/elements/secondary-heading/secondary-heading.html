@@ -1,0 +1,29 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="secondary-heading">
+	<template>
+		<style include="shared-styles"></style>
+		<style>
+			:host {
+				display: block;
+				position: relative;
+				color: var(--text-primary-color);
+				background-color: var(--primary-text-color);
+				font-size: 12px;
+				font-weight: 800;
+				text-transform: uppercase;
+				padding: 16px 24px;
+				margin: 12px 0 -12px 0;
+			}
+			
+			:host([first]) {
+				padding-top: 28px;
+				margin-top: -12px;
+			}
+		</style>
+
+		<div>[[name]]</div>
+	</template>
+
+	<script src="secondary-heading.js"></script>
+</dom-module>

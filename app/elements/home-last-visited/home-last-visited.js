@@ -24,17 +24,20 @@ class HomeLastVisited {
 	
 	_onModuleTap() {
 		app.pageAnimationForward();
+		
 		page(`/${this.module.name}`);
 	}
 	
 	_onReportTap() {
-		app.pageAnimationForward();
-		page('/sections');
+		// app.pageAnimationForward();
+		// 
+		// page(`${page.current}/${this.report.name}`);
 	}
 	
 	_onSectionTap() {
-		app.pageAnimationForward();
-		page('/');
+		// app.pageAnimationForward();
+		// 
+		// page(`${page.current}/${this.section.name}`);
 	}
 }
 
