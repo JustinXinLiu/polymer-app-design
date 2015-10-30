@@ -1,6 +1,6 @@
-<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
 
-<dom-module id="report-card">
+<dom-module id="value-card-grid">
 	<template>
 		<style include="shared-styles"></style>
 		<style>
@@ -8,7 +8,7 @@
 				display: block;
 				position: relative;
 				margin: 12px;
-				@apply(--layout-horizontal);
+				@apply(--layout-vertical);
 			}
 			
 			paper-material {
@@ -21,20 +21,20 @@
 				border-radius: 8px;
 			}
 			
+			.content {
+				padding: 0 16px 24px 16px;
+			}
+			
 			paper-icon-button {
 				color: var(--dark-primary-color);
 			}
 			
 			.title {
 				color: var(--secondary-text-color);
-				font-size: 16px;
+				font-size: 14px;
 				font-weight: 600;
-				margin: 12px 0 32px 16px;
+				margin: 12px 0 16px 16px;
 				text-transform: uppercase;
-			}
-			
-			.icon {
-				margin: 4px;
 			}
 			
 			.percent,
@@ -63,47 +63,52 @@
 				text-transform: uppercase;
 			}
 			
-			.circle {
-				color: var(--text-primary-color);
-				background-color: var(--accent-color);
-				font-size: 24px;
-				font-weight: 600;
-				border-radius: 50%;
-				height: 48px;
-				width: 48px;
-				margin: 0 0 8px 16px;
+			paper-progress {
+				--paper-progress-active-color: var(--accent-color);
+				--paper-progress-container-color: var(--divider-color);
+				--paper-progress-height: 2px;
+				margin: 0 10px;
 			}
 			
-			paper-progress {
-				--paper-progress-active-color: var(--good-color);
-				--paper-progress-container-color: var(--divider-color);
+			.main {
+				margin: 0 16px;
+			}
+			
+			.main hr {
+				border: 0;
+				border-top: 1px solid var(--divider-color);
+			}
+			
+			.good {
+				color: var(--good-color);
 			}
 		</style>
 
 		<paper-material class="flex vertical layout" elevation="0">
 			<section class="flex">
 				<div class="title">[[name]]</div>
-
-				<div class="horizontal layout">
-					<div class="circle center-center vertical layout">[[mainFigureAbbr]]</div>
-					<div class="vertical layout">
-						<div class="percent">[[mainFigureValue]]</div>
-						<div class="small">[[mainFigureDesc]]</div>
-					</div>
-				</div>
-
-				<paper-ripple elevation="0"></paper-ripple>
 			</section>
 
-			<div class="horizontal layout">
-				<paper-progress class="flex" value="[[mainFigureComparisonValue]]"></paper-progress>
-			</div>
+			<section class="main flex">
+				<hr>
+				<div class="center horizontal layout">
+					<div class="vertical layout">
+						<div class="money">[[mainFigureValue]]</div>
+						<div class="small">[[mainFigureDesc]]</div>
+					</div>
+					<span class="flex"></span>
+					<paper-icon-button class="good" icon="trending-up"></paper-icon-button>
+				</div>
+				<hr>
+			</section>
 
-			<div class="horizontal layout end-justified">
-				<paper-icon-button class="icon" icon="favorite"></paper-icon-button>
-			</div>
+			<section class="content horizontal layout">
+				<data-grid></data-grid>
+			</section>
+
+			<paper-ripple elevation="0"></paper-ripple>
 		</paper-material>
 	</template>
 
-	<script src="report-card.js"></script>
+	<script src="value-card-grid.js"></script>
 </dom-module>

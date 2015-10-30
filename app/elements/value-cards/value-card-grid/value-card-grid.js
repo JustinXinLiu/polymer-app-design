@@ -1,12 +1,8 @@
-class ValueCardChart {
+class ValueCardGrid {
 	beforeRegister() {
-		this.is = 'value-card-chart';
+		this.is = 'value-card-grid';
 		this.properties = {
 			name: {
-				type: String
-			},
-			
-			type: {
 				type: String
 			},
 
@@ -21,23 +17,18 @@ class ValueCardChart {
 			mainFigureDesc: {
 				type: String
 			},
-
+			
 			mainFigureComparisonValue: {
-				type: Number
+				type: Number			
 			}
 		};
 	}
 
-	attached() {
-	}
-	
-	_line(type) {
-		return type === 'line';
-	}
-	
-	_bar(type) {
-		return type === 'bar';
-	}
+	created() { }
+	ready() { }
+	attached() { }
+	detached() { }
+	attributeChanged() { }
 }
 
-Polymer(ValueCardChart);
+Polymer(ValueCardGrid);

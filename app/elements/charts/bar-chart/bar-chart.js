@@ -16,7 +16,7 @@ class BarChart {
 
             colors: {
                 type: Array,
-                value: ['250, 50, 0', '170, 207, 228'],
+                value: ['100, 203, 0', '30, 90, 163'],
                 observer: 'update'
             }
         };
@@ -39,10 +39,10 @@ class BarChart {
 
         this.values.forEach((val, i) => {
             this.datasets.push({
-                backgroundColor: `rgba(${this.colors[i]}, .8)`,
+                backgroundColor: `rgba(${this.colors[i]}, 1)`,
                 borderColor: `rgba(${this.colors[i]}, 1)`,
                 pointBackgroundColor: `rgba(${this.colors[i]}, 1)`,
-                pointBorderColor: 'rgba(241, 235, 130, 1)',
+                pointBorderColor: 'rgba(206, 227, 239, 1)',
                 pointHoverBackgroundColor: `rgba(${this.colors[i]}, 1)`,
                 pointHoverBorderColor: '#fff',
                 data: this.values[i]
