@@ -6,6 +6,10 @@ class SectionDetail {
 				type: String
 			},
 
+			sticky: {
+				type: String
+			},
+
 			mainFigureValue: {
 				type: Number
 			},
@@ -17,18 +21,41 @@ class SectionDetail {
 			mainFigureDesc: {
 				type: String
 			},
-			
+
 			mainFigureComparisonValue: {
-				type: Number				
+				type: Number
 			}
 		};
 	}
 
-	created() { }
-	ready() { }
-	attached() { }
-	detached() { }
-	attributeChanged() { }
+	ready() {
+
+		// Sticky effect for the secondary heading
+		//
+		
+		// let effect = new KeyframeEffect(this.$.heading, [
+		// 	{ transform: 'rotateX(0)' }, 
+		// 	{ transform: 'rotateX(180deg)' 
+		// }], 400);
+		// let animation = new Animation(effect, this.$.heading.ownerDocument.timeline);
+
+		addEventListener('paper-header-transform', (e) => {
+			let detail = e.detail;
+			let heightDiff = detail.height - detail.condensedHeight;
+
+			if (detail.y === heightDiff) {
+				//animation.play();
+				// this.async(()=> { 
+				this.$.heading.first = false;
+				this.sticky = 'sticky';
+				// }, 0);
+			}
+			else {
+				this.$.heading.first = true;
+				this.sticky = '';
+			}
+		});
+	}
 }
 
 Polymer(SectionDetail);

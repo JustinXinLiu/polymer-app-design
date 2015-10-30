@@ -13,9 +13,19 @@
 			value-card-number {
 				margin-top: 0;
 			}
+			
+			.sticky {
+				position: fixed;
+				top: 44px;
+				left: 0;
+				right: 0;
+				z-index: 100;
+				opacity: 0.8;
+				transition: all .25s ease-out;
+			}
 		</style>
 
-		<secondary-heading name="Something important here" first></secondary-heading>
+		<secondary-heading id="heading" class$="[[sticky]]" name="Something important here" first></secondary-heading>
 
 		<value-card-number name="value 1" main-figure-value="12" main-figure-desc="Last Week" main-figure-comparison-value="37"></value-card-number>
 

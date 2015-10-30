@@ -2,6 +2,35 @@
 
 ((document) => {
   'use strict';
+  
+  // smooth scrolling
+  function scrollTo(element, to, duration) {
+    let start = element.scrollTop,
+      change = to - start,
+      increment = 20;
+
+    let animateScroll = (elapsedTime) => {
+      elapsedTime += increment;
+      let position = easeInOut(elapsedTime, start, change, duration);
+      element.scrollTop = position;
+      if (elapsedTime < duration) {
+        setTimeout(() => {
+          animateScroll(elapsedTime);
+        }, increment);
+      }
+    };
+
+    animateScroll(0);
+  }
+
+  function easeInOut(currentTime, start, change, duration) {
+    currentTime /= duration / 2;
+    if (currentTime < 1) {
+      return change / 2 * currentTime * currentTime + start;
+    }
+    currentTime -= 1;
+    return -change / 2 * (currentTime * (currentTime - 2) - 1) + start;
+  }
 
   // Grab a reference to our auto-binding template
   // and give it some initial binding values
@@ -72,7 +101,7 @@
   // After the MENU button has transitioned into a BACK button, the action
   // is changed from poping up the drawer to go back to previous page
   app.onBackTap = () => {
-    var toggle = document.getElementById('paperToggle');
+    let toggle = document.getElementById('paperToggle');
 
     if (toggle.icon === 'menu') {
       app.pageAnimationForward();
@@ -85,7 +114,7 @@
 
   // Scroll page to top and expand header
   app.scrollPageToTop = () => {
-    document.getElementById('mainContainer').scrollTop = 0;
+    setTimeout(() => scrollTo(document.getElementById('mainContainer'), 0, 250), 400);
   };
 
   app.pageAnimationForward = () => {

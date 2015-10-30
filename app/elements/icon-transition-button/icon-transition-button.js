@@ -36,14 +36,14 @@ class IconTransitionButton {
 
 	_computeIconClass(rotate, icon) {
 		rotate += 180;
-		var cl = icon;
+		let cl = icon;
 
 		if ((rotate % 360) === 180) {
 			cl += ' rotate';
 		}
 
-		var svg = this.$.svg;
-		var transform = `rotate(${rotate}deg)`;
+		let svg = this.$.svg;
+		let transform = `rotate(${rotate}deg)`;
 		if (document.documentElement.style.transform) {
 			svg.style.transform = transform;
 		} else {
@@ -54,7 +54,7 @@ class IconTransitionButton {
 	}
 
 	_onRouteChange(newValue) {
-		var newRoute = newValue;
+		let newRoute = newValue;
 
 		if (newRoute === 'home') {
 			this.icon = 'menu';
@@ -67,7 +67,7 @@ class IconTransitionButton {
 	}
 
 	_altChanged(newValue, oldValue) {
-        var label = this.getAttribute('aria-label');
+        let label = this.getAttribute('aria-label');
 
         // Don't stomp over a user-set aria-label.
         if (!label || oldValue === label) {

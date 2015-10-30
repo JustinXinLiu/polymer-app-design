@@ -31,7 +31,7 @@ class ReportCardList {
 	_onCardTap(e) {
 		app.pageAnimationForward();
 		
-		var item = this.$.cards.itemForElement(e.target);
+		let item = this.$.cards.itemForElement(e.target);
 		page(`${page.current}/${item.name}`);
 	}
 }
