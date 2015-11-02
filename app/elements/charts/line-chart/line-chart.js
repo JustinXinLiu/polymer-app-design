@@ -16,7 +16,7 @@ class LineChart {
 
             colors: {
                 type: Array,
-                value: ['30, 90, 163', '100, 203, 0'],
+                value: ['65, 186, 186', '159, 85, 224', '253, 218, 72', '247, 30, 30'],
                 observer: 'update'
             }
         };
@@ -42,7 +42,7 @@ class LineChart {
                 backgroundColor: `rgba(${this.colors[i]}, .2)`,
                 borderColor: `rgba(${this.colors[i]}, 1)`,
                 pointBackgroundColor: `rgba(${this.colors[i]}, 1)`,
-                pointBorderColor: 'rgba(206, 227, 239, 1)',
+                pointBorderColor: 'rgba(249, 238, 246, 1)',
                 pointHoverBackgroundColor: `rgba(${this.colors[i]}, 1)`,
                 pointHoverBorderColor: '#fff',
                 data: this.values[i]

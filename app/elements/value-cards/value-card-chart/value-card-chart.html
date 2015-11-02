@@ -86,13 +86,6 @@
 				text-transform: uppercase;
 			}
 			
-			paper-progress {
-				--paper-progress-active-color: var(--accent-color);
-				--paper-progress-container-color: var(--divider-color);
-				--paper-progress-height: 2px;
-				margin: 0 10px;
-			}
-			
 			.chart {
 				height: 120px;
 				margin: 0 12px 4px 12px;
@@ -125,7 +118,7 @@
 							<div class="percent">[[mainFigureValue]]</div>
 							<div class="small">[[mainFigureDesc]]</div>
 							<div class="horizontal layout">
-								<paper-progress class="flex" value="[[mainFigureComparisonValue]]"></paper-progress>
+								<paper-progress class="small good flex" value="[[mainFigureComparisonValue]]"></paper-progress>
 							</div>
 						</div>
 					</div>
@@ -137,7 +130,7 @@
 							<div class="percent">[[mainFigureValue]]</div>
 							<div class="small">[[mainFigureDesc]]</div>
 							<div class="horizontal layout">
-								<paper-progress class="flex" value="[[mainFigureComparisonValue]]"></paper-progress>
+								<paper-progress class="small bad flex" value="[[mainFigureComparisonValue]]"></paper-progress>
 							</div>
 						</div>
 					</div>

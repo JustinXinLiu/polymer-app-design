@@ -90,13 +90,6 @@
 				text-transform: uppercase;
 			}
 			
-			paper-progress {
-				--paper-progress-active-color: var(--accent-color);
-				--paper-progress-container-color: var(--divider-color);
-				--paper-progress-height: 2px;
-				margin: 0 10px;
-			}
-			
 			#chart {
 				height: 120px;
 			}
@@ -109,7 +102,7 @@
 					<div>[[name]]</div>
 				</div>
 
-				<line-chart id="chart" labels='["Jun","Jul","Aug","Sep","Oct"]' values="[ [25, 22, 20, 17, 19]]"></line-chart>
+				<line-chart id="chart" labels='["Jun","Jul","Aug","Sep","Oct"]' values="[ [25, 22, 20, 17, 19], [21, 12, 29, 15, 16]]"></line-chart>
 			</section>
 
 			<section class="bottom flex vertical layout">
@@ -122,7 +115,7 @@
 							<div class="percent">[[mainFigureValue]]</div>
 							<div class="small">[[mainFigureDesc]]</div>
 							<div class="horizontal layout">
-								<paper-progress class="flex" value="[[mainFigureComparisonValue]]"></paper-progress>
+								<paper-progress class="small flex" value="[[mainFigureComparisonValue]]"></paper-progress>
 							</div>
 						</div>
 					</div>
@@ -134,7 +127,7 @@
 							<div class="percent">[[mainFigureValue]]</div>
 							<div class="small">[[mainFigureDesc]]</div>
 							<div class="horizontal layout">
-								<paper-progress class="flex" value="[[mainFigureComparisonValue]]"></paper-progress>
+								<paper-progress class="small flex bad" value="[[mainFigureComparisonValue]]"></paper-progress>
 							</div>
 						</div>
 					</div>

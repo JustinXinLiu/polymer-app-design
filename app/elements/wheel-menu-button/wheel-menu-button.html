@@ -1,0 +1,38 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-dropdown/iron-dropdown.html">
+<link rel="import" href="../../bower_components/neon-animation/neon-animations.html">
+
+<dom-module id="wheel-menu-button">
+	<template>
+		<style include="shared-styles"></style>
+		<style>
+			:host {
+				display: block;
+				position: fixed;
+				right: 56px;
+				bottom: 56px;
+				padding: 16px;
+				@apply(--wheel-menu-button);
+			}
+			
+			/*.triggers ::content paper-fab {
+				--paper-fab-background: var(--default-primary-color);
+				background-color: var(--default-primary-color);
+			}*/
+		</style>
+
+		<div class="triggers relative">
+			<div class="fit" on-tap="_onTriggerOffTap">
+				<content id="trigger-off" select=".dropdown-trigger-off"></content>
+			</div>
+			<div class="fit" on-tap="_onTriggerOnTap">
+				<content id="trigger-on" select=".dropdown-trigger-on"></content>
+			</div>
+		</div>
+		<iron-dropdown id="dropdown" opened="{{opened}}" open-animation-config="[[openAnimationConfig]]" close-animation-config="[[closeAnimationConfig]]">
+			<content id="content" select=".dropdown-content"></content>
+		</iron-dropdown>
+	</template>
+
+	<script src="wheel-menu-button.js"></script>
+</dom-module>

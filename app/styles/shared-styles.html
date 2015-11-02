@@ -6,6 +6,24 @@
         @apply(--paper-font-display2);
       }
       
+      paper-progress {
+        --paper-progress-active-color: var(--neutral-color);
+        --paper-progress-container-color: var(--divider-color);
+      }
+      
+      paper-progress.small {
+        --paper-progress-height: 2px;
+        margin: 0 10px;
+      }
+      
+      paper-progress.good {
+        --paper-progress-active-color: var(--good-color);
+      }
+      
+      paper-progress.bad {
+        --paper-progress-active-color: var(--bad-color);
+      }
+      
       @media (max-width: 600px) {
         .page-title {
           font-size: 24px !important;

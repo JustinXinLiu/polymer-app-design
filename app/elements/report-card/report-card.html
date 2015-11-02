@@ -22,7 +22,7 @@
 			}
 			
 			paper-icon-button {
-				color: var(--dark-primary-color);
+				color: var(--secondary-accent-color);
 			}
 			
 			.title {
@@ -73,11 +73,6 @@
 				width: 48px;
 				margin: 0 0 8px 16px;
 			}
-			
-			paper-progress {
-				--paper-progress-active-color: var(--good-color);
-				--paper-progress-container-color: var(--divider-color);
-			}
 		</style>
 
 		<paper-material class="flex vertical layout" elevation="0">
@@ -96,7 +91,7 @@
 			</section>
 
 			<div class="horizontal layout">
-				<paper-progress class="flex" value="[[mainFigureComparisonValue]]"></paper-progress>
+				<paper-progress class="good flex" value="[[mainFigureComparisonValue]]"></paper-progress>
 			</div>
 
 			<div class="horizontal layout end-justified">
