@@ -15,24 +15,24 @@ class WheelMenuButton {
 			
 			openAnimationConfig: {
 				type: Array,
-				value: function() {
+				value: ()=> {
 					return [{
-					name: 'fade-in-animation',
-					timing: {
-						delay: 100,
-						duration: 200
-					}}];
+						name: 'fade-in-animation',
+						timing: {
+							delay: 100,
+							duration: 400
+						}}];
 				}
 			},
 			
 			closeAnimationConfig: {
 				type: Array,
-				value: function() {
+				value: ()=> {
 					return [{
-					name: 'fade-out-animation',
-					timing: {
-						duration: 150
-					}}];
+						name: 'fade-out-animation',
+						timing: {
+							duration: 300
+						}}];
 				}
 			}
 		};

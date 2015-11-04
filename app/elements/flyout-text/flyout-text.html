@@ -1,0 +1,23 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="flyout-text">
+	<template>
+		<style include="shared-styles"></style>
+		<style>
+			:host {
+				display: block;
+			}
+			
+			.relative > span {
+				@apply(--layout-fit);
+			}
+		</style>
+
+		<div class="relative">
+			<span id="old">[[oldText]]</span>
+			<span id="new">[[text]]</span>
+		</div>
+	</template>
+
+	<script src="flyout-text.js"></script>
+</dom-module>

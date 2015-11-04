@@ -24,7 +24,7 @@ class IconTransitionButton {
 
 			route: {
 				type: String,
-				observer: '_onRouteChange'
+				observer: '_routeChanged'
 			},
 
 			alt: {
@@ -53,7 +53,7 @@ class IconTransitionButton {
 		return cl;
 	}
 
-	_onRouteChange(newValue) {
+	_routeChanged(newValue) {
 		let newRoute = newValue;
 
 		if (newRoute === 'home') {
