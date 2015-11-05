@@ -1,10 +1,10 @@
-class WheelMenuButton {
+class SpreadMenuButton {
 	get listeners() {
 		return { 'iron-select': '_onIronSelect' };
 	}
 	
 	beforeRegister() {
-		this.is = 'wheel-menu-button';
+		this.is = 'spread-menu-button';
 		
 		this.properties = {	
 			opened: {
@@ -14,25 +14,27 @@ class WheelMenuButton {
 			},
 			
 			openAnimationConfig: {
-				type: Array,
 				value: ()=> {
 					return [{
-						name: 'fade-in-animation',
-						timing: {
-							delay: 100,
-							duration: 400
-						}}];
+							name: 'fade-in-animation',
+							timing: { delay: 100, duration: 400 
+						}}, 
+						{
+							name: 'rotate-in-animation',
+							node: this.$.on
+						}];
 				}
 			},
 			
 			closeAnimationConfig: {
-				type: Array,
 				value: ()=> {
 					return [{
 						name: 'fade-out-animation',
-						timing: {
-							duration: 300
-						}}];
+						timing: { duration: 300 }}, 
+						{
+							name: 'rotate-clockwise-animation',
+							node: this.$.off
+						}];
 				}
 			}
 		};
@@ -72,4 +74,4 @@ class WheelMenuButton {
 	}
 }
 
-Polymer(WheelMenuButton);
+Polymer(SpreadMenuButton);

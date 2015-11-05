@@ -1,0 +1,46 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/neon-animation/neon-animation-behavior.html">
+<link rel="import" href="../../bower_components/neon-animation/web-animations.html">
+
+<!--
+`<rotate-anticlockwise-animation>` animates the transform of an element from `rotate(360deg)` to
+`rotate(0)`. The `transformOrigin` defaults to `50% 50%`.
+
+Configuration:
+```
+{
+  name: 'rotate-anticlockwise-animation',
+  node: <node>,
+  transformOrigin: <transform-origin>,
+  timing: <animation-timing>
+}
+```
+-->
+
+<!--<script src="rotate-anticlockwise-animation.js"></script>-->
+
+<script>
+
+  Polymer({
+    is: 'rotate-anticlockwise-animation',
+    behaviors: [ Polymer.NeonAnimationBehavior ],
+
+    configure: function(config) {
+      var node = config.node;
+
+      if (config.transformOrigin) {
+        this.setPrefixedProperty(node, 'transformOrigin', config.transformOrigin);
+      } else {
+        this.setPrefixedProperty(node, 'transformOrigin', '50% 50%');
+      }
+
+      this._effect = new KeyframeEffect(node, [ // jshint ignore:line
+        {'transform': 'rotate(360deg)'},
+        {'transform': 'rotate(0)'}
+      ], this.timingFromConfig(config));
+
+      return this._effect;
+    }
+  });
+
+</script>

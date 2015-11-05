@@ -40,6 +40,7 @@ class FlyoutText {
 		this.async(() => {
 			console.log('start animation');
 
+			this.cancelAnimation();
 			this.playAnimation('flyout');
 			
 			// console.log('ironanimation2', new Polymer.IronMeta({type: 'animation'}));

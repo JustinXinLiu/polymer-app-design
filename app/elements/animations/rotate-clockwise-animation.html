@@ -3,13 +3,13 @@
 <link rel="import" href="../../bower_components/neon-animation/web-animations.html">
 
 <!--
-`<slide-from-bottom-animation>` animates the transform of an element from `translateY(100%)` to
-`translateY(0)`. The `transformOrigin` defaults to `50% 0`.
+`<rotate-clockwise-animation>` animates the transform of an element from `rotate(0)` to
+`rotate(360deg)`. The `transformOrigin` defaults to `50% 50%`.
 
 Configuration:
 ```
 {
-  name: 'slide-from-bottom-animation',
+  name: 'rotate-clockwise-animation',
   node: <node>,
   transformOrigin: <transform-origin>,
   timing: <animation-timing>
@@ -17,15 +17,13 @@ Configuration:
 ```
 -->
 
+<!--<script src="rotate-clockwise-animation.js"></script>-->
+
 <script>
 
   Polymer({
-
-    is: 'slide-from-bottom-animation',
-
-    behaviors: [
-      Polymer.NeonAnimationBehavior
-    ],
+    is: 'rotate-clockwise-animation',
+    behaviors: [ Polymer.NeonAnimationBehavior ],
 
     configure: function(config) {
       var node = config.node;
@@ -33,17 +31,16 @@ Configuration:
       if (config.transformOrigin) {
         this.setPrefixedProperty(node, 'transformOrigin', config.transformOrigin);
       } else {
-        this.setPrefixedProperty(node, 'transformOrigin', '50% 0');
+        this.setPrefixedProperty(node, 'transformOrigin', '50% 50%');
       }
 
       this._effect = new KeyframeEffect(node, [ // jshint ignore:line
-        {'transform': 'translate(100%)'},
-        {'transform': 'translateY(0)'}
+        {'transform': 'rotate(0)'},
+        {'transform': 'rotate(360deg)'}
       ], this.timingFromConfig(config));
 
       return this._effect;
     }
-
   });
 
 </script>

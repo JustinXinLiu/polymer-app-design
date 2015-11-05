@@ -9,6 +9,12 @@ class SectionDetail {
 			sticky: {
 				type: String
 			},
+			
+			drillDownType: {
+				type: String,
+				notify: true,
+				observer: '_drillDownTypeChanged'
+			},
 
 			mainFigureValue: {
 				type: Number
@@ -55,6 +61,10 @@ class SectionDetail {
 				this.sticky = '';
 			}
 		});
+	}
+	
+	_drillDownTypeChanged(type) {
+		console.log('type', type);
 	}
 }
 
