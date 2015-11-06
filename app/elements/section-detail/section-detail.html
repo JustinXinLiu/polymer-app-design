@@ -9,6 +9,11 @@
 				position: relative;
 			}
 			
+			:host([opened]) #overlay {
+				opacity: 0.4;
+				pointer-events: auto;
+			}
+			
 			value-card-number {
 				margin-top: 0;
 			}
@@ -22,6 +27,13 @@
 				opacity: 0.8;
 				transition: all .25s ease-out;
 			}
+			
+			#overlay {
+				background-color: var(--primary-text-color);
+				opacity: 0;
+				pointer-events: none;
+				transition: opacity .2s linear;
+			}		
 		</style>
 
 		<section id="content" class="vertical layout">
@@ -32,7 +44,9 @@
 			<value-card-grid name="detailed data" main-figure-value="7877000" main-figure-desc="Last Year"></value-card-grid>
 		</section>
 		
-		<spread-menu-button id="action">
+		<div id="overlay" class="fit"></div>
+		
+		<spread-menu-button id="action" opened="{{opened}}">
 			<paper-fab icon="expand-more" class="dropdown-trigger-on"></paper-fab>
 			<paper-fab icon="close" class="dropdown-trigger-off"></paper-fab>
 			<div class="dropdown-content">
@@ -80,6 +94,12 @@
 	
 				mainFigureComparisonValue: {
 					type: Number
+				},
+				
+				opened: {
+					type: Boolean,
+					notify: true,
+					reflectToAttribute: true			
 				},
 				
 				animationConfig: {
@@ -131,14 +151,6 @@
 						this.sticky = '';
 					}
 				});
-			},
-			
-			listeners: {
-				'neon-animation-finish': '_onNeonAnimationFinish'
-			},
-			
-			_onNeonAnimationFinish: function () {
-				console.log('animation finished');
 			},
 			
 			_drillDownTypeChanged: function(type) {

@@ -75,13 +75,12 @@
 						return {
 							'entry': [{
 								name: 'fade-in-animation',
-								node: this,
-								timing: { delay: 400, easing: 'cubic-bezier(0.4, 0, 0.2, 1)' }
+								node: this
 							}, {
 								name: 'scale-up-animation',
 								node: this,
 								transformOrigin: '200% 200%',
-								timing: { delay: 400, easing: 'cubic-bezier(0.4, 0, 0.2, 1)' }
+								timing: { duration: 300, delay: 400, easing: app.ANIMATION_EASE_OUT_BACK }
 							}],
 							
 							'exit': [{
@@ -89,8 +88,9 @@
 								node: this
 							}, {
 								name: 'scale-down-animation',
+								node: this,
 								transformOrigin: '200% 200%',
-								node: this
+								timing: { duration: 200, easing: app.ANIMATION_EASE_IN_BACK }
 							}],
 							
 							'open': [{
