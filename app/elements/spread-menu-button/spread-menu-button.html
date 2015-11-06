@@ -12,6 +12,7 @@
 				right: 56px;
 				bottom: 56px;
 				padding: 16px;
+
 				@apply(--spread-menu-button);
 			}
 			
@@ -70,8 +71,28 @@
 				},		
 				
 				animationConfig: {
-					value: function () {			
+					value: function () {		
 						return {
+							'entry': [{
+								name: 'fade-in-animation',
+								node: this,
+								timing: { delay: 400, easing: 'cubic-bezier(0.4, 0, 0.2, 1)' }
+							}, {
+								name: 'scale-up-animation',
+								node: this,
+								transformOrigin: '200% 200%',
+								timing: { delay: 400, easing: 'cubic-bezier(0.4, 0, 0.2, 1)' }
+							}],
+							
+							'exit': [{
+								name: 'fade-out-animation',
+								node: this
+							}, {
+								name: 'scale-down-animation',
+								transformOrigin: '200% 200%',
+								node: this
+							}],
+							
 							'open': [{
 								name: 'fade-in-animation',
 								node: this.offElement 

@@ -1,4 +1,8 @@
 class SectionDetail {
+	get behaviors() {
+		return [ Polymer.NeonAnimatableBehavior ];
+	}
+	
 	beforeRegister() {
 		this.is = 'section-detail';
 		this.properties = {
@@ -30,6 +34,30 @@ class SectionDetail {
 
 			mainFigureComparisonValue: {
 				type: Number
+			},
+			
+			animationConfig: {
+				value: () => {
+					console.log('here');
+								
+					return {
+						'entry': [{
+							name: 'fade-in-animation',
+							node: this.$.action
+						}, {
+							name: 'scale-up-animation',
+							node: this.$.action
+						}],
+						
+						'exit': [{
+							name: 'fade-out-animation',
+							node: this.$.action
+						}, {
+							name: 'scale-down-animation',
+							node: this.$.action
+						}]						
+					};
+				}
 			}
 		};
 	}

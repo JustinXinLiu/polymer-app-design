@@ -7,7 +7,6 @@
 			:host {
 				display: block;
 				position: relative;
-				@apply(--layout-vertical);
 			}
 			
 			value-card-number {
@@ -25,17 +24,15 @@
 			}
 		</style>
 
-		<secondary-heading id="heading" class$="[[sticky]]" name="Something important here" first></secondary-heading>
-
-		<value-card-number name="value 1" main-figure-value="12" main-figure-desc="Last Week" main-figure-comparison-value="37"></value-card-number>
-
-		<value-card-chart name="value 2" type="line" main-figure-value="54" main-figure-desc="Last Week" main-figure-comparison-value="37"></value-card-chart>
-
-		<value-card-chart name="value 3" type="bar" main-figure-value="77" main-figure-desc="Last Week" main-figure-comparison-value="37"></value-card-chart>
-
-		<value-card-grid name="detailed data" main-figure-value="7877000" main-figure-desc="Last Year"></value-card-grid>
+		<section id="content" class="vertical layout">
+			<secondary-heading id="heading" class$="[[sticky]]" name="Something important here" first></secondary-heading>
+			<value-card-number name="value 1" main-figure-value="12" main-figure-desc="Last Week" main-figure-comparison-value="37"></value-card-number>
+			<value-card-chart name="value 2" type="line" main-figure-value="54" main-figure-desc="Last Week" main-figure-comparison-value="37"></value-card-chart>
+			<value-card-chart name="value 3" type="bar" main-figure-value="77" main-figure-desc="Last Week" main-figure-comparison-value="37"></value-card-chart>
+			<value-card-grid name="detailed data" main-figure-value="7877000" main-figure-desc="Last Year"></value-card-grid>
+		</section>
 		
-		<spread-menu-button>
+		<spread-menu-button id="action">
 			<paper-fab icon="expand-more" class="dropdown-trigger-on"></paper-fab>
 			<paper-fab icon="close" class="dropdown-trigger-off"></paper-fab>
 			<div class="dropdown-content">
@@ -47,5 +44,106 @@
 		</spread-menu-button>
 	</template>
 
-	<script src="section-detail.js"></script>
+	<!--<script src="section-detail.js"></script>-->
+
+	<script>
+		Polymer({
+			is: 'section-detail',
+			behaviors: [ Polymer.NeonAnimatableBehavior ],
+		
+			properties: {	
+				name: {
+					type: String
+				},
+	
+				sticky: {
+					type: String
+				},
+				
+				drillDownType: {
+					type: String,
+					notify: true,
+					observer: '_drillDownTypeChanged'
+				},
+	
+				mainFigureValue: {
+					type: Number
+				},
+	
+				mainFigureAbbr: {
+					type: String
+				},
+	
+				mainFigureDesc: {
+					type: String
+				},
+	
+				mainFigureComparisonValue: {
+					type: Number
+				},
+				
+				animationConfig: {
+					value: function () {		
+						return {
+							'entry': [{
+								name: 'slide-from-right-animation',
+								node: this.$.content
+							}, {
+								animatable: this.$.action,
+								type: 'entry'
+							}],
+							
+							'exit': [{
+								name: 'slide-right-animation',
+								node: this.$.content							
+							}, {
+								animatable: this.$.action,
+								type: 'exit'
+							}]						
+						};
+					}
+				}
+			},
+			
+			ready: function () {
+				// Sticky effect for the secondary heading
+				//
+				
+				// let effect = new KeyframeEffect(this.$.heading, [
+				// 	{ transform: 'rotateX(0)' }, 
+				// 	{ transform: 'rotateX(180deg)' 
+				// }], 400);
+				// let animation = new Animation(effect, this.$.heading.ownerDocument.timeline);
+		
+				addEventListener('paper-header-transform', (e) => {
+					let detail = e.detail;
+					let heightDiff = detail.height - detail.condensedHeight;
+		
+					if (detail.y === heightDiff) {
+						//animation.play();
+						// this.async(()=> { 
+						this.$.heading.first = false;
+						this.sticky = 'sticky';
+						// }, 0);
+					}
+					else {
+						this.$.heading.first = true;
+						this.sticky = '';
+					}
+				});
+			},
+			
+			listeners: {
+				'neon-animation-finish': '_onNeonAnimationFinish'
+			},
+			
+			_onNeonAnimationFinish: function () {
+				console.log('animation finished');
+			},
+			
+			_drillDownTypeChanged: function(type) {
+				console.log('type', type);
+			}
+		});
+	</script>
 </dom-module>
