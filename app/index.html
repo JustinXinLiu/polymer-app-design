@@ -130,7 +130,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <!-- Main Content -->
         <div class="content">
           <neon-animated-pages id="pages" attr-for-selected="data-route" selected="{{route}}" entry-animation="[[entryAnimation]]" exit-animation="[[exitAnimation]]">
-
             <section data-route="home">
               <home-last-visited></home-last-visited>
             </section>
@@ -143,7 +142,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <section-card-list name="[[params.name]]"></section-card-list>
             </section>
 
-            <section-detail id="sectionDetail" name="[[params.name]]" data-route="section"></section-detail>
+            <section-detail name="[[params.name]]" data-route="section"></section-detail>
+            
+            <bottom-popup-list type="product" data-route="products"></bottom-popup-list>
+            <bottom-popup-list type="org" data-route="orgunits"></bottom-popup-list>
 
             <section data-route="users">
               <paper-material elevation="1">

@@ -75,19 +75,17 @@
 		</style>
 
 		<paper-material class="vertical layout" elevation="0">
-			<section class="flex">
-				<div class="title">[[name]]</div>
+			<div class="title">[[name]]</div>
 
-				<div class="horizontal layout">
-					<div class="circle center-center vertical layout">[[mainFigureAbbr]]</div>
-					<div class="vertical layout">
-						<div class="percent">[[mainFigureValue]]</div>
-						<div class="small">[[mainFigureDesc]]</div>
-					</div>
+			<div class="horizontal layout">
+				<div class="circle center-center vertical layout">[[mainFigureAbbr]]</div>
+				<div class="vertical layout">
+					<div class="percent">[[mainFigureValue]]</div>
+					<div class="small">[[mainFigureDesc]]</div>
 				</div>
+			</div>
 
-				<paper-ripple elevation="0"></paper-ripple>
-			</section>
+			<paper-ripple elevation="0"></paper-ripple>
 
 			<paper-progress class="good" value="[[mainFigureComparisonValue]]"></paper-progress>
 

@@ -36,6 +36,14 @@
       app.heading = data.params.section;
     });
     
+    page('/:module/:report/:section/products', scrollToTop, () => {
+      app.route = 'products';
+    });
+    
+    page('/:module/:report/:section/orgunits', scrollToTop, () => {
+      app.route = 'orgunits';
+    });
+    
     page('/users', scrollToTop, () => {
       app.route = 'users';
     });

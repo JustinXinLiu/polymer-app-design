@@ -124,56 +124,35 @@
   app.pageAnimationForward = () => {
     if (app.route === 'report') {
       app.entryAnimation = '';
+      app.exitAnimation = 'slide-left-animation';
+    }
+    else if (app.route === 'section') {
+      app.entryAnimation = '';
+      app.exitAnimation = 'slide-up-animation';
+      
+      console.log(app.route);
     }
     else {
       app.entryAnimation = 'slide-from-right-animation';
+      app.exitAnimation = 'slide-left-animation';
     }
-    
-    app.exitAnimation = 'slide-left-animation';
-    
-//     if (app.route === 'report') {
-//       let pages = document.querySelector('#pages');
-//       let entry = pages.animationConfig.entry;
-//     
-//       console.log('entry before', entry);
-//       
-//       let sectionDetail = document.querySelector('#sectionDetail');
-//       let additional = sectionDetail.animationConfig.entry[0];
-// 
-//       console.log('additional', additional);
-//       
-//       entry.push(additional);
-//       
-//       console.log('entry after', entry);
-//     }
   };
 
   app.pageAnimationBackward = () => {
-    
-    app.entryAnimation = 'slide-from-left-animation';
-          
     if (app.route === 'section') {
+      app.entryAnimation = 'slide-from-left-animation';
       app.exitAnimation = '';
     }
+    else if (app.route === 'products' || app.route === 'orgunits') {
+      app.entryAnimation = 'slide-down-animation';
+      app.exitAnimation = '';
+      
+      console.log(app.route);
+    }
     else {
+      app.entryAnimation = 'slide-from-left-animation';
       app.exitAnimation = 'slide-right-animation';
     }
-    
-//     if (app.route === 'section') {
-//       let pages = document.querySelector('#pages');
-//       let exit = pages.animationConfig.exit;
-//     
-//       console.log('exit before', exit);
-//       
-//       let sectionDetail = document.querySelector('#sectionDetail');
-//       let additional = sectionDetail.animationConfig.exit[0];
-// 
-//       console.log('additional', additional);
-//       
-//       exit.push(additional);
-//       
-//       console.log('exit after', exit);
-//     }
   };
 
 })(document);

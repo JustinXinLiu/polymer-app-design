@@ -1,0 +1,112 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="bottom-popup-list">
+	<template>
+		<style include="shared-styles"></style>
+		<style>
+			:host {
+				display: block;
+				background-color: var(--primary-text-color);
+				@apply(--layout-vertical);
+				padding: 16px 16px 24px 16px;
+			}
+			
+			paper-icon-button {
+				color: var(--dark-primary-color);
+			}
+			
+			.title {
+				color: var(--secondary-text-color);
+				font-size: 14px;
+				font-weight: 600;
+				text-transform: uppercase;
+			}
+			
+			hr {
+				border: 0;
+				border: 1px solid var(--divider-color);
+				margin: 12px;
+			}
+		</style>
+
+		<div class="title">Products</div>
+
+		<div class="horizontal layout">
+			<div class="circle center-center vertical layout">sdfdsfd</div>
+			<div class="vertical layout">
+				<div class="percent">sdfdsfsf</div>
+				<div class="small">sdfdsfdsf</div>
+			</div>
+			<paper-ripple elevation="0"></paper-ripple>
+		</div>
+	</template>
+
+	<!--<script src="bottom-popup-list.js"></script>-->
+
+	<script>
+		Polymer({
+			is: 'bottom-popup-list',
+			behaviors: [ Polymer.NeonAnimatableBehavior ],
+			// NeonSharedElementAnimatableBehavior
+			properties: {
+				type: {
+					type: String,
+					reflectedToAttribute: true			
+				},	
+					
+				opened: {
+					type: Boolean,
+					notify: true,
+					observer: '_openedChanged'				
+				},		
+				
+				animationConfig: {
+					value: function () {		
+						return {
+							'entry': [{
+								name: 'slide-down-animation',
+								node: this
+							}],
+							
+							'exit': [{
+								name: 'slide-up-animation',
+								node: this
+							}]
+						};
+					}
+				}
+			},
+			
+			attached: function () {
+			},
+			
+			listeners: {
+				'neon-animation-finish': '_onNeonAnimationFinish'
+			},
+			
+			_onNeonAnimationFinish: function (e, animation) {
+				console.log(e, animation);
+			},
+			
+			_openedChanged: function(opened) {
+				console.log(opened);
+			},
+			
+			// open: function () {
+			// 	this.$.dropdown.open();
+			// },
+			// 
+			// close: function () {
+			// 	this.$.dropdown.close();
+			// },
+			// 
+			// _onTriggerOnTap: function () {
+			// 	this.open();		
+			// },
+			// 
+			// _onTriggerOffTap: function () {
+			// 	this.close();	
+			// }
+		});
+	</script>
+</dom-module>

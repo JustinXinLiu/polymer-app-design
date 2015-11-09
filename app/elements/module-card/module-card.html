@@ -8,7 +8,6 @@
 				display: block;
 				position: relative;
 				margin: 12px;
-				@apply(--layout-horizontal);
 			}
 			
 			paper-material {
@@ -63,25 +62,23 @@
 			}
 		</style>
 
-		<paper-material class="flex vertical layout" elevation="0">
-			<section class="flex">
-				<div class="horizontal layout">
-					<div class="vertical layout">
-						<div class="title">[[name]]</div>
-						<hr>
-					</div>
-					<span class="flex"></span>
+		<paper-material class="vertical layout" elevation="0">
+			<div class="horizontal layout">
+				<div class="vertical layout">
+					<div class="title">[[name]]</div>
+					<hr>
 				</div>
+				<span class="flex"></span>
+			</div>
 
-				<div class="horizontal layout">
-					<div class="circle center-center vertical layout">[[numberOfReports]]</div>
-					<div class="flex center-justified vertical layout">
-						<div class="desc">[[desc]]</div>
-					</div>
+			<div class="horizontal layout">
+				<div class="circle center-center vertical layout">[[numberOfReports]]</div>
+				<div class="flex center-justified vertical layout">
+					<div class="desc">[[desc]]</div>
 				</div>
+			</div>
 
-				<paper-ripple elevation="0"></paper-ripple>
-			</section>
+			<paper-ripple elevation="0"></paper-ripple>
 
 			<div class="horizontal layout end-justified">
 				<paper-icon-button class="icon" icon="favorite"></paper-icon-button>

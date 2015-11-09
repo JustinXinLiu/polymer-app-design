@@ -136,9 +136,9 @@
 				// let animation = new Animation(effect, this.$.heading.ownerDocument.timeline);
 		
 				addEventListener('paper-header-transform', (e) => {
-					let detail = e.detail;
-					let heightDiff = detail.height - detail.condensedHeight;
-		
+					var detail = e.detail;
+					var heightDiff = detail.height - detail.condensedHeight;
+
 					if (detail.y === heightDiff) {
 						//animation.play();
 						// this.async(()=> { 
@@ -154,8 +154,17 @@
 			},
 			
 			_drillDownTypeChanged: function(type) {
-				console.log('type', type);
-			}
+				switch (type) {
+					case 'product':
+						app.pageAnimationForward();
+						page(`${page.current}/products`);
+						break;
+					case 'org':
+						app.pageAnimationForward();
+						page(`${page.current}/orgunits`);
+						break;
+				}
+			}	
 		});
 	</script>
 </dom-module>
