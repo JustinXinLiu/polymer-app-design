@@ -8,7 +8,6 @@
 				display: block;
 				position: relative;
 				margin: 12px;
-				@apply(--layout-horizontal);
 			}
 			
 			paper-material {
@@ -92,7 +91,7 @@
 			}
 		</style>
 
-		<paper-material class="flex vertical layout" elevation="0">
+		<paper-material class="vertical layout" elevation="0">
 			<section class="vertical layout">
 				<div class="title horizontal layout">
 					<iron-icon icon="shopping-basket"></iron-icon>
@@ -113,26 +112,18 @@
 				<div class="title light">Last five months</div>
 
 				<div class="horizontal layout">
-					<div class="flex">
-						<div class="vertical layout">
-							<div class="percent">[[mainFigureValue]]</div>
-							<div class="small">[[mainFigureDesc]]</div>
-							<div class="horizontal layout">
-								<paper-progress class="small good flex" value="[[mainFigureComparisonValue]]"></paper-progress>
-							</div>
-						</div>
+					<div class="flex vertical layout">
+						<div class="percent">[[mainFigureValue]]</div>
+						<div class="small">[[mainFigureDesc]]</div>
+						<paper-progress class="small good" value="[[mainFigureComparisonValue]]"></paper-progress>
 					</div>
 
 					<!--<hr>-->
 
-					<div class="flex">
-						<div class="vertical layout">
-							<div class="percent">[[mainFigureValue]]</div>
-							<div class="small">[[mainFigureDesc]]</div>
-							<div class="horizontal layout">
-								<paper-progress class="small bad flex" value="[[mainFigureComparisonValue]]"></paper-progress>
-							</div>
-						</div>
+					<div class="flex vertical layout">
+						<div class="percent">[[mainFigureValue]]</div>
+						<div class="small">[[mainFigureDesc]]</div>
+						<paper-progress class="small bad" value="[[mainFigureComparisonValue]]"></paper-progress>
 					</div>
 				</div>
 

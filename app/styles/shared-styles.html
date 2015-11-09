@@ -9,11 +9,12 @@
       paper-progress {
         --paper-progress-active-color: var(--neutral-color);
         --paper-progress-container-color: var(--divider-color);
+        width: 100%;
       }
       
       paper-progress.small {
         --paper-progress-height: 2px;
-        margin: 0 10px;
+        width: calc(100% - 20px);
       }
       
       paper-progress.good {

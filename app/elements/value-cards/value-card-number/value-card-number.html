@@ -8,7 +8,6 @@
 				display: block;
 				position: relative;
 				margin: 12px;
-				@apply(--layout-vertical);
 			}
 			
 			paper-material {
@@ -64,30 +63,22 @@
 			}
 		</style>
 
-		<paper-material class="flex vertical layout" elevation="0">
+		<paper-material class="vertical layout" elevation="0">
 			<section class="flex">
 				<div class="title">[[name]]</div>
 			</section>
 
 			<section class="content horizontal layout">
-				<div class="flex">
-					<div class="vertical layout">
-						<div class="percent">[[mainFigureValue]]</div>
-						<div class="small">[[mainFigureDesc]]</div>
-						<div class="horizontal layout">
-							<paper-progress class="small flex" value="[[mainFigureComparisonValue]]"></paper-progress>
-						</div>
-					</div>
+				<div class="flex vertical layout">
+					<div class="percent">[[mainFigureValue]]</div>
+					<div class="small">[[mainFigureDesc]]</div>
+					<paper-progress class="small" value="[[mainFigureComparisonValue]]"></paper-progress>
 				</div>
 
-				<div class="flex">
-					<div class="vertical layout">
-						<div class="percent">[[mainFigureValue]]</div>
-						<div class="small">[[mainFigureDesc]]</div>
-						<div class="horizontal layout">
-							<paper-progress class="small good flex" value="[[mainFigureComparisonValue]]"></paper-progress>
-						</div>
-					</div>
+				<div class="flex vertical layout">
+					<div class="percent">[[mainFigureValue]]</div>
+					<div class="small">[[mainFigureDesc]]</div>
+					<paper-progress class="small good" value="[[mainFigureComparisonValue]]"></paper-progress>
 				</div>
 			</section>
 
