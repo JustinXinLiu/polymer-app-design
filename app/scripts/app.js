@@ -37,6 +37,8 @@
   // Learn more about auto-binding templates at http://goo.gl/Dx1u2g
   let app = document.querySelector('#app');
   
+  let sectionDetail;
+  
   // animation variables
   app.ANIMATION_EASE_IN_BACK = 'cubic-bezier(.6, -.28, .735, .045)';
   app.ANIMATION_EASE_OUT_BACK = 'cubic-bezier(.175, .885, .32, 1.275)';
@@ -55,7 +57,7 @@
   // Listen for template bound event to know when bindings
   // have resolved and content has been stamped to the page
   app.addEventListener('dom-change', () => {
-    console.log('Our app is ready to rock!');
+    sectionDetail = document.querySelector('#sectionDetail');
   });
 
   // See https://github.com/Polymer/polymer/issues/1381
@@ -127,10 +129,10 @@
       app.exitAnimation = 'slide-left-animation';
     }
     else if (app.route === 'section') {
-      app.entryAnimation = '';
-      app.exitAnimation = 'slide-up-animation';
+      sectionDetail.useUpDownTransition = true;
       
-      console.log(app.route);
+      app.entryAnimation = '';
+      app.exitAnimation = '';
     }
     else {
       app.entryAnimation = 'slide-from-right-animation';
@@ -140,14 +142,14 @@
 
   app.pageAnimationBackward = () => {
     if (app.route === 'section') {
+      sectionDetail.useUpDownTransition = false;
+      
       app.entryAnimation = 'slide-from-left-animation';
       app.exitAnimation = '';
     }
     else if (app.route === 'products' || app.route === 'orgunits') {
-      app.entryAnimation = 'slide-down-animation';
+      app.entryAnimation = '';
       app.exitAnimation = '';
-      
-      console.log(app.route);
     }
     else {
       app.entryAnimation = 'slide-from-left-animation';

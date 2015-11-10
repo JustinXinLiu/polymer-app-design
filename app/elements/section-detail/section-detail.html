@@ -33,7 +33,8 @@
 				opacity: 0;
 				pointer-events: none;
 				transition: opacity .2s linear;
-			}		
+				margin-bottom: -120px;
+			}
 		</style>
 
 		<section id="content" class="vertical layout">
@@ -43,16 +44,16 @@
 			<value-card-chart name="value 3" type="bar" main-figure-value="77" main-figure-desc="Last Week" main-figure-comparison-value="37"></value-card-chart>
 			<value-card-grid name="detailed data" main-figure-value="7877000" main-figure-desc="Last Year"></value-card-grid>
 		</section>
-		
+
 		<div id="overlay" class="fit"></div>
-		
+
 		<spread-menu-button id="action" opened="{{opened}}">
 			<paper-fab icon="expand-more" class="dropdown-trigger-on"></paper-fab>
 			<paper-fab icon="close" class="dropdown-trigger-off"></paper-fab>
 			<div class="dropdown-content">
 				<iron-selector attr-for-selected="name" selected="{{drillDownType}}">
-					<paper-fab name="product" icon="shopping-basket" mini></paper-fab>
-					<paper-fab name="org" icon="store" mini></paper-fab>
+					<paper-fab id="product" name="product" icon="shopping-basket" mini></paper-fab>
+					<paper-fab id="org" name="org" icon="store" mini></paper-fab>
 				</iron-selector>
 			</div>
 		</spread-menu-button>
@@ -63,7 +64,7 @@
 	<script>
 		Polymer({
 			is: 'section-detail',
-			behaviors: [ Polymer.NeonAnimatableBehavior ],
+			behaviors: [ Polymer.NeonSharedElementAnimatableBehavior ],
 		
 			properties: {	
 				name: {
@@ -102,7 +103,17 @@
 					reflectToAttribute: true			
 				},
 				
-				animationConfig: {
+				useHeroTransition: {
+					type: Boolean,
+					observer: '_useHeroTransitionChanged'			
+				},
+				
+				useUpDownTransition: {
+					type: Boolean,
+					observer: '_useUpDownTransitionChanged'			
+				},
+				
+				_localAnimationConfig: {
 					value: function () {		
 						return {
 							'entry': [{
@@ -119,13 +130,55 @@
 							}, {
 								animatable: this.$.action,
 								type: 'exit'
-							}]						
+							}]										
+						};
+					}
+				},
+				
+				_localHeroAnimationConfig: {
+					value: function () {		
+						return {
+							'entry': [{
+								name: 'hero-animation',
+								id: 'hero',
+								toPage: this
+							}],
+							
+							'exit': [{
+								name: 'hero-animation',
+								id: 'hero',
+								fromPage: this
+							}]										
+						};
+					}
+				},
+				
+				_localUpDownAnimationConfig: {
+					value: function () {		
+						return {
+							'entry': [{
+								name: 'slide-down-animation',
+								node: this.$.content
+							}, {
+								animatable: this.$.action,
+								type: 'entry'
+							}],
+							
+							'exit': [{
+								name: 'slide-up-animation',
+								node: this.$.content
+							}, {
+								animatable: this.$.action,
+								type: 'exit'
+							}]										
 						};
 					}
 				}
 			},
-			
+					
 			ready: function () {
+				this.animationConfig = this._localAnimationConfig;
+
 				// Sticky effect for the secondary heading
 				//
 				
@@ -151,6 +204,22 @@
 						this.sticky = '';
 					}
 				});
+			},
+			
+			_useHeroTransitionChanged: function(useHeroTransition) {
+				if (useHeroTransition) {
+					this.animationConfig = this._localHeroAnimationConfig;
+				} else {
+					this.animationConfig = this._localAnimationConfig;
+				}
+			},
+			
+			_useUpDownTransitionChanged: function(useUpDownTransition) {
+				if (useUpDownTransition) {
+					this.animationConfig = this._localUpDownAnimationConfig;
+				} else {
+					this.animationConfig = this._localAnimationConfig;
+				}
 			},
 			
 			_drillDownTypeChanged: function(type) {

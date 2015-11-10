@@ -7,8 +7,8 @@
 			:host {
 				display: block;
 				background-color: var(--primary-text-color);
-				@apply(--layout-vertical);
 				padding: 16px 16px 24px 16px;
+				@apply(--layout-vertical);
 			}
 			
 			paper-icon-button {
@@ -16,7 +16,7 @@
 			}
 			
 			.title {
-				color: var(--secondary-text-color);
+				color: var(--text-primary-color);
 				font-size: 14px;
 				font-weight: 600;
 				text-transform: uppercase;
@@ -47,7 +47,6 @@
 		Polymer({
 			is: 'bottom-popup-list',
 			behaviors: [ Polymer.NeonAnimatableBehavior ],
-			// NeonSharedElementAnimatableBehavior
 			properties: {
 				type: {
 					type: String,
