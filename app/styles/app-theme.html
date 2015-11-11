@@ -1,13 +1,3 @@
-<!--
-@license
-Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-
 <style is="custom-style">
 
   /*
@@ -49,9 +39,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     /* Components */
 
     /* paper-drawer-panel */
-    --drawer-menu-color: #ffffff;
-    --drawer-border-color: 1px solid #ccc;
-    --drawer-toolbar-border-color: 1px solid rgba(0, 0, 0, 0.22);
+    --drawer-menu-color: var(--primary-text-color);
+    --drawer-border-color: 0 solid transparent;
+    --drawer-toolbar-border-color: 0 solid transparent;
 
     /* paper-menu */
     --paper-menu-background-color: #fff;
@@ -64,6 +54,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     color: var(--secondary-text-color);
     background-color: var(--drawer-menu-color);
     border-bottom: var(--drawer-toolbar-border-color);
+  }
+  
+  #drawerToolbar .capital {
+    color: var(--text-primary-color);
+    font-weight: 600;
+    text-transform: uppercase; 
   }
 
   paper-scroll-header-panel, neon-animated-pages {
