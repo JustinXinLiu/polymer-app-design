@@ -94,7 +94,7 @@
   });
 
   // Close drawer after menu item is selected if drawerPanel is narrow
-  app.onDataRouteTap = () => {
+  app._onDataRouteTap = () => {
     app.entryAnimation = 'slide-from-right-animation';
     app.exitAnimation = 'slide-left-animation';
 
@@ -106,7 +106,7 @@
   
   // After the MENU button has transitioned into a BACK button, the action
   // is changed from poping up the drawer to go back to previous page
-  app.onBackTap = () => {
+  app._onBackTap = () => {
     let toggle = document.getElementById('paperToggle');
 
     if (toggle.icon === 'menu') {

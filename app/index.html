@@ -74,30 +74,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <!-- Drawer Content -->
         <paper-menu class="list" attr-for-selected="data-route" selected="[[route]]">
-          <a data-route="home" href="/" on-tap="onDataRouteTap">
-            <iron-icon icon="assignment"></iron-icon>
-            <span>Module 1</span>
-          </a>
-
-          <a data-route="users" href="/users" on-tap="onDataRouteTap">
-            <iron-icon icon="assignment"></iron-icon>
-            <span>Module 2</span>
-          </a>
-
-          <a data-route="contact" href="/sections" on-tap="onDataRouteTap">
-            <iron-icon icon="assignment"></iron-icon>
-            <span>Module 3</span>
-          </a>
-
-          <a data-route="contact" href="/sections/test" on-tap="onDataRouteTap">
-            <iron-icon icon="assignment"></iron-icon>
-            <span>Module 4</span>
-          </a>
-
-          <a data-route="contact" href="/contact" on-tap="onDataRouteTap">
-            <iron-icon icon="assignment"></iron-icon>
-            <span>Module 5</span>
-          </a>
+          <a is="module-menu-item" content="Module 1" number-of-reports="9" data-route="home" href="/" on-tap="_onDataRouteTap"></a>
+          <a is="module-menu-item" content="Another module" number-of-reports="12" data-route="users" href="/users" on-tap="_onDataRouteTap"></a>
+          <a is="module-menu-item" content="Module awesomeness" number-of-reports="7" data-route="contact" href="/home" on-tap="_onDataRouteTap"></a>
+          <a is="module-menu-item" content="My Module" number-of-reports="23" data-route="contact" href="/sections" on-tap="_onDataRouteTap"></a>
+          <a is="module-menu-item" content="My test module" number-of-reports="12" data-route="contact" href="/reports" on-tap="_onDataRouteTap"></a>
         </paper-menu>
       </paper-scroll-header-panel>
 
@@ -106,7 +87,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <!-- Main Toolbar -->
         <paper-toolbar id="mainToolbar" class="tall">
-          <icon-transition-button id="paperToggle" icon="menu" route="[[route]]" on-tap="onBackTap" paper-drawer-toggle></icon-transition-button>
+          <icon-transition-button id="paperToggle" icon="menu" route="[[route]]" on-tap="_onBackTap" paper-drawer-toggle></icon-transition-button>
 
           <span class="flex"></span>
 
