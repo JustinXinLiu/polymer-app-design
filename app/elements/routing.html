@@ -16,12 +16,14 @@
     page('/', scrollToTop, () => {
       app.route = 'home';
       app.heading = 'home';
+      app.selected = app.route;
     });
     
     page('/:module', scrollToTop, data => {
-      app.route = 'module';
+      app.route = data.params.module;
       app.params = data.params;
       app.heading = data.params.module;
+      app.selected = app.route;
     });   
 
     page('/:module/:report', scrollToTop, data => {

@@ -73,12 +73,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </paper-toolbar>
 
         <!-- Drawer Content -->
-        <paper-menu class="list" attr-for-selected="data-route" selected="[[route]]">
-          <a is="module-menu-item" content="Module 1" number-of-reports="9" data-route="home" href="/" on-tap="_onDataRouteTap"></a>
-          <a is="module-menu-item" content="Another module" number-of-reports="12" data-route="users" href="/users" on-tap="_onDataRouteTap"></a>
-          <a is="module-menu-item" content="Module awesomeness" number-of-reports="7" data-route="contact" href="/home" on-tap="_onDataRouteTap"></a>
-          <a is="module-menu-item" content="My Module" number-of-reports="23" data-route="contact" href="/sections" on-tap="_onDataRouteTap"></a>
-          <a is="module-menu-item" content="My test module" number-of-reports="12" data-route="contact" href="/reports" on-tap="_onDataRouteTap"></a>
+        <paper-menu class="list" attr-for-selected="data-route" selected="[[selected]]">
+          <a is="home-menu-item" content="home" data-route="home" href="/" on-tap="_onDataRouteTap"></a>
+          <a is="module-menu-item" content="Module 1" number-of-reports="9" data-route="module 1" href="/module 1" on-tap="_onDataRouteTap"></a>
+          <a is="module-menu-item" content="Module 2" number-of-reports="17" data-route="module 2" href="/module 2" on-tap="_onDataRouteTap"></a>
+          <a is="module-menu-item" content="Module awesomeness" number-of-reports="4" href="/home" on-tap="_onDataRouteTap"></a>
+          <a is="module-menu-item" content="My Module" number-of-reports="23" href="/sections" on-tap="_onDataRouteTap"></a>
+          <a is="module-menu-item" content="My test module" number-of-reports="12" href="/reports" on-tap="_onDataRouteTap"></a>
         </paper-menu>
       </paper-scroll-header-panel>
 
@@ -115,9 +116,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <home-last-visited></home-last-visited>
             </section>
             
-            <section data-route="module">
+            <section data-route="module 1">
               <report-card-list></report-card-list>
-            </section>           
+            </section>    
+            
+            <section data-route="module 2">
+              <report-card-list></report-card-list>
+            </section>         
 
             <section data-route="report">
               <section-card-list name="[[params.name]]"></section-card-list>
@@ -127,31 +132,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             
             <bottom-popup-list name="category 1" type="product" data-route="products"></bottom-popup-list>
             <bottom-popup-list name="category 2" type="org" data-route="orgunits"></bottom-popup-list>
-
-            <section data-route="users">
-              <paper-material elevation="1">
-                <h2 class="page-title">Users</h2>
-                <p>This is the users section</p>
-                <a href="/users/Rob">Rob</a>
-              </paper-material>
-            </section>
-
-            <section data-route="user-info">
-              <paper-material elevation="1">
-                <h2 class="page-title">
-                User:<span>[[params.name]]</span>
-                </h2>
-                <div>This is <span>[[params.name]]</span>'s section</div>
-              </paper-material>
-            </section>
-
-            <section data-route="contact">
-              <paper-material elevation="1">
-                <h2 class="page-title">Contact</h2>
-                <p>This is the contact section</p>
-              </paper-material>
-            </section>
-
           </neon-animated-pages>
         </div>
       </paper-scroll-header-panel>
