@@ -7,77 +7,131 @@
 			:host {
 				display: block;
 				position: relative;
-				margin: 12px;
-				@apply(--layout-vertical);
+				margin: 16px;
 			}
 			
-			paper-material {
-				border-radius: 8px;
-				background-color: var(--light-primary-color);
-				border: 1px solid var(--divider-color);
+			table {
+				width: 100%;
+				border-collapse: collapse;
 			}
 			
-			paper-ripple {
-				border-radius: 8px;
+			th,
+			td {
+				padding: 12px;
+				vertical-align: top;
+				border-top: 1px solid var(--divider-color);
+				border-bottom: 1px solid var(--divider-color);
 			}
 			
-			.content {
-				padding: 0 16px 24px 16px;
+			th {
+				text-align: left;
 			}
 			
-			paper-icon-button {
-				color: var(--dark-primary-color);
-			}
-			
-			.title {
-				color: var(--secondary-text-color);
-				font-size: 14px;
-				font-weight: 600;
-				margin: 12px 0 16px 16px;
-				text-transform: uppercase;
-			}
-			
-			.percent,
-			.money {
-				color: var(--primary-text-color);
-				font-weight: 600;
-				font-size: 28px;
-				margin-left: 8px;
-			}
-			
-			.percent::after {
-				font-size: 16px;
-				content: '%';
-			}
-			
-			.money::before {
-				font-size: 16px;
-				content: '$ ';
-			}
-			
-			.small {
-				color: var(--primary-text-color);
-				font-size: 10px;
-				margin: 0 0 4px 10px;
-				font-weight: 600;
-				text-transform: uppercase;
-			}
-			
-			paper-progress {
-				--paper-progress-active-color: var(--accent-color);
-				--paper-progress-container-color: var(--divider-color);
-				--paper-progress-height: 2px;
-				margin: 0 10px;
-			}
-			
-			hr {
-				border: 0;
-				border: 1px solid var(--divider-color);
-				margin: 12px;
+			@media (max-width: 600px) {
+				#rt1 {
+					display: block;
+					position: relative;
+					width: 100%;
+				}
+				#rt1 thead {
+					display: block;
+					float: left;
+				}
+				#rt1 tbody {
+					display: block;
+					width: auto;
+					position: relative;
+					overflow-x: auto;
+					white-space: nowrap;
+				}
+				#rt1 thead tr {
+					display: block;
+				}
+				#rt1 th {
+					display: block;
+				}
+				#rt1 tbody tr {
+					display: inline-block;
+					vertical-align: top;
+				}
+				#rt1 td {
+					display: block;
+					min-height: 1.25em;
+				}
+				/* sort out borders */
+				.rt th {
+					border-bottom: 0;
+				}
+				.rt td {
+					border-left: 0;
+					border-right: 0;
+					border-bottom: 0;
+				}
+				.rt tbody tr {
+					border-right: 1px solid var(--divider-color);
+				}
+				.rt th:last-child,
+				.rt td:last-child {
+					border-bottom: 1px solid var(--divider-color);
+				}
 			}
 		</style>
 
-		<div></div>
+		<table id="rt1" class="rt">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Code</th>
+					<th>Figure 1</th>
+					<th>Figure 2</th>
+					<th>Figure 3</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>yes</td>
+					<td>yes</td>
+					<td>yes</td>
+					<td>yes</td>
+					<td>yes</td>
+				</tr>
+				<tr>
+					<td>no</td>
+					<td>yes</td>
+					<td>yes</td>
+					<td>yes</td>
+					<td>yes</td>
+				</tr>
+				<tr>
+					<td>no</td>
+					<td>no</td>
+					<td>no</td>
+					<td>yes</td>
+					<td>yes</td>
+				</tr>
+				<tr>
+					<td>no</td>
+					<td>no</td>
+					<td>yes</td>
+					<td>no</td>
+					<td>yes</td>
+				</tr>
+				<tr>
+					<td>incomplete</td>
+					<td>incomplete</td>
+					<td>yes</td>
+					<td>incomplete</td>
+					<td>incomplete</td>
+				</tr>
+				<tr>
+					<td>no</td>
+					<td>no</td>
+					<td>yes</td>
+					<td>-moz-</td>
+					<td>-moz-</td>
+				</tr>
+			</tbody>
+		</table>
 	</template>
 
 	<script src="data-grid.js"></script>
