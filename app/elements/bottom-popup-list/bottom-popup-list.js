@@ -7,12 +7,6 @@ class BottomPopupList {
 			}
 		};
 	}
-
-	created() { }
-	ready() { }
-	attached() { }
-	detached() { }
-	attributeChanged() { } 
 }
 
 Polymer(BottomPopupList);

@@ -2,12 +2,12 @@
 
 ((document) => {
   'use strict';
-  
+
   // smooth scrolling
   function scrollTo(element, to, duration) {
-    let start = element.scrollTop,
-      change = to - start,
-      increment = 20;
+    let start = element.scrollTop;
+    let change = to - start;
+    let increment = 20;
 
     let animateScroll = (elapsedTime) => {
       elapsedTime += increment;
@@ -36,13 +36,13 @@
   // and give it some initial binding values
   // Learn more about auto-binding templates at http://goo.gl/Dx1u2g
   let app = document.querySelector('#app');
-  
+
   let sectionDetail;
-  
+
   // animation variables
   app.ANIMATION_EASE_IN_BACK = 'cubic-bezier(.6, -.28, .735, .045)';
   app.ANIMATION_EASE_OUT_BACK = 'cubic-bezier(.175, .885, .32, 1.275)';
-  
+
   // Initialize page transition animations
   app.entryAnimation = 'slide-from-right-animation';
   app.exitAnimation = 'slide-left-animation';
@@ -53,7 +53,7 @@
       document.querySelector('#caching-complete').show();
     }
   };
-  
+
   // Listen for template bound event to know when bindings
   // have resolved and content has been stamped to the page
   app.addEventListener('dom-change', () => {
@@ -64,7 +64,7 @@
   window.addEventListener('WebComponentsReady', () => {
     // imports are loaded and elements have been registered
   });
-  
+
   // Main area's paper-scroll-header-panel custom condensing transformation of
   // the appName in the middle-container and the bottom title in the bottom-container.
   // The appName is moved to top and shrunk on condensing. The bottom sub title
@@ -85,10 +85,10 @@
 
     // Scale bottomContainer and bottom sub title to nothing and back
     Polymer.Base.transform(`scale(${scaleBottom}) translateZ(0)`, bottomContainer);
-    
+
     // Scale middleContainer appName
     Polymer.Base.transform(`scale(${scaleMiddle}) translateZ(0)`, appName);
-    
+
     // Fade out bottomContainer and bottom sub title to nothing and back
     bottomContainer.style.opacity = scaleBottom;
   });
@@ -103,7 +103,7 @@
       drawerPanel.closeDrawer();
     }
   };
-  
+
   // After the MENU button has transitioned into a BACK button, the action
   // is changed from poping up the drawer to go back to previous page
   app._onBackTap = () => {
@@ -111,8 +111,7 @@
 
     if (toggle.icon === 'menu') {
       app.pageAnimationForward();
-    }
-    else {
+    } else {
       app.pageAnimationBackward();
       history.go(-1);
     }
@@ -127,14 +126,12 @@
     if (app.route === 'report') {
       app.entryAnimation = '';
       app.exitAnimation = 'slide-left-animation';
-    }
-    else if (app.route === 'section') {
+    } else if (app.route === 'section') {
       sectionDetail.useUpDownTransition = true;
-      
+
       app.entryAnimation = '';
       app.exitAnimation = '';
-    }
-    else {
+    } else {
       app.entryAnimation = 'slide-from-right-animation';
       app.exitAnimation = 'slide-left-animation';
     }
@@ -143,15 +140,13 @@
   app.pageAnimationBackward = () => {
     if (app.route === 'section') {
       sectionDetail.useUpDownTransition = false;
-      
+
       app.entryAnimation = 'slide-from-left-animation';
       app.exitAnimation = '';
-    }
-    else if (app.route === 'products' || app.route === 'orgunits') {
+    } else if (app.route === 'products' || app.route === 'orgunits') {
       app.entryAnimation = '';
       app.exitAnimation = '';
-    }
-    else {
+    } else {
       app.entryAnimation = 'slide-from-left-animation';
       app.exitAnimation = 'slide-right-animation';
     }
