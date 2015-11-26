@@ -13,7 +13,7 @@
     "chartjs2": "Chart.js#v2.0-dev"
   },
   "devDependencies": {
-    "web-component-tester": "*",
+    "web-component-tester": "*"
   },
   "ignore": []
 }
