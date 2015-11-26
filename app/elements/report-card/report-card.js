@@ -5,6 +5,10 @@ class ReportCard {
 			name: {
 				type: String
 			},
+			
+			keyItems: {
+				type: Array	
+			},
 
 			mainFigureValue: {
 				type: Number
@@ -24,11 +28,16 @@ class ReportCard {
 		};
 	}
 
-	created() { }
-	ready() { }
-	attached() { }
-	detached() { }
-	attributeChanged() { }
+	attached() { 
+	}
+
+	_multiItemDesign(keyItems) {
+		return keyItems.length > 1;
+	}
+	
+	_singleItemDesign(keyItems) {
+		return keyItems.length == 1;
+	}
 }
 
 Polymer(ReportCard);

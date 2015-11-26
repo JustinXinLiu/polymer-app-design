@@ -15,7 +15,8 @@ class HomeLastVisited {
 		this.module = { name: 'module 1', numberOfReports: 10, 
 			desc: 'The description of this module will be displayed inside this box' };
 		
-		this.report = { name: 'awesome report', mainFigureValue: 34, mainFigureAbbr: 'B',
+		var keyItems1 = [{ abbr: 'L', desc: 'Weekly Lending outstanding', good: 'good' }, { abbr: 'D', desc: 'Weekly Deposite outstanding', good: 'bad' }, { abbr: 'F', desc: 'Weekly FUM outstanding', good: 'good' }, { abbr: 'I', desc: 'Weekly Insurance outstanding', good: 'good' }];
+		this.report = { name: 'awesome report', keyItems: keyItems1, mainFigureValue: 34, mainFigureAbbr: 'B',
 			mainFigureDesc: 'This Week', mainFigureComparisonValue: 12 };
 	
 		this.section = { name: 'section 1', mainFigureValue: 34, mainFigureAbbr: 'B',

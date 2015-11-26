@@ -70,24 +70,48 @@
 				border-radius: 50%;
 				height: 48px;
 				width: 48px;
+				margin: 8px 0 0 16px;
+			}
+			
+			.single > .circle {
 				margin: 0 0 8px 16px;
+			}
+			
+			.circle.good {
+				background-color: var(--good-color);
+			}
+			
+			.circle.bad {
+				background-color: var(--bad-color);
 			}
 		</style>
 
 		<paper-material class="vertical layout" elevation="0">
 			<div class="title">[[name]]</div>
 
-			<div class="horizontal layout">
-				<div class="circle center-center vertical layout">[[mainFigureAbbr]]</div>
-				<div class="vertical layout">
-					<div class="percent">[[mainFigureValue]]</div>
-					<div class="small">[[mainFigureDesc]]</div>
-				</div>
-			</div>
-
 			<paper-ripple elevation="0"></paper-ripple>
 
-			<paper-progress class="good" value="[[mainFigureComparisonValue]]"></paper-progress>
+			<template is="dom-if" if="[[_multiItemDesign(keyItems)]]">
+				<div class="horizontal layout">
+				<template id="cards" is="dom-repeat" items="[[keyItems]]" as="item">
+					<div class="horizontal layout">
+						<div id$="circle[[item.index]]" class$="circle center-center vertical layout [[item.good]]">[[item.abbr]]</div>
+						<paper-tooltip for$="circle[[item.index]]">[[item.desc]]</paper-tooltip>
+					</div>
+				</template>
+				</div>
+			</template>
+
+			<template is="dom-if" if="[[_singleItemDesign(keyItems)]]">
+				<div class="horizontal layout single">
+					<div class="circle center-center vertical layout good">[[mainFigureAbbr]]</div>
+					<div class="vertical layout">
+						<div class="percent">[[mainFigureValue]]</div>
+						<div class="small">[[mainFigureDesc]]</div>
+					</div>
+				</div>
+				<paper-progress class="good" value="[[mainFigureComparisonValue]]"></paper-progress>
+			</template>
 
 			<div class="horizontal layout end-justified">
 				<paper-icon-button class="icon" icon="favorite"></paper-icon-button>
