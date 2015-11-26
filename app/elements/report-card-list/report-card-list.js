@@ -36,10 +36,10 @@ class ReportCardList {
 	attributeChanged() { }
 
 	_onCardTap(e) {
-// 		app.pageAnimationForward();
-// 
-// 		let item = this.$.cards.itemForElement(e.target);
-// 		page(`${page.current}/${item.name}`);
+		app.pageAnimationForward();
+
+		let item = this.$.cards.itemForElement(e.target);
+		page(`${page.current}/${item.name}`);
 	}
 }
 

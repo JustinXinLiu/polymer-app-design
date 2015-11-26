@@ -36,7 +36,7 @@ class ReportCard {
 	}
 	
 	_singleItemDesign(keyItems) {
-		return keyItems.length == 1;
+		return keyItems.length === 1;
 	}
 }
 
