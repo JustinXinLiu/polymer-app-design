@@ -35,9 +35,15 @@
   // Grab a reference to our auto-binding template
   // and give it some initial binding values
   // Learn more about auto-binding templates at http://goo.gl/Dx1u2g
-  let app = document.querySelector('#app');
-
-  let sectionDetail;
+  let app = Polymer.dom(document).querySelector('#app');
+  
+  // Sets app default base URL
+  app.baseUrl = '/';
+  if (window.location.port === '') {  // if production
+    // Uncomment app.baseURL below and
+    // set app.baseURL to '/your-pathname/' if running from folder in production
+    // app.baseUrl = '/polymer-starter-kit/';
+  }
 
   // animation variables
   app.ANIMATION_EASE_IN_BACK = 'cubic-bezier(.6, -.28, .735, .045)';
@@ -49,15 +55,14 @@
 
   app.displayInstalledToast = () => {
     // Check to make sure caching is actually enabled—it won't be in the dev environment.
-    if (!document.querySelector('platinum-sw-cache').disabled) {
-      document.querySelector('#caching-complete').show();
+    if (!!Polymer.dom(document).querySelector('platinum-sw-cache').disabled) {
+      Polymer.dom(document).querySelector('#caching-complete').show();
     }
   };
 
   // Listen for template bound event to know when bindings
   // have resolved and content has been stamped to the page
   app.addEventListener('dom-change', () => {
-    sectionDetail = document.querySelector('#sectionDetail');
   });
 
   // See https://github.com/Polymer/polymer/issues/1381
@@ -69,10 +74,10 @@
   // the appName in the middle-container and the bottom title in the bottom-container.
   // The appName is moved to top and shrunk on condensing. The bottom sub title
   // is shrunk to nothing on condensing.
-  addEventListener('paper-header-transform', (e) => {
-    let appName = document.querySelector('#mainToolbar .app-name');
-    let middleContainer = document.querySelector('#mainToolbar .middle-container');
-    let bottomContainer = document.querySelector('#mainToolbar .bottom-container');
+  window.addEventListener('paper-header-transform', (e) => {
+    let appName = Polymer.dom(document).querySelector('#mainToolbar .app-name');
+    let middleContainer = Polymer.dom(document).querySelector('#mainToolbar .middle-container');
+    let bottomContainer = Polymer.dom(document).querySelector('#mainToolbar .bottom-container');
     let detail = e.detail;
     let heightDiff = detail.height - detail.condensedHeight;
     let yRatio = Math.min(1, detail.y / heightDiff);
@@ -97,17 +102,12 @@
   app._onDataRouteTap = () => {
     app.entryAnimation = 'slide-from-right-animation';
     app.exitAnimation = 'slide-left-animation';
-
-    let drawerPanel = document.querySelector('#paperDrawerPanel');
-    if (drawerPanel.narrow) {
-      drawerPanel.closeDrawer();
-    }
   };
 
   // After the MENU button has transitioned into a BACK button, the action
   // is changed from poping up the drawer to go back to previous page
-  app._onBackTap = () => {
-    let toggle = document.getElementById('paperToggle');
+  app._onBackTap = () => {   
+    let toggle = app.$.paperToggle;
 
     if (toggle.icon === 'menu') {
       app.pageAnimationForward();
@@ -119,7 +119,7 @@
 
   // Scroll page to top and expand header
   app.scrollPageToTop = () => {
-    setTimeout(() => scrollTo(document.getElementById('mainContainer'), 0, 250), 400);
+    setTimeout(() => scrollTo(app.$.headerPanelMain, 0, 250), 400);
   };
 
   app.pageAnimationForward = () => {
@@ -127,7 +127,7 @@
       app.entryAnimation = '';
       app.exitAnimation = 'slide-left-animation';
     } else if (app.route === 'section') {
-      sectionDetail.useUpDownTransition = true;
+      app.$.sectionDetail.useUpDownTransition = true;
 
       app.entryAnimation = '';
       app.exitAnimation = '';
@@ -139,7 +139,7 @@
 
   app.pageAnimationBackward = () => {
     if (app.route === 'section') {
-      sectionDetail.useUpDownTransition = false;
+      app.$.sectionDetail.useUpDownTransition = false;
 
       app.entryAnimation = 'slide-from-left-animation';
       app.exitAnimation = '';
@@ -150,6 +150,10 @@
       app.entryAnimation = 'slide-from-left-animation';
       app.exitAnimation = 'slide-right-animation';
     }
+  };
+
+  app.closeDrawer = () => {
+    app.$.paperDrawerPanel.closeDrawer();
   };
 
 })(document);

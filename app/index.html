@@ -74,17 +74,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <!-- Drawer Content -->
         <paper-menu class="list" attr-for-selected="data-route" selected="[[selected]]">
-          <a is="home-menu-item" content="home" data-route="home" href="/" on-tap="_onDataRouteTap"></a>
-          <a is="module-menu-item" content="Module 1" number-of-reports="9" data-route="module 1" href="/module 1" on-tap="_onDataRouteTap"></a>
-          <a is="module-menu-item" content="Module 2" number-of-reports="17" data-route="module 2" href="/module 2" on-tap="_onDataRouteTap"></a>
-          <a is="module-menu-item" content="Module awesomeness" number-of-reports="4" href="/home" on-tap="_onDataRouteTap"></a>
-          <a is="module-menu-item" content="My Module" number-of-reports="23" href="/sections" on-tap="_onDataRouteTap"></a>
-          <a is="module-menu-item" content="My test module" number-of-reports="12" href="/reports" on-tap="_onDataRouteTap"></a>
+          <a is="home-menu-item" content="home" data-route="home" href="[[baseUrl]]" on-tap="_onDataRouteTap"></a>
+          <a is="module-menu-item" content="Module 1" number-of-reports="9" data-route="module 1" href="module 1" on-tap="_onDataRouteTap"></a>
+          <a is="module-menu-item" content="Module 2" number-of-reports="17" data-route="module 2" href="module 2" on-tap="_onDataRouteTap"></a>
+          <a is="module-menu-item" content="Module awesomeness" number-of-reports="4" href="home" on-tap="_onDataRouteTap"></a>
+          <a is="module-menu-item" content="My Module" number-of-reports="23" href="sections" on-tap="_onDataRouteTap"></a>
+          <a is="module-menu-item" content="My test module" number-of-reports="12" href="reports" on-tap="_onDataRouteTap"></a>
         </paper-menu>
       </paper-scroll-header-panel>
 
       <!-- Main Area -->
-      <paper-scroll-header-panel main condenses keep-condensed-header>
+      <paper-scroll-header-panel main id="headerPanelMain" condenses keep-condensed-header>
 
         <!-- Main Toolbar -->
         <paper-toolbar id="mainToolbar" class="tall">

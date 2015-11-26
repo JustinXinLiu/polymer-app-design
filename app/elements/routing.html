@@ -1,62 +1,89 @@
 <script src="../bower_components/page/page.js"></script>
 <script>
-  window.addEventListener('WebComponentsReady', () => {
+  window.addEventListener('WebComponentsReady', function() {
 
     // We use Page.js for routing. This is a Micro
     // client-side router inspired by the Express router
     // More info: https://visionmedia.github.io/page.js/
 
+    // Removes end / from app.baseUrl which page.base requires for production
+    if (window.location.port === '') {  // if production
+      page.base(app.baseUrl.replace(/\/$/, ''));
+    }
+    
     // Middleware
     function scrollToTop(ctx, next) {
       app.scrollPageToTop();
       next();
     }
+    
+    function closeDrawer(ctx, next) {
+      app.closeDrawer();
+      next();
+    }
 
     // Routes
-    page('/', scrollToTop, () => {
+    page('*', scrollToTop, closeDrawer, function(ctx, next) {
+      next();
+    }); 
+    
+    page('/', function() {
+      app.route = 'home';
+      app.heading = 'home';
+      app.selected = app.route;
+    });
+
+    page(app.baseUrl, function() {
       app.route = 'home';
       app.heading = 'home';
       app.selected = app.route;
     });
     
-    page('/:module', scrollToTop, data => {
+    page('/:module', function(data) {
       app.route = data.params.module;
       app.params = data.params;
       app.heading = data.params.module;
       app.selected = app.route;
     });   
 
-    page('/:module/:report', scrollToTop, data => {
+    page('/:module/:report', function(data) {
       app.route = 'report';
       app.params = data.params;
       app.heading = data.params.report;
     });
     
-    page('/:module/:report/:section', scrollToTop, data => {
+    page('/:module/:report/:section', function(data) {
       app.route = 'section';
       app.params = data.params;
       app.heading = data.params.section;
     });
     
-    page('/:module/:report/:section/products', scrollToTop, () => {
+    page('/:module/:report/:section/products', function() {
       app.route = 'products';
     });
     
-    page('/:module/:report/:section/orgunits', scrollToTop, () => {
+    page('/:module/:report/:section/orgunits', function() {
       app.route = 'orgunits';
     });
     
-    page('/users', scrollToTop, () => {
+    page('/users', scrollToTop, function() {
       app.route = 'users';
     });
 
-    page('/users/:name', scrollToTop, data => {
+    page('/users/:name', scrollToTop, function(data) {
       app.route = 'user-info';
       app.params = data.params;
     });
 
-    page('/contact', scrollToTop, () => {
+    page('/contact', scrollToTop, function() {
       app.route = 'contact';
+    });
+    
+    // 404
+    page('*', function() {
+      app.$.toast.text = 'Can\'t find: ' + window.location.href  + '. Redirected you to Home Page';
+      app.$.toast.show();
+      page.redirect(app.baseUrl);
     });
 
     // add #! before urls
