@@ -240,7 +240,7 @@ gulp.task('js', function () {
 });
 
 // Watch files for changes & reload
-gulp.task('serve', ['lint', 'styles', 'elements', 'images', 'js'], function () {
+gulp.task('serve', ['lint', 'styles', 'elements', 'js'], function () { // **TODO: add back 'images' task when needed**
   browserSync({
     port: 5000,
     notify: false,
@@ -302,7 +302,7 @@ gulp.task('default', ['clean'], function (cb) {
   runSequence(
     ['copy', 'styles'],
     ['elements', 'js'],
-    ['lint', 'images', 'fonts', 'html'],
+    ['lint', 'fonts', 'html'], // **TODO: add back 'images' task when needed**
     'vulcanize', 'cache-config',
     cb);
 });
