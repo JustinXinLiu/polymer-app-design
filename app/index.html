@@ -91,12 +91,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <icon-transition-button id="paperToggle" icon="menu" route="[[route]]" on-tap="_onBackTap" paper-drawer-toggle></icon-transition-button>
 
           <span class="flex"></span>
-          
+
           <!-- Search icons -->
           <paper-icon-button icon="search"></paper-icon-button>
 
-          <!-- Toolbar icons -->
-          <paper-icon-button icon="more-vert"></paper-icon-button>
+          <!-- Filters icons -->
+          <paper-icon-button icon="more-vert" on-tap="_onFiltersTap"></paper-icon-button>
 
           <!-- Application name -->
           <div class="middle middle-container center horizontal layout">
@@ -114,31 +114,34 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <!-- Main Content -->
         <div class="content">
-          <neon-animated-pages id="pages" attr-for-selected="data-route" selected="{{route}}" entry-animation="[[entryAnimation]]" exit-animation="[[exitAnimation]]">
+          <neon-animated-pages id="pages" attr-for-selected="data-route" selected="{{route}}" entry-animation="[[entryAnimation]]"
+          exit-animation="[[exitAnimation]]">
             <section data-route="home">
               <home-last-visited></home-last-visited>
             </section>
-            
+
             <section data-route="module 1">
               <report-card-list></report-card-list>
-            </section>    
-            
+            </section>
+
             <section data-route="module 2">
               <report-card-list></report-card-list>
-            </section>         
+            </section>
 
             <section data-route="report">
               <section-card-list name="[[params.name]]"></section-card-list>
             </section>
 
             <section-detail id="sectionDetail" name="[[params.name]]" data-route="section"></section-detail>
-            
+
             <bottom-popup-list name="category 1" type="product" data-route="products"></bottom-popup-list>
             <bottom-popup-list name="category 2" type="org" data-route="orgunits"></bottom-popup-list>
           </neon-animated-pages>
         </div>
       </paper-scroll-header-panel>
     </paper-drawer-panel>
+
+    <app-filters id="filters"></app-filters>
 
     <paper-toast id="caching-complete" duration="6000" text="Caching complete! This app will work offline.">
     </paper-toast>

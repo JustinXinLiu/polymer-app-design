@@ -1,0 +1,224 @@
+<dom-module id="app-filters">
+	<template>
+		<style include="shared-styles"></style>
+		<style>
+			:host {
+				display: block;
+			}
+			
+			paper-dialog {
+				position: fixed;
+				top: 0;
+				right: 0;
+				left: 0;
+				margin: 0;
+				padding: 0;
+			}
+			
+			#bg {
+				/*background-color: var(--default-primary-color);*/
+				/*background-color: var(--primary-text-color);*/
+				pointer-events: none;
+				transition: opacity .2s linear;
+			}
+		</style>
+
+		<paper-dialog id="dialog" modal>
+			<div class="horizontal layout">
+				<div>[[title]]</div>
+				<span class="flex"></span>
+				<paper-icon-button icon="close" dialog-dismiss></paper-icon-button>
+			</div>
+			
+			<paper-dialog-scrollable class="relative">
+				<div id="bg" class="fit"></div>
+				<section>
+					<div>Selected Item</div>
+					<br>
+					<div class="condensed">
+						<paper-dropdown-menu label="Org Units">
+							<paper-menu class="dropdown-content">
+								<paper-item>Croissant</paper-item>
+								<paper-item>Donut</paper-item>
+								<paper-item>Financier</paper-item>
+								<paper-item>Madeleine</paper-item>
+							</paper-menu>
+						</paper-dropdown-menu>
+					</div>
+				</section>
+
+				<section>
+					<div>Selected Item</div>
+					<br>
+					<div class="condensed">
+						<paper-dropdown-menu label="Products">
+							<paper-menu class="dropdown-content">
+								<paper-item>Croissant</paper-item>
+								<paper-item>Donut</paper-item>
+								<paper-item>Financier</paper-item>
+								<paper-item>Madeleine</paper-item>
+							</paper-menu>
+						</paper-dropdown-menu>
+					</div>
+				</section>
+
+				<section>
+					<div>Selected Item</div>
+					<br>
+					<div class="condensed">
+						<paper-dropdown-menu label="Products">
+							<paper-menu class="dropdown-content">
+								<paper-item>Croissant</paper-item>
+								<paper-item>Donut</paper-item>
+								<paper-item>Financier</paper-item>
+								<paper-item>Madeleine</paper-item>
+							</paper-menu>
+						</paper-dropdown-menu>
+					</div>
+				</section>
+
+				<section>
+					<div>Selected Item</div>
+					<br>
+					<div class="condensed">
+						<paper-dropdown-menu label="Products">
+							<paper-menu class="dropdown-content">
+								<paper-item>Croissant</paper-item>
+								<paper-item>Donut</paper-item>
+								<paper-item>Financier</paper-item>
+								<paper-item>Madeleine</paper-item>
+							</paper-menu>
+						</paper-dropdown-menu>
+					</div>
+				</section>
+
+				<section>
+					<div>Selected Item</div>
+					<br>
+					<div class="condensed">
+						<paper-dropdown-menu label="Products">
+							<paper-menu class="dropdown-content">
+								<paper-item>Croissant</paper-item>
+								<paper-item>Donut</paper-item>
+								<paper-item>Financier</paper-item>
+								<paper-item>Madeleine</paper-item>
+							</paper-menu>
+						</paper-dropdown-menu>
+					</div>
+				</section>
+
+				<section>
+					<div>Selected Item</div>
+					<br>
+					<div class="condensed">
+						<paper-dropdown-menu label="Products">
+							<paper-menu class="dropdown-content">
+								<paper-item>Croissant</paper-item>
+								<paper-item>Donut</paper-item>
+								<paper-item>Financier</paper-item>
+								<paper-item>Madeleine</paper-item>
+							</paper-menu>
+						</paper-dropdown-menu>
+					</div>
+				</section>
+
+				<section>
+					<div>Selected Item</div>
+					<br>
+					<div class="condensed">
+						<paper-dropdown-menu label="Products">
+							<paper-menu class="dropdown-content">
+								<paper-item>Croissant</paper-item>
+								<paper-item>Donut</paper-item>
+								<paper-item>Financier</paper-item>
+								<paper-item>Madeleine</paper-item>
+							</paper-menu>
+						</paper-dropdown-menu>
+					</div>
+				</section>
+
+				<section>
+					<div>Selected Item</div>
+					<br>
+					<div class="condensed">
+						<paper-dropdown-menu label="Products">
+							<paper-menu class="dropdown-content">
+								<paper-item>Croissant</paper-item>
+								<paper-item>Donut</paper-item>
+								<paper-item>Financier</paper-item>
+								<paper-item>Madeleine</paper-item>
+							</paper-menu>
+						</paper-dropdown-menu>
+					</div>
+				</section>
+
+				<section>
+					<div>Selected Item</div>
+					<br>
+					<div class="condensed">
+						<paper-dropdown-menu label="Products">
+							<paper-menu class="dropdown-content">
+								<paper-item>Croissant</paper-item>
+								<paper-item>Donut</paper-item>
+								<paper-item>Financier</paper-item>
+								<paper-item>Madeleine</paper-item>
+							</paper-menu>
+						</paper-dropdown-menu>
+					</div>
+				</section>
+			</paper-dialog-scrollable>
+		</paper-dialog>
+	</template>
+
+	<script>
+		Polymer({
+			is: 'app-filters',
+			behaviors: [ Polymer.NeonAnimationRunnerBehavior ],	
+		
+			properties: {
+				title: {
+					type: String,
+					value: 'filters'			
+				},
+				
+				dialogAnimationConfig: {
+					type: Object,
+					value: function () {		
+						return {
+							'entry': [{
+								name: 'transform-animation',
+								node: this.$.dialog,
+								transformFrom: 'translateY(calc(-100% - 56px/2))',
+								transformTo: 'translateY(0)'
+							}],
+							
+							'exit': [{
+								name: 'slide-up-animation',
+								node: this.$.dialog,
+								transformFrom: 'translateY(0)',
+								transformTo: 'translateY(calc(-100% - 56px/2))'
+							}]
+						};
+					}
+				}	
+			},
+			
+			ready: function () {
+				this.$.dialog.animationConfig = this.dialogAnimationConfig;
+			},
+			
+			attached: function () {			
+			},
+			
+			open: function () {
+				this.$.dialog.open();
+			},
+			
+			close: function () {
+				this.$.dialog.close();
+			}	
+		});
+	</script>
+
+	<!--<script src="app-filters.js"></script>-->
+</dom-module>

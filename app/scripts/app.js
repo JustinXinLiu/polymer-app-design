@@ -116,6 +116,15 @@
       history.go(-1);
     }
   };
+  
+  app._onFiltersTap = () => {   
+    //let panel = app.$.headerPanelMain;
+    // let toolbar = app.$.mainToolbar;
+    let filters = app.$.filters;
+    
+    // panel.style.overflow = 'hidden';
+    filters.open();
+  };
 
   // Scroll page to top and expand header
   app.scrollPageToTop = () => {
