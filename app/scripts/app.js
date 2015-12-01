@@ -164,5 +164,13 @@
   app.closeDrawer = () => {
     app.$.paperDrawerPanel.closeDrawer();
   };
+  
+  app.showBusyIndicator = () => {
+    app.$.busyIndicator.active = true;
+  };
+  
+  app.hideBusyIndicator = () => {
+    app.$.busyIndicator.active = false;
+  };
 
 })(document);

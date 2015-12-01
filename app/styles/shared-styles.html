@@ -37,7 +37,14 @@
       
       paper-menu a > *, paper-menu paper-item > *, paper-menu paper-icon-item > * {
         pointer-events: none;
-      }    
+      }  
+      
+			#overlay {
+				background-color: var(--primary-text-color);
+				opacity: 0;
+				pointer-events: none;
+				transition: opacity .2s linear;
+			}
       
       @media (max-width: 600px) {
         .page-title {

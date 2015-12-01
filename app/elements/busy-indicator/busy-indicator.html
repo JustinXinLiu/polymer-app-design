@@ -1,0 +1,43 @@
+<dom-module id="busy-indicator">
+	<template>
+		<style include="shared-styles"></style>
+		<style>
+			:host {
+				display: block;
+				position: relative;
+				visibility: hidden;
+			}
+			
+			:host([active]) {
+				visibility: visible;
+			}
+						
+			:host([active]) #overlay {
+				opacity: 0.4;
+				pointer-events: auto;
+			}
+			
+			paper-button.cancel {
+				background: transparent;
+				color: var(--light-primary-color);
+				margin-top: 12px;
+			}
+			
+			paper-spinner {
+				--paper-spinner-layer-1-color: var(--light-primary-color);
+				--paper-spinner-layer-2-color: var(--light-primary-color);
+				--paper-spinner-layer-3-color: var(--light-primary-color);
+				--paper-spinner-layer-4-color: var(--light-primary-color);
+			}
+		</style>
+
+		<div id="overlay" class="fit"></div>
+
+		<div class="fit center-center vertical layout">
+			<paper-spinner alt="Loading..." active="[[active]]"></paper-spinner>
+			<paper-button class="cancel" on-tap="_onCancelTap">Cancel</paper-button>
+		</div>
+	</template>
+
+	<script src="busy-indicator.js"></script>
+</dom-module>

@@ -15,9 +15,11 @@ class ReportCardList {
 	ready() { }
 
 	attached() {
+		this.async(() => app.showBusyIndicator(), 3000);
+
 		var keyItems1 = [{ abbr: 'L', desc: 'Weekly Lending outstanding', good: 'good' }, { abbr: 'D', desc: 'Weekly Deposite outstanding', good: 'bad' }, { abbr: 'F', desc: 'Weekly FUM outstanding', good: 'good' }, { abbr: 'I', desc: 'Weekly Insurance outstanding', good: 'good' }];
 		var keyItems2 = [{ abbr: 'L', desc: 'Weekly Lending outstanding', good: '' }, { abbr: 'D', desc: 'Weekly Deposite outstanding', good: 'bad' }, { abbr: 'I', desc: 'Weekly Insurance outstanding', good: 'bad' }];
-		var keyItems3 = [{ abbr: 'A', desc: 'Weekly Lending outstanding', good: 'good' } ];
+		var keyItems3 = [{ abbr: 'A', desc: 'Weekly Lending outstanding', good: 'good' }];
 		var keyItems4 = [{ abbr: 'V', desc: 'Weekly Lending outstanding', good: 'bad' }, { abbr: 'C', desc: 'Weekly Deposite outstanding', good: '' }, { abbr: 'F', desc: 'Weekly FUM outstanding', good: 'good' }, { abbr: 'I', desc: 'Weekly Insurance outstanding', good: 'bad' }];
 		var keyItems5 = [{ abbr: 'P', desc: 'Weekly Lending outstanding', good: 'good' }, { abbr: 'K', desc: 'Weekly Deposite outstanding', good: 'bad' }, { abbr: 'F', desc: 'Weekly FUM outstanding', good: 'good' }];
 		var keyItems6 = [{ abbr: 'L', desc: 'Weekly Lending outstanding', good: 'bad' }, { abbr: 'D', desc: 'Weekly Deposite outstanding', good: 'bad' }];
