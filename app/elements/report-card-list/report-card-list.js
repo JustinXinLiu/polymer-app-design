@@ -1,22 +1,60 @@
 /* global page */
 /* global app */
 
+let CompositeBehavior = [
+	Polymer.NeonAnimationRunnerBehavior,
+	Polymer.NeonPageBehavior
+];
+
 class ReportCardList {
-	beforeRegister() {
-		this.is = 'report-card-list';
-		this.properties = {
-			cards: {
-				type: Array
-			}
+	get behaviors() {
+		return this._behaviors || (this._behaviors = [CompositeBehavior]);
+	}
+	
+	set behaviors(behaviors) {
+		this._behaviors = behaviors;
+	}
+
+	get listeners() {
+		return {
+			'entry-animation-start': '_onEntryStart',
+			'entry-animation-finish': '_onEntryFinish',
+			'exit-animation-start': '_onExitStart',
+			'exit-animation-finish': '_onExitFinish',
+			'neon-animation-finish': '_onNeonAnimationFinish'
 		};
 	}
 
-	created() { }
-	ready() { }
+	beforeRegister() {
+		this.is = 'report-card-list';
+
+		this.properties = {
+			cards: {
+				type: Array
+			},
+
+			animationConfig: {
+				value: function () {
+					return {
+						'fade': {
+							name: 'fade-in-animation',
+							node: this
+						}
+					};
+				}
+			}
+		};
+
+		// this.listeners = {
+		// 	'entry-animation-start': '_onEntryStart',
+		// 	'entry-animation-finish': '_onEntryFinish',
+		// 	'exit-animation-start': '_onExitStart',
+		// 	'exit-animation-finish': '_onExitFinish',
+		// 	'neon-animation-finish': '_onNeonAnimationFinish'
+		// };
+	}
 
 	attached() {
-		this.async(() => app.showBusyIndicator(), 3000);
-
 		var keyItems1 = [{ abbr: 'L', desc: 'Weekly Lending outstanding', good: 'good' }, { abbr: 'D', desc: 'Weekly Deposite outstanding', good: 'bad' }, { abbr: 'F', desc: 'Weekly FUM outstanding', good: 'good' }, { abbr: 'I', desc: 'Weekly Insurance outstanding', good: 'good' }];
 		var keyItems2 = [{ abbr: 'L', desc: 'Weekly Lending outstanding', good: '' }, { abbr: 'D', desc: 'Weekly Deposite outstanding', good: 'bad' }, { abbr: 'I', desc: 'Weekly Insurance outstanding', good: 'bad' }];
 		var keyItems3 = [{ abbr: 'A', desc: 'Weekly Lending outstanding', good: 'good' }];
@@ -32,16 +70,37 @@ class ReportCardList {
 			{ name: 'Failed report', 'mainFigureValue': 7, 'mainFigureAbbr': 'Y', 'mainFigureDesc': 'This Week', 'mainFigureComparisonValue': 20, keyItems: keyItems5 },
 			{ name: 'Final report', 'mainFigureValue': 23, 'mainFigureAbbr': 'O', 'mainFigureDesc': 'This Week', 'mainFigureComparisonValue': 10, keyItems: keyItems6 },
 		];
+
+		// this.async(() => this.playAnimation('fade'), 3000);
 	}
 
-	detached() { }
-	attributeChanged() { }
+	_onEntryStart(e) {
+		console.log(e + ' entry animation starts');
+	}
+
+	_onEntryFinish(e) {
+		// this.async(() => app.showBusyIndicator(), 3000);
+
+		console.log(e + ' entry animation finished');
+	}
+
+	_onExitStart(e) {
+		console.log(e + ' exit animation starts');
+	}
+
+	_onExitFinish(e) {
+		console.log(e + ' exit animation finished');
+	}
 
 	_onCardTap(e) {
 		app.pageAnimationForward();
 
 		let item = this.$.cards.itemForElement(e.target);
 		page(`${page.current}/${item.name}`);
+	}
+
+	_onNeonAnimationFinish(e, animation) {
+		console.log('finished!' + e + animation);
 	}
 }
 

@@ -10,7 +10,8 @@
     "paper-listbox": "PolymerElements/paper-listbox#^1.0.0",
     "page": "visionmedia/page.js#~1.6.4",
     "chartjs": "Chart.js#^1.0.2",
-    "chartjs2": "Chart.js#v2.0-dev"
+    "chartjs2": "Chart.js#v2.0-dev",
+    "neon-page-behavior": "^1.1.1"
   },
   "devDependencies": {
     "web-component-tester": "*"

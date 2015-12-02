@@ -92,7 +92,11 @@
 	<script>
 		Polymer({
 			is: 'bottom-popup-list',
-			behaviors: [ Polymer.NeonAnimationRunnerBehavior ],
+			
+			behaviors: [ 
+				Polymer.NeonAnimationRunnerBehavior
+			],
+			
 			properties: {
 				name: {
 					type: String		
@@ -165,6 +169,7 @@
 			},
 			
 			ready: function () {
+				var that = this;
 				this.$.actions.style.display = 'none';
 				
 				// Sticky effect for the secondary heading
@@ -176,20 +181,20 @@
 				// }], 400);
 				// let animation = new Animation(effect, this.$.heading.ownerDocument.timeline);
 		
-				addEventListener('paper-header-transform', (e) => {
+				addEventListener('paper-header-transform', function (e) {
 					var detail = e.detail;
 					var heightDiff = detail.height - detail.condensedHeight;
 
 					if (detail.y === heightDiff) {
 						//animation.play();
 						// this.async(()=> { 
-						this.$.heading.first = false;
-						this.sticky = 'sticky';
+						that.$.heading.first = false;
+						that.sticky = 'sticky';
 						// }, 0);
 					}
 					else {
-						this.$.heading.first = true;
-						this.sticky = '';
+						that.$.heading.first = true;
+						that.sticky = '';
 					}
 				});
 			},
@@ -197,7 +202,7 @@
 			// listeners: {
 			// 	'neon-animation-finish': '_onNeonAnimationFinish'
 			// },
-			// 
+			
 			// _onNeonAnimationFinish: function (e, animation) {
 			// 	switch (animation) {
 			// 		case 'showActions':

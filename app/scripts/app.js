@@ -118,17 +118,13 @@
   };
   
   app._onFiltersTap = () => {   
-    //let panel = app.$.headerPanelMain;
-    // let toolbar = app.$.mainToolbar;
     let filters = app.$.filters;
-    
-    // panel.style.overflow = 'hidden';
     filters.open();
   };
 
   // Scroll page to top and expand header
   app.scrollPageToTop = () => {
-    setTimeout(() => scrollTo(app.$.headerPanelMain, 0, 250), 400);
+    setTimeout(() => scrollTo(document.getElementById('mainContainer'), 0, 250), 400);
   };
 
   app.pageAnimationForward = () => {

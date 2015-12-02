@@ -230,7 +230,9 @@ gulp.task('clean', function () {
 gulp.task('js', function () {
   return gulp.src(['app/**/*.{js,html}'])
     .pipe($.sourcemaps.init())
-    //.pipe($.if('*.html', $.crisper())) // Extract JS from .html files **TODO: fix this once all converted to ES6**
+    // .pipe($.if('*.html', $.crisper({
+    //   scriptInHead: false
+    // }))) // Extract JS from .html files **TODO: fix this
     .pipe($.if('*.js', $.babel({
       presets: ['es2015']
     })))
@@ -269,7 +271,7 @@ gulp.task('serve', ['lint', 'styles', 'elements', 'js'], function () { // **TODO
   gulp.watch(['app/**/*.html'], ['js', reload]);
   gulp.watch(['app/styles/**/*.css'], ['styles', reload]);
   gulp.watch(['app/elements/**/*.css'], ['elements', reload]);
-  gulp.watch(['app/{scripts,elements}/**/{*.js,*.html}'], ['lint', 'js']);
+  gulp.watch(['app/{scripts,elements}/**/*.js'], ['lint', 'js']);
   gulp.watch(['app/images/**/*'], reload);
 });
 
