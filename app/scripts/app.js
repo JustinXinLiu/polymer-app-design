@@ -36,7 +36,7 @@
   // and give it some initial binding values
   // Learn more about auto-binding templates at http://goo.gl/Dx1u2g
   let app = Polymer.dom(document).querySelector('#app');
-  
+   
   // Sets app default base URL
   app.baseUrl = '/';
   if (window.location.port === '') {  // if production
@@ -106,7 +106,7 @@
 
   // After the MENU button has transitioned into a BACK button, the action
   // is changed from poping up the drawer to go back to previous page
-  app._onBackTap = () => {   
+  app._onBackTap = () => {
     let toggle = app.$.paperToggle;
 
     if (toggle.icon === 'menu') {
@@ -116,8 +116,8 @@
       history.go(-1);
     }
   };
-  
-  app._onFiltersTap = () => {   
+
+  app._onFiltersTap = () => {
     let filters = app.$.filters;
     filters.open();
   };
@@ -160,11 +160,11 @@
   app.closeDrawer = () => {
     app.$.paperDrawerPanel.closeDrawer();
   };
-  
+
   app.showBusyIndicator = () => {
     app.$.busyIndicator.active = true;
   };
-  
+
   app.hideBusyIndicator = () => {
     app.$.busyIndicator.active = false;
   };

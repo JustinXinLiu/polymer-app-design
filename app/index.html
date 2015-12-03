@@ -109,30 +109,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <div class="bottom-title paper-font-subhead">Reported on 1 Dec, 2015</div>
             <!--<iron-icon icon="settings"></iron-icon>-->
           </div>
-
         </paper-toolbar>
 
         <!-- Main Content -->
         <div class="content">
           <neon-animated-pages id="pages" attr-for-selected="data-route" selected="{{route}}" entry-animation="[[entryAnimation]]"
           exit-animation="[[exitAnimation]]">
-            <section data-route="home">
-              <home-last-visited></home-last-visited>
-            </section>
+            <home-last-visited data-route="home"></home-last-visited>
 
-            <section data-route="module 1">
-              <report-card-list></report-card-list>
-            </section>
+            <report-card-list data-route="module 1" name="[[params.module]]"></report-card-list>
+            <report-card-list data-route="module 2" name="[[params.module]]"></report-card-list>
 
-            <section data-route="module 2">
-              <report-card-list></report-card-list>
-            </section>
+            <section-card-list data-route="report" name="[[params.report]]"></section-card-list>
 
-            <section data-route="report">
-              <section-card-list name="[[params.name]]"></section-card-list>
-            </section>
-
-            <section-detail id="sectionDetail" name="[[params.name]]" data-route="section"></section-detail>
+            <section-detail id="sectionDetail" name="[[params.section]]" data-route="section"></section-detail>
 
             <bottom-popup-list name="category 1" type="product" data-route="products"></bottom-popup-list>
             <bottom-popup-list name="category 2" type="org" data-route="orgunits"></bottom-popup-list>

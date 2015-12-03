@@ -1,10 +1,12 @@
-class HomeLastVisited {
+class HomeLastVisited {	
 	beforeRegister() {
 		this.is = 'home-last-visited';
+		
 		this.properties = {
 			module: {
 				type: Object
 			},
+			
 			report: {
 				type: Object
 			}

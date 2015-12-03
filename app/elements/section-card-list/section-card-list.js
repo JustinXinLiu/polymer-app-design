@@ -1,4 +1,17 @@
+var PageCompositionBehavior = [
+	Polymer.NeonAnimationRunnerBehavior,
+	Polymer.NeonPageBehavior
+];
+
 class SectionCardList {
+	get behaviors() {
+		return this._behaviors || (this._behaviors = PageCompositionBehavior);
+	}
+	
+	set behaviors(behaviors) {
+		this._behaviors = behaviors;
+	}
+		
 	beforeRegister() {
 		this.is = 'section-card-list';
 		this.properties = {
@@ -27,18 +40,15 @@ class SectionCardList {
 		];
 	}
 
-	detached() { }
-	attributeChanged() { }
+	_onNameChange(newValue) {
+		console.log('name changed: ' + newValue);
+	}
 	
 	_onCardTap(e) {
 		app.pageAnimationForward();
 
 		let item = this.$.cards.itemForElement(e.target);
 		page(`${page.current}/${item.name}`);
-	}
-	
-	_onNameChange(newValue) {
-		console.log('name changed: ' + newValue);
 	}
 }
 
