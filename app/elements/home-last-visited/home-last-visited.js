@@ -13,7 +13,7 @@ class HomeLastVisited {
 		};
 	}
 
-	ready() { 
+	ready() {
 		this.module = { name: 'module 1', numberOfReports: 10, 
 			desc: 'The description of this module will be displayed inside this box' };
 		

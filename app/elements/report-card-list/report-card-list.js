@@ -57,7 +57,9 @@ class ReportCardList {
 	_onEntryStart(e) {
 		console.log(e + ' entry animation starts: ' + app.route);
 
-		if (this.cards) return;
+		if (this.cards) {
+			return;
+		}
 
 		app.showBusyIndicator();
 		this.async(() => {
