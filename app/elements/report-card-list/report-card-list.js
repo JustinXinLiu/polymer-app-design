@@ -37,9 +37,9 @@ class ReportCardList {
 			},
 
 			animationConfig: {
-				value: function () {
+				value: () => {
 					return {
-						'cascade': [{
+						'cascade-in': [{
 							name: 'cascaded-animation',
 							animation: 'fade-in-animation',
 							nodeDelay: 100
@@ -50,7 +50,7 @@ class ReportCardList {
 						}]
 					};
 				}
-			},
+			}
 		};
 	}
 
@@ -82,10 +82,10 @@ class ReportCardList {
 			// animate report cards in
 			this.async(() => {
 				var nodes = Polymer.dom(this.root).querySelectorAll('report-card');
-				var cascadeAnimation = this.animationConfig['cascade'];
+				var cascadeAnimation = this.animationConfig['cascade-in'];
 				cascadeAnimation[0].nodes = cascadeAnimation[1].nodes = nodes;
 				
-				this.playAnimation('cascade');
+				this.playAnimation('cascade-in');
 			});
 
 			app.hideBusyIndicator();
