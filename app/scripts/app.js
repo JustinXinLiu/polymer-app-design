@@ -42,7 +42,7 @@
   if (window.location.port === '') {  // if production
     // Uncomment app.baseURL below and
     // set app.baseURL to '/your-pathname/' if running from folder in production
-    // app.baseUrl = '/polymer-starter-kit/';
+    // app.baseUrl = '/polymer-app-design/';
   }
 
   // animation variables
@@ -55,7 +55,7 @@
 
   app.displayInstalledToast = () => {
     // Check to make sure caching is actually enabled—it won't be in the dev environment.
-    if (!!Polymer.dom(document).querySelector('platinum-sw-cache').disabled) {
+    if (!Polymer.dom(document).querySelector('platinum-sw-cache').disabled) {
       Polymer.dom(document).querySelector('#caching-complete').show();
     }
   };
