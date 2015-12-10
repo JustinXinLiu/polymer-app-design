@@ -1,15 +1,15 @@
-var PageCompositionBehavior = [
-	Polymer.NeonAnimationRunnerBehavior,
-	Polymer.NeonPageBehavior
-];
+let sectionCardListBehaviors = Symbol('behaviors');
 
 class SectionCardList {
 	get behaviors() {
-		return this._behaviors || (this._behaviors = PageCompositionBehavior);
+		return this[sectionCardListBehaviors] || (this[sectionCardListBehaviors] = [
+			Polymer.NeonAnimationRunnerBehavior,
+			Polymer.NeonPageBehavior
+		]);
 	}
 
-	set behaviors(behaviors) {
-		this._behaviors = behaviors;
+	set behaviors(value) {
+		this[sectionCardListBehaviors] = value;
 	}
 
 	get listeners() {
@@ -53,34 +53,37 @@ class SectionCardList {
 	}
 
 	_onEntryStart(e) {
-		console.log(e + ' entry animation starts: ' + app.params);
-
-		if (this.cards) {
+		console.log(' entry animation starts - from page ' + e.detail.from);
+		
+		// When coming back from the detail page, do nothing
+		if (e.detail.from === 'section' && this.cards) {
 			return;
 		}
-
+		
+		this.cards = [];
 		app.showBusyIndicator();
-		this.async(() => {
+		
+		this.async(() => {		
 			this.cards = [
-				{ 'name': 'section 1', 'mainFigureValue': 37, 'mainFigureAbbr': 'V', 'mainFigureDesc': 'This Week', 'mainFigureComparisonValue': 60 },
-				{ 'name': 'section 2', 'mainFigureValue': 12, 'mainFigureAbbr': 'L', 'mainFigureDesc': 'This Week', 'mainFigureComparisonValue': 30 },
-				{ 'name': 'section 3', 'mainFigureValue': 3, 'mainFigureAbbr': 'K', 'mainFigureDesc': 'This Week', 'mainFigureComparisonValue': 40 },
-				{ 'name': 'section 4', 'mainFigureValue': -10, 'mainFigureAbbr': 'K', 'mainFigureDesc': 'This Week', 'mainFigureComparisonValue': 70 },
-				{ 'name': 'section 5', 'mainFigureValue': 7, 'mainFigureAbbr': 'Y', 'mainFigureDesc': 'This Week', 'mainFigureComparisonValue': 20 },
-				{ 'name': 'section 6', 'mainFigureValue': 23, 'mainFigureAbbr': 'O', 'mainFigureDesc': 'This Week', 'mainFigureComparisonValue': 10 },
+				{ 'name': app.params.report + ' ' + 'section 1', 'mainFigureValue': 37, 'mainFigureAbbr': 'V', 'mainFigureDesc': 'This Week', 'mainFigureComparisonValue': 60 },
+				{ 'name': app.params.report + ' ' + 'section 2', 'mainFigureValue': 12, 'mainFigureAbbr': 'L', 'mainFigureDesc': 'This Week', 'mainFigureComparisonValue': 30 },
+				{ 'name': app.params.report + ' ' + 'section 3', 'mainFigureValue': 3, 'mainFigureAbbr': 'K', 'mainFigureDesc': 'This Week', 'mainFigureComparisonValue': 40 },
+				{ 'name': app.params.report + ' ' + 'section 4', 'mainFigureValue': -10, 'mainFigureAbbr': 'K', 'mainFigureDesc': 'This Week', 'mainFigureComparisonValue': 70 },
+				{ 'name': app.params.report + ' ' + 'section 5', 'mainFigureValue': 7, 'mainFigureAbbr': 'Y', 'mainFigureDesc': 'This Week', 'mainFigureComparisonValue': 20 },
+				{ 'name': app.params.report + ' ' + 'section 6', 'mainFigureValue': 23, 'mainFigureAbbr': 'O', 'mainFigureDesc': 'This Week', 'mainFigureComparisonValue': 10 },
 			];
 			
-			// animate report cards in
+			// Animate report cards in
 			this.async(() => {
-				var nodes = Polymer.dom(this.root).querySelectorAll('section-card');
-				var cascadeAnimation = this.animationConfig['cascade-in'];
+				let nodes = Polymer.dom(this.root).querySelectorAll('section-card');
+				let cascadeAnimation = this.animationConfig['cascade-in'];
 				cascadeAnimation[0].nodes = cascadeAnimation[1].nodes = nodes;
 				
 				this.playAnimation('cascade-in');
 			});
 
 			app.hideBusyIndicator();
-		}, 2000);
+		}, 1000);
 	}
 
 	_onEntryFinish(e) {

@@ -1,18 +1,18 @@
 /* global page */
 /* global app */
 
-var PageCompositionBehavior = [
-	Polymer.NeonAnimationRunnerBehavior,
-	Polymer.NeonPageBehavior
-];
+let reportCardListbehaviors = Symbol('behaviors');
 
 class ReportCardList {
 	get behaviors() {
-		return this._behaviors || (this._behaviors = PageCompositionBehavior);
+		return this[reportCardListbehaviors] || (this[reportCardListbehaviors] = [
+			Polymer.NeonAnimationRunnerBehavior,
+			Polymer.NeonPageBehavior
+		]);
 	}
 
-	set behaviors(behaviors) {
-		this._behaviors = behaviors;
+	set behaviors(value) {
+		this[reportCardListbehaviors] = value;
 	}
 
 	get listeners() {
@@ -44,10 +44,10 @@ class ReportCardList {
 							animation: 'fade-in-animation',
 							nodeDelay: 100
 						}, {
-							name: 'cascaded-animation',
-							animation: 'slide-down-animation',
-							nodeDelay: 100
-						}]
+								name: 'cascaded-animation',
+								animation: 'slide-down-animation',
+								nodeDelay: 100
+							}]
 					};
 				}
 			}
@@ -62,6 +62,7 @@ class ReportCardList {
 		}
 
 		app.showBusyIndicator();
+		
 		this.async(() => {
 			let keyItems1 = [{ abbr: 'L', desc: 'Weekly Lending outstanding', good: 'good' }, { abbr: 'D', desc: 'Weekly Deposite outstanding', good: 'bad' }, { abbr: 'F', desc: 'Weekly FUM outstanding', good: 'good' }, { abbr: 'I', desc: 'Weekly Insurance outstanding', good: 'good' }];
 			let keyItems2 = [{ abbr: 'L', desc: 'Weekly Lending outstanding', good: '' }, { abbr: 'D', desc: 'Weekly Deposite outstanding', good: 'bad' }, { abbr: 'I', desc: 'Weekly Insurance outstanding', good: 'bad' }];
@@ -79,17 +80,17 @@ class ReportCardList {
 				{ name: 'Final report', 'mainFigureValue': 23, 'mainFigureAbbr': 'O', 'mainFigureDesc': 'This Week', 'mainFigureComparisonValue': 10, keyItems: keyItems6 },
 			];
 
-			// animate report cards in
+			// Animate report cards in
 			this.async(() => {
-				var nodes = Polymer.dom(this.root).querySelectorAll('report-card');
-				var cascadeAnimation = this.animationConfig['cascade-in'];
+				let nodes = Polymer.dom(this.root).querySelectorAll('report-card');
+				let cascadeAnimation = this.animationConfig['cascade-in'];
 				cascadeAnimation[0].nodes = cascadeAnimation[1].nodes = nodes;
-				
+
 				this.playAnimation('cascade-in');
 			});
 
 			app.hideBusyIndicator();
-		}, 2000);
+		}, 1000);
 	}
 
 	_onEntryFinish(e) {

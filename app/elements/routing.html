@@ -86,7 +86,10 @@
       page.redirect(app.baseUrl);
     });
 
-    page();
+    // add #! before urls
+    page({
+      hashbang: true
+    });
 
   });
 

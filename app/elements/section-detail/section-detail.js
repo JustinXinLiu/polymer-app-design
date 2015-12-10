@@ -1,6 +1,15 @@
+let sectionDetailBehaviors = Symbol('behaviors');
+
 class SectionDetail {
 	get behaviors() {
-		return [ Polymer.NeonAnimatableBehavior ];
+		return this[sectionDetailBehaviors] || (this[sectionDetailBehaviors] = [
+			Polymer.NeonAnimatableBehavior,
+			Polymer.NeonPageBehavior
+		]);
+	}
+
+	set behaviors(value) {
+		this[sectionDetailBehaviors] = value;
 	}
 	
 	beforeRegister() {
@@ -36,26 +45,80 @@ class SectionDetail {
 				type: Number
 			},
 			
-			animationConfig: {
-				value: () => {
-					console.log('here');
-								
+			opened: {
+				type: Boolean,
+				notify: true,
+				reflectToAttribute: true			
+			},
+			
+			useHeroTransition: {
+				type: Boolean,
+				observer: '_useHeroTransitionChanged'			
+			},
+			
+			useUpDownTransition: {
+				type: Boolean,
+				observer: '_useUpDownTransitionChanged'			
+			},
+			
+			_localAnimationConfig: {
+				value: function () {		
 					return {
 						'entry': [{
-							name: 'fade-in-animation',
-							node: this.$.action
+							name: 'slide-from-right-animation',
+							node: this.$.content
 						}, {
-							name: 'scale-up-animation',
-							node: this.$.action
+							animatable: this.$.action,
+							type: 'entry'
 						}],
 						
 						'exit': [{
-							name: 'fade-out-animation',
-							node: this.$.action
+							name: 'slide-right-animation',
+							node: this.$.content							
 						}, {
-							name: 'scale-down-animation',
-							node: this.$.action
-						}]						
+							animatable: this.$.action,
+							type: 'exit'
+						}]										
+					};
+				}
+			},
+			
+			_localHeroAnimationConfig: {
+				value: function () {		
+					return {
+						'entry': [{
+							name: 'hero-animation',
+							id: 'hero',
+							toPage: this
+						}],
+						
+						'exit': [{
+							name: 'hero-animation',
+							id: 'hero',
+							fromPage: this
+						}]										
+					};
+				}
+			},
+			
+			_localUpDownAnimationConfig: {
+				value: function () {		
+					return {
+						'entry': [{
+							name: 'slide-down-animation',
+							node: this.$.content
+						}, {
+							animatable: this.$.action,
+							type: 'entry'
+						}],
+						
+						'exit': [{
+							name: 'slide-up-animation',
+							node: this.$.content
+						}, {
+							animatable: this.$.action,
+							type: 'exit'
+						}]										
 					};
 				}
 			}
@@ -63,6 +126,7 @@ class SectionDetail {
 	}
 
 	ready() {
+		this.animationConfig = this._localAnimationConfig;
 
 		// Sticky effect for the secondary heading
 		//
@@ -91,9 +155,34 @@ class SectionDetail {
 		});
 	}
 	
-	_drillDownTypeChanged(type) {
-		console.log('type', type);
+	_useHeroTransitionChanged(useHeroTransition) {
+		if (useHeroTransition) {
+			this.animationConfig = this._localHeroAnimationConfig;
+		} else {
+			this.animationConfig = this._localAnimationConfig;
+		}
 	}
+	
+	_useUpDownTransitionChanged(useUpDownTransition) {
+		if (useUpDownTransition) {
+			this.animationConfig = this._localUpDownAnimationConfig;
+		} else {
+			this.animationConfig = this._localAnimationConfig;
+		}
+	}
+	
+	_drillDownTypeChanged(type) {
+		switch (type) {
+			case 'product':
+				app.pageAnimationForward();
+				page(`${page.current}/products`);
+				break;
+			case 'org':
+				app.pageAnimationForward();
+				page(`${page.current}/orgunits`);
+				break;
+		}
+	}	
 }
 
 Polymer(SectionDetail);
