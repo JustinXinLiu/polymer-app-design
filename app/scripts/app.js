@@ -132,8 +132,6 @@
       app.entryAnimation = '';
       app.exitAnimation = 'slide-left-animation';
     } else if (app.route === 'section') {
-      app.$.sectionDetail.useUpDownTransition = true;
-
       app.entryAnimation = '';
       app.exitAnimation = '';
     } else {
@@ -144,8 +142,6 @@
 
   app.pageAnimationBackward = () => {
     if (app.route === 'section') {
-      app.$.sectionDetail.useUpDownTransition = false;
-
       app.entryAnimation = 'slide-from-left-animation';
       app.exitAnimation = '';
     } else if (app.route === 'products' || app.route === 'orgunits') {

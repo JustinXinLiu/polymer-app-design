@@ -51,17 +51,15 @@ class SectionDetail {
 				reflectToAttribute: true			
 			},
 			
-			useHeroTransition: {
-				type: Boolean,
-				observer: '_useHeroTransitionChanged'			
+			animationConfigProducts: {
+				type: Object		
 			},
 			
-			useUpDownTransition: {
-				type: Boolean,
-				observer: '_useUpDownTransitionChanged'			
+			animationConfigOrgunits: {
+				type: Object		
 			},
 			
-			_localAnimationConfig: {
+			animationConfig: {
 				value: function () {		
 					return {
 						'entry': [{
@@ -126,7 +124,7 @@ class SectionDetail {
 	}
 
 	ready() {
-		this.animationConfig = this._localAnimationConfig;
+		this.animationConfigProducts = this.animationConfigOrgunits = this._localUpDownAnimationConfig;
 
 		// Sticky effect for the secondary heading
 		//
@@ -153,22 +151,6 @@ class SectionDetail {
 				this.sticky = '';
 			}
 		});
-	}
-	
-	_useHeroTransitionChanged(useHeroTransition) {
-		if (useHeroTransition) {
-			this.animationConfig = this._localHeroAnimationConfig;
-		} else {
-			this.animationConfig = this._localAnimationConfig;
-		}
-	}
-	
-	_useUpDownTransitionChanged(useUpDownTransition) {
-		if (useUpDownTransition) {
-			this.animationConfig = this._localUpDownAnimationConfig;
-		} else {
-			this.animationConfig = this._localAnimationConfig;
-		}
 	}
 	
 	_drillDownTypeChanged(type) {
