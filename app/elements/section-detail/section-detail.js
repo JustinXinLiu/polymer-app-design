@@ -3,6 +3,7 @@ let sectionDetailBehaviors = Symbol('behaviors');
 class SectionDetail {
 	get behaviors() {
 		return this[sectionDetailBehaviors] || (this[sectionDetailBehaviors] = [
+			Polymer.NeonSharedElementAnimatableBehavior,
 			Polymer.NeonAnimatableBehavior,
 			Polymer.NeonPageBehavior
 		]);
@@ -59,7 +60,17 @@ class SectionDetail {
 				type: Object		
 			},
 			
+			sharedElementsReport: {
+				type: Object,
+				value: function () {
+					return { 
+						'hero': this.$.sharedChart
+					};
+				}
+			},
+			
 			animationConfig: {
+				type: Object,
 				value: function () {		
 					return {
 						'entry': [{
@@ -81,19 +92,30 @@ class SectionDetail {
 				}
 			},
 			
-			_localHeroAnimationConfig: {
+			animationConfigReport: {
+				type: Object,
 				value: function () {		
 					return {
 						'entry': [{
 							name: 'hero-animation',
 							id: 'hero',
 							toPage: this
+						}, {
+							name: 'cascaded-animation',
+							animation: 'fade-in-animation',
+							nodes: this.nodesExceptShared,
+							nodeDelay: 100
 						}],
 						
 						'exit': [{
 							name: 'hero-animation',
 							id: 'hero',
 							fromPage: this
+						}, {
+							name: 'cascaded-animation',
+							animation: 'fade-out-animation',
+							nodes: this.nodesExceptShared,
+							nodeDelay: 100
 						}]										
 					};
 				}
@@ -121,6 +143,17 @@ class SectionDetail {
 				}
 			}
 		};
+	}
+	
+	get nodesExceptShared () {
+		var nodes = [];
+		nodes.push(this.$.first);
+		nodes.push(this.$.second);
+		nodes.push(this.$.third);
+		
+		console.log('nodes', nodes);
+		
+		return nodes;
 	}
 
 	ready() {

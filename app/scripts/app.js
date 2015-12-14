@@ -128,10 +128,7 @@
   };
 
   app.pageAnimationForward = () => {
-    if (app.route === 'report') {
-      app.entryAnimation = '';
-      app.exitAnimation = 'slide-left-animation';
-    } else if (app.route === 'section') {
+    if (app.route === 'report' || app.route === 'section') {
       app.entryAnimation = '';
       app.exitAnimation = '';
     } else {
@@ -141,10 +138,7 @@
   };
 
   app.pageAnimationBackward = () => {
-    if (app.route === 'section') {
-      app.entryAnimation = 'slide-from-left-animation';
-      app.exitAnimation = '';
-    } else if (app.route === 'products' || app.route === 'orgunits') {
+    if (app.route === 'section' || app.route === 'products' || app.route === 'orgunits') {
       app.entryAnimation = '';
       app.exitAnimation = '';
     } else {

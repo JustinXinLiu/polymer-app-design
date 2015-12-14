@@ -44,10 +44,10 @@ class ReportCardList {
 							animation: 'fade-in-animation',
 							nodeDelay: 100
 						}, {
-								name: 'cascaded-animation',
-								animation: 'slide-down-animation',
-								nodeDelay: 100
-							}]
+							name: 'cascaded-animation',
+							animation: 'slide-down-animation',
+							nodeDelay: 100
+						}]
 					};
 				}
 			}
