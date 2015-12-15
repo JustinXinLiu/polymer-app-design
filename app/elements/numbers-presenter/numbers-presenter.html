@@ -1,0 +1,52 @@
+<dom-module id="numbers-presenter">
+	<template>
+		<style include="shared-styles"></style>
+		<style>
+			:host {
+				display: block;
+			}
+			
+			.percent,
+			.money {
+				color: var(--primary-text-color);
+				font-weight: 600;
+				font-size: 28px;
+				margin-left: 8px;
+			}
+			
+			.percent::after {
+				font-size: 16px;
+				content: '%';
+			}
+			
+			.money::before {
+				font-size: 16px;
+				content: '$ ';
+			}
+			
+			.small {
+				color: var(--primary-text-color);
+				font-size: 10px;
+				margin: 0 0 4px 10px;
+				font-weight: 600;
+				text-transform: uppercase;
+			}
+		</style>
+
+		<section class="horizontal layout">
+			<div class="flex vertical layout">
+				<div class="percent">[[mainFigureValue]]</div>
+				<div class="small">[[mainFigureDesc]]</div>
+				<paper-progress class="small" value="[[mainFigureComparisonValue]]"></paper-progress>
+			</div>
+	
+			<div class="flex vertical layout">
+				<div class="percent">[[mainFigureValue]]</div>
+				<div class="small">[[mainFigureDesc]]</div>
+				<paper-progress class="small good" value="[[mainFigureComparisonValue]]"></paper-progress>
+			</div>
+		</section>
+	</template>
+
+	<script src="numbers-presenter.js"></script>
+</dom-module>

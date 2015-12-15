@@ -1,131 +1,13 @@
-<link rel="import" href="../../bower_components/polymer/polymer.html">
-
 <dom-module id="section-card">
 	<template>
 		<style include="shared-styles"></style>
 		<style>
 			:host {
 				display: block;
-				margin: 12px;
-			}
-			
-			paper-material {
-				border-radius: 8px;
-				background-color: var(--secondary-background-color);
-				border: 1px solid var(--divider-color);
-			}
-			
-			paper-ripple {
-				border-radius: 8px;
-			}
-			
-			paper-icon-button {
-				color: var(--dark-primary-color);
-			}
-			
-			#chart {
-				margin: 0 12px 4px 12px;
-			}
-			
-			.bottom {
-				background-color: var(--light-primary-color);
-				border-radius: 0 0 8px 8px;
-				padding: 16px 16px 24px 16px;
-			}
-			
-			.title {
-				color: var(--primary-text-color);
-				font-size: 14px;
-				font-weight: 600;
-				margin: 12px 0 24px 16px;
-				text-transform: uppercase;
-			}
-			
-			.title.light {
-				color: var(--secondary-text-color);
-				margin: 0 0 16px 0;
-			}
-			
-			.title iron-icon {
-				width: 12px;
-				height: 12px;
-				margin: 1px 4px 0 0;
-			}
-			
-			hr {
-				border: 0;
-				border-left: 1px solid var(--divider-color);
-				margin-left: 1px;
-			}
-			
-			.icon {
-				margin: 4px;
-			}
-			
-			.percent,
-			.money {
-				color: var(--primary-text-color);
-				font-weight: 600;
-				font-size: 28px;
-				margin-left: 8px;
-			}
-			
-			.percent::after {
-				font-size: 16px;
-				content: '%';
-			}
-			
-			.money::before {
-				font-size: 16px;
-				content: '$ ';
-			}
-			
-			.small {
-				color: var(--primary-text-color);
-				font-size: 10px;
-				margin: 0 0 4px 10px;
-				font-weight: 600;
-				text-transform: uppercase;
-			}
-			
-			#chart {
-				height: 120px;
 			}
 		</style>
 
-		<paper-material class="vertical layout" elevation="0">
-			<section class="vertical layout">
-				<div class="title horizontal layout">
-					<iron-icon icon="shopping-basket"></iron-icon>
-					<div>[[name]]</div>
-				</div>
-
-				<line-chart id="chart" labels='["Jun","Jul","Aug","Sep","Oct"]' values="[ [25, 22, 20, 17, 19], [21, 12, 29, 15, 16]]"></line-chart>
-			</section>
-
-			<section class="bottom vertical layout">
-
-				<div class="title light">Last five months</div>
-
-				<div class="horizontal layout">
-					<div class="flex vertical layout">
-						<div class="percent">[[mainFigureValue]]</div>
-						<div class="small">[[mainFigureDesc]]</div>
-						<paper-progress class="small" value="[[mainFigureComparisonValue]]"></paper-progress>
-					</div>
-
-					<!--<hr>-->
-
-					<div class="flex vertical layout">
-						<div class="percent">[[mainFigureValue]]</div>
-						<div class="small">[[mainFigureDesc]]</div>
-						<paper-progress class="small bad" value="[[mainFigureComparisonValue]]"></paper-progress>
-					</div>
-				</div>
-
-				<paper-ripple elevation="0"></paper-ripple>
-			</section>
-		</paper-material>
+		<value-card-chart id="sharedChart" name="value 2" type="line" main-figure-value="37" main-figure-desc="Last Week" main-figure-comparison-value="37"></value-card-chart>
 	</template>
 
 	<script src="section-card.js"></script>
