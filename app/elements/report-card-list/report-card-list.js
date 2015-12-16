@@ -18,9 +18,9 @@ class ReportCardList {
 	get listeners() {
 		return {
 			'entry-animation-start': '_onEntryStart',
-			'entry-animation-finish': '_onEntryFinish',
-			'exit-animation-start': '_onExitStart',
-			'exit-animation-finish': '_onExitFinish'
+			// 'entry-animation-finish': '_onEntryFinish',
+			// 'exit-animation-start': '_onExitStart',
+			// 'exit-animation-finish': '_onExitFinish'
 		};
 	}
 
@@ -64,12 +64,12 @@ class ReportCardList {
 		app.showBusyIndicator();
 		
 		this.async(() => {
-			let keyItems1 = [{ abbr: 'L', desc: 'Weekly Lending outstanding', good: 'good' }, { abbr: 'D', desc: 'Weekly Deposite outstanding', good: 'bad' }, { abbr: 'F', desc: 'Weekly FUM outstanding', good: 'good' }, { abbr: 'I', desc: 'Weekly Insurance outstanding', good: 'good' }];
-			let keyItems2 = [{ abbr: 'L', desc: 'Weekly Lending outstanding', good: '' }, { abbr: 'D', desc: 'Weekly Deposite outstanding', good: 'bad' }, { abbr: 'I', desc: 'Weekly Insurance outstanding', good: 'bad' }];
-			let keyItems3 = [{ abbr: 'A', desc: 'Weekly Lending outstanding', good: 'good' }];
-			let keyItems4 = [{ abbr: 'V', desc: 'Weekly Lending outstanding', good: 'bad' }, { abbr: 'C', desc: 'Weekly Deposite outstanding', good: '' }, { abbr: 'F', desc: 'Weekly FUM outstanding', good: 'good' }, { abbr: 'I', desc: 'Weekly Insurance outstanding', good: 'bad' }];
-			let keyItems5 = [{ abbr: 'P', desc: 'Weekly Lending outstanding', good: 'good' }, { abbr: 'K', desc: 'Weekly Deposite outstanding', good: 'bad' }, { abbr: 'F', desc: 'Weekly FUM outstanding', good: 'good' }];
-			let keyItems6 = [{ abbr: 'L', desc: 'Weekly Lending outstanding', good: 'bad' }, { abbr: 'D', desc: 'Weekly Deposite outstanding', good: 'bad' }];
+			let keyItems1 = [{ abbr: 'L', desc: 'Weekly Lending outstanding', status: 'good' }, { abbr: 'D', desc: 'Weekly Deposite outstanding', status: 'bad' }, { abbr: 'F', desc: 'Weekly FUM outstanding', status: 'good' }, { abbr: 'I', desc: 'Weekly Insurance outstanding', status: 'good' }];
+			let keyItems2 = [{ abbr: 'L', desc: 'Weekly Lending outstanding', status: '' }, { abbr: 'D', desc: 'Weekly Deposite outstanding', status: 'bad' }, { abbr: 'I', desc: 'Weekly Insurance outstanding', status: 'bad' }];
+			let keyItems3 = [{ abbr: 'A', desc: 'Weekly Lending outstanding', status: 'good' }];
+			let keyItems4 = [{ abbr: 'V', desc: 'Weekly Lending outstanding', status: 'bad' }, { abbr: 'C', desc: 'Weekly Deposite outstanding', status: '' }, { abbr: 'F', desc: 'Weekly FUM outstanding', status: 'good' }, { abbr: 'I', desc: 'Weekly Insurance outstanding', status: 'bad' }];
+			let keyItems5 = [{ abbr: 'P', desc: 'Weekly Lending outstanding', status: 'good' }, { abbr: 'K', desc: 'Weekly Deposite outstanding', status: 'bad' }, { abbr: 'F', desc: 'Weekly FUM outstanding', status: 'good' }];
+			let keyItems6 = [{ abbr: 'L', desc: 'Weekly Lending outstanding', status: 'bad' }, { abbr: 'D', desc: 'Weekly Deposite outstanding', status: 'bad' }];
 
 			this.cards = [
 				{ name: 'awesome report', 'mainFigureValue': 37, 'mainFigureAbbr': 'V', 'mainFigureDesc': 'This Week', 'mainFigureComparisonValue': 60, keyItems: keyItems1 },
@@ -93,17 +93,17 @@ class ReportCardList {
 		}, 1000);
 	}
 
-	_onEntryFinish(e) {
-		console.log(e + ' entry animation finished');
-	}
-
-	_onExitStart(e) {
-		console.log(e + ' exit animation starts');
-	}
-
-	_onExitFinish(e) {
-		console.log(e + ' exit animation finished');
-	}
+// 	_onEntryFinish(e) {
+// 		console.log(e + ' entry animation finished');
+// 	}
+// 
+// 	_onExitStart(e) {
+// 		console.log(e + ' exit animation starts');
+// 	}
+// 
+// 	_onExitFinish(e) {
+// 		console.log(e + ' exit animation finished');
+// 	}
 
 	_onCardTap(e) {
 		app.pageAnimationForward();

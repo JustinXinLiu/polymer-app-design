@@ -34,17 +34,13 @@
 		</style>
 
 		<section class="horizontal layout">
-			<div class="flex vertical layout">
-				<div class="percent">[[mainFigureValue]]</div>
-				<div class="small">[[mainFigureDesc]]</div>
-				<paper-progress class="small" value="[[mainFigureComparisonValue]]"></paper-progress>
-			</div>
-	
-			<div class="flex vertical layout">
-				<div class="percent">[[mainFigureValue]]</div>
-				<div class="small">[[mainFigureDesc]]</div>
-				<paper-progress class="small good" value="[[mainFigureComparisonValue]]"></paper-progress>
-			</div>
+			<template id="cards" is="dom-repeat" items="[[numberData]]" as="number">
+				<div class="flex vertical layout">
+					<div class="percent">[[number.value]]</div>
+					<div class="small">[[number.desc]]</div>
+					<paper-progress class$="small [[number.status]]" value="[[number.comparisonValue]]"></paper-progress>
+				</div>
+			</template>
 		</section>
 	</template>
 

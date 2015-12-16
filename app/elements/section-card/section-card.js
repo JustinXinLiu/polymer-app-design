@@ -5,21 +5,13 @@ class SectionCard {
 			name: {
 				type: String
 			},
-
-			mainFigureValue: {
-				type: Number
+			
+			chartData: {
+				type: Array
 			},
-
-			mainFigureAbbr: {
-				type: String
-			},
-
-			mainFigureDesc: {
-				type: String
-			},
-
-			mainFigureComparisonValue: {
-				type: Number
+			
+			numberData: {
+				type: Array
 			}
 		};
 	}

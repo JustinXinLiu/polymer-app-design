@@ -16,29 +16,32 @@ class SectionCardList {
 	get listeners() {
 		return {
 			'entry-animation-start': '_onEntryStart',
-			'entry-animation-finish': '_onEntryFinish',
-			'exit-animation-start': '_onExitStart',
-			'exit-animation-finish': '_onExitFinish'
+			// 'entry-animation-finish': '_onEntryFinish',
+			// 'exit-animation-start': '_onExitStart',
+			// 'exit-animation-finish': '_onExitFinish'
 		};
 	}
 
 	beforeRegister() {
 		this.is = 'section-card-list';
-		
+
 		this.properties = {
 			name: {
-				type: String,
-				observer: '_onNameChange'
+				type: String
 			},
 
 			cards: {
 				type: Array
 			},
 			
+			sharedData: {
+				type: Object
+			},
+
 			sharedElementsSection: {
 				type: Object,
 			},
-			
+
 			animationConfig: {
 				type: Object,
 				value: function () {
@@ -47,12 +50,12 @@ class SectionCardList {
 							name: 'slide-left-animation',
 							node: this
 						},
-						
+
 						'exit': {
 							name: 'slide-from-left-animation',
 							node: this
 						},
-						
+
 						'cascade-in': [{
 							name: 'cascaded-animation',
 							animation: 'fade-in-animation',
@@ -65,7 +68,7 @@ class SectionCardList {
 					};
 				}
 			},
-			
+
 			animationConfigSection: {
 				type: Object,
 				value: function () {
@@ -78,9 +81,9 @@ class SectionCardList {
 							name: 'cascaded-animation',
 							animation: 'fade-in-animation',
 							nodes: this.nodesExceptShared,
-							nodeDelay: 100
+							nodeDelay: 0
 						}],
-						
+
 						'exit': [{
 							name: 'hero-animation',
 							id: 'hero',
@@ -89,40 +92,41 @@ class SectionCardList {
 							name: 'cascaded-animation',
 							animation: 'fade-out-animation',
 							nodes: this.nodesExceptShared,
-							nodeDelay: 100
+							nodeDelay: 0
 						}]
 					};
 				}
 			}
 		};
 	}
-	
-	get nodesExceptShared () {
+
+	get nodesExceptShared() {
 		let nodes = Polymer.dom(this.root).querySelectorAll('section-card');
-		let index = nodes.indexOf(this.sharedElements);
-		let nodesExceptShared = nodes.splice(index, 1);	
+		let index = nodes.indexOf(this.sharedElementsSection);
+		let nodesExceptShared = nodes.splice(index, 1);
+		console.log('nodes', nodesExceptShared);
 		return nodesExceptShared;
 	}
 
 	_onEntryStart(e) {
-		console.log(' entry animation starts - from page ' + e.detail.from);
+		// console.log(' entry animation starts - from page ' + e.detail.from);
 		
 		// When coming back from the detail page, do nothing
 		if (e.detail.from === 'section' && this.cards) {
 			return;
 		}
-		
+
 		this.cards = [];
 		app.showBusyIndicator();
-		
-		this.async(() => {		
+
+		this.async(() => {
 			this.cards = [
-				{ 'name': app.params.report + ' ' + 'section 1', 'mainFigureValue': 37, 'mainFigureAbbr': 'V', 'mainFigureDesc': 'This Week', 'mainFigureComparisonValue': 60 },
-				{ 'name': app.params.report + ' ' + 'section 2', 'mainFigureValue': 12, 'mainFigureAbbr': 'L', 'mainFigureDesc': 'This Week', 'mainFigureComparisonValue': 30 },
-				{ 'name': app.params.report + ' ' + 'section 3', 'mainFigureValue': 3, 'mainFigureAbbr': 'K', 'mainFigureDesc': 'This Week', 'mainFigureComparisonValue': 40 },
-				{ 'name': app.params.report + ' ' + 'section 4', 'mainFigureValue': -10, 'mainFigureAbbr': 'K', 'mainFigureDesc': 'This Week', 'mainFigureComparisonValue': 70 },
-				{ 'name': app.params.report + ' ' + 'section 5', 'mainFigureValue': 7, 'mainFigureAbbr': 'Y', 'mainFigureDesc': 'This Week', 'mainFigureComparisonValue': 20 },
-				{ 'name': app.params.report + ' ' + 'section 6', 'mainFigureValue': 23, 'mainFigureAbbr': 'O', 'mainFigureDesc': 'This Week', 'mainFigureComparisonValue': 10 },
+				{ 'name': 'section 1', numberData: [{ value: 37, desc: 'This Week', comparisonValue: 60, status: 'good' }, { value: 23, desc: 'This Week', comparisonValue: 30, status: 'bad' }] },
+				{ 'name': 'section 2', numberData: [{ value: 25, desc: 'This Week', comparisonValue: 71, status: 'bad' }, { value: 23, desc: 'This Week', comparisonValue: 34, status: 'bad' }] },
+				{ 'name': 'section 3', numberData: [{ value: 60, desc: 'This Week', comparisonValue: 92, status: 'bad' }, { value: 23, desc: 'This Week', comparisonValue: 45, status: 'good' }] },
+				{ 'name': 'section 4', numberData: [{ value: 33, desc: 'This Week', comparisonValue: 73, status: 'good' }, { value: 23, desc: 'This Week', comparisonValue: 96, status: 'good' }] },
+				{ 'name': 'section 5', numberData: [{ value: 87, desc: 'This Week', comparisonValue: 29, status: 'good' }, { value: 23, desc: 'This Week', comparisonValue: 17, status: 'bad' }] },
+				{ 'name': 'section 6', numberData: [{ value: 85, desc: 'This Week', comparisonValue: 80, status: 'bad' }, { value: 23, desc: 'This Week', comparisonValue: 12, status: 'good' }] }
 			];
 			
 			// Animate report cards in
@@ -130,7 +134,7 @@ class SectionCardList {
 				let nodes = Polymer.dom(this.root).querySelectorAll('section-card');
 				let cascadeAnimation = this.animationConfig['cascade-in'];
 				cascadeAnimation[0].nodes = cascadeAnimation[1].nodes = nodes;
-				
+
 				this.playAnimation('cascade-in');
 			});
 
@@ -138,56 +142,56 @@ class SectionCardList {
 		}, 1000);
 	}
 
-	_onEntryFinish(e) {
-		console.log(e + ' entry animation finished');
-	}
-
-	_onExitStart(e) {
-		console.log(e + ' exit animation starts');
-	}
-
-	_onExitFinish(e) {
-		console.log(e + ' exit animation finished');
-	}
-
-	_onNameChange(newValue) {
-		console.log('name changed: ' + newValue);
-	}
+// 	_onEntryFinish(e) {
+// 		console.log(e + ' entry animation finished');
+// 	}
+// 
+// 	_onExitStart(e) {
+// 		console.log(e + ' exit animation starts');
+// 	}
+// 
+// 	_onExitFinish(e) {
+// 		console.log(e + ' exit animation finished');
+// 	}
 
 	_onCardTap(e) {
 		var target = e.target;
 		
 		// Set shared elements
-		while (target !== this && !target._templateInstance) {
+		while (target.nodeName !== 'SECTION-CARD') {
 			target = target.parentNode;
 		}
-		
-		this.sharedElementsSection = { 
-			'hero': target 
+
+		this.sharedElementsSection = {
+			'hero': target
 		};
-		
-		console.log('sharedElements', this.sharedElements);
-		
+
+		console.log('sharedElementsSection', this.sharedElementsSection);
+
 		this.animationConfigSection['exit'][0].gesture = {
 			x: event.x || event.pageX,
 			y: event.y || event.pageY
-		};
+		};	
 		
 		// Retrieve other elements
-// 		let nodes = Polymer.dom(this.root).querySelectorAll('section-card');
-// 		let index = nodes.indexOf(target);
-// 		let nodesExceptShared = nodes.splice(index, 1);
-// 		
-// 		let entryAnimation = this.animationConfigSection['entry'];
-// 		entryAnimation[1].node = nodesExceptShared;
-// 
-// 		let exitAnimation = this.animationConfigSection['exit'];
-// 		exitAnimation[1].node = nodesExceptShared;		
-		
+		// let nodes = Polymer.dom(this.root).querySelectorAll('section-card');
+		// let index = nodes.indexOf(target);
+		// let nodesExceptShared = nodes.splice(index, 1);
+		// console.log('nodesExceptShared', nodesExceptShared);
+		// 
+		// let entryAnimation = this.animationConfigSection['entry'];
+		// let exitAnimation = this.animationConfigSection['exit'];
+		// console.log('entryAnimation', entryAnimation);
+		// console.log('exitAnimation', exitAnimation);
+		// entryAnimation[1].nodes = exitAnimation[1].nodes = nodesExceptShared;
+		// 
 		// Navigation
 		app.pageAnimationForward();
 
 		let item = this.$.cards.itemForElement(target);
+		// TODO: is using iron-meta the best way to share data?
+		this.sharedData = item;
+		
 		page(`${page.current}/${item.name}`);
 	}
 }

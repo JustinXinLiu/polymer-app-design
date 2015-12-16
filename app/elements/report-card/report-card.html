@@ -6,13 +6,13 @@
 		<style>
 			:host {
 				display: block;
-				margin: 12px;
 			}
 			
 			paper-material {
 				border-radius: 8px;
 				background-color: var(--light-primary-color);
 				border: 1px solid var(--divider-color);
+				margin: 12px;
 			}
 			
 			paper-ripple {
@@ -94,7 +94,7 @@
 				<div class="horizontal layout">
 				<template id="cards" is="dom-repeat" items="[[keyItems]]" as="item">
 					<div class="horizontal layout">
-						<div id$="circle[[item.index]]" class$="circle center-center vertical layout [[item.good]]">[[item.abbr]]</div>
+						<div id$="circle[[item.index]]" class$="circle center-center vertical layout [[item.status]]">[[item.abbr]]</div>
 						<paper-tooltip for$="circle[[item.index]]">[[item.desc]]</paper-tooltip>
 					</div>
 				</template>

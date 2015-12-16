@@ -17,7 +17,7 @@ class HomeLastVisited {
 		this.module = { name: 'module 1', numberOfReports: 10, 
 			desc: 'The description of this module will be displayed inside this box' };
 		
-		var keyItems1 = [{ abbr: 'L', desc: 'Weekly Lending outstanding', good: 'good' }, { abbr: 'D', desc: 'Weekly Deposite outstanding', good: 'bad' }, { abbr: 'F', desc: 'Weekly FUM outstanding', good: 'good' }, { abbr: 'I', desc: 'Weekly Insurance outstanding', good: 'good' }];
+		var keyItems1 = [{ abbr: 'L', desc: 'Weekly Lending outstanding', status: 'good' }, { abbr: 'D', desc: 'Weekly Deposite outstanding', status: 'bad' }, { abbr: 'F', desc: 'Weekly FUM outstanding', status: 'good' }, { abbr: 'I', desc: 'Weekly Insurance outstanding', status: 'good' }];
 		this.report = { name: 'awesome report', keyItems: keyItems1, mainFigureValue: 34, mainFigureAbbr: 'B',
 			mainFigureDesc: 'This Week', mainFigureComparisonValue: 12 };
 	

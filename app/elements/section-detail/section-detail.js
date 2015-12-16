@@ -13,6 +13,12 @@ class SectionDetail {
 		this[sectionDetailBehaviors] = value;
 	}
 	
+	get listeners() {
+		return {
+			'entry-animation-start': '_onEntryStart'
+		};
+	}
+	
 	beforeRegister() {
 		this.is = 'section-detail';
 		this.properties = {
@@ -30,20 +36,8 @@ class SectionDetail {
 				observer: '_drillDownTypeChanged'
 			},
 
-			mainFigureValue: {
-				type: Number
-			},
-
-			mainFigureAbbr: {
-				type: String
-			},
-
-			mainFigureDesc: {
-				type: String
-			},
-
-			mainFigureComparisonValue: {
-				type: Number
+			sharedData: {
+				type: Object
 			},
 			
 			opened: {
@@ -104,7 +98,13 @@ class SectionDetail {
 							name: 'cascaded-animation',
 							animation: 'fade-in-animation',
 							nodes: this.nodesExceptShared,
-							nodeDelay: 100
+							nodeDelay: 0
+						}, {
+							name: 'slide-down-animation',
+							node: this.$.heading
+						}, {
+							animatable: this.$.action,
+							type: 'entry'
 						}],
 						
 						'exit': [{
@@ -115,7 +115,13 @@ class SectionDetail {
 							name: 'cascaded-animation',
 							animation: 'fade-out-animation',
 							nodes: this.nodesExceptShared,
-							nodeDelay: 100
+							nodeDelay: 0
+						}, {
+							name: 'slide-up-animation',
+							node: this.$.heading
+						}, {
+							animatable: this.$.action,
+							type: 'exit'
 						}]										
 					};
 				}
@@ -151,8 +157,6 @@ class SectionDetail {
 		nodes.push(this.$.second);
 		nodes.push(this.$.third);
 		
-		console.log('nodes', nodes);
-		
 		return nodes;
 	}
 
@@ -184,6 +188,10 @@ class SectionDetail {
 				this.sticky = '';
 			}
 		});
+	}
+	
+	_onEntryStart() {
+		this.sharedData = this.$.meta.byKey('section-shared');
 	}
 	
 	_drillDownTypeChanged(type) {

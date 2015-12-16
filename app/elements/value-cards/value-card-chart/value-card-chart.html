@@ -4,13 +4,13 @@
 		<style>
 			:host {
 				display: block;
-				margin: 12px;
 			}
 			
 			paper-material {
 				border-radius: 8px;
 				background-color: var(--secondary-background-color);
-				border: 1px solid var(--divider-color);
+				border: 1px solid var(--divider-color);			
+				margin: 12px;
 			}
 			
 			paper-ripple {
@@ -80,7 +80,7 @@
 
 			<section class="bottom flex vertical layout">
 				<div class="title light">Last five months</div>
-				<numbers-presenter class="content" main-figure-value="[[mainFigureValue]]" main-figure-desc="[[mainFigureDesc]]" main-figure-comparison-value="[[mainFigureComparisonValue]]"></numbers-presenter>
+				<numbers-presenter class="content" chart-data="[[chartData]]" number-data="[[numberData]]"></numbers-presenter>
 				<paper-ripple elevation="0"></paper-ripple>
 			</section>
 		</paper-material>
