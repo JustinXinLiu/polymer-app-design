@@ -98,7 +98,13 @@ class SectionDetail {
 							name: 'cascaded-animation',
 							animation: 'fade-in-animation',
 							nodes: this.nodesExceptShared,
-							nodeDelay: 0
+							nodeDelay: 100,
+							timing: { delay: 100 }
+						}, {
+							name: 'cascaded-animation',
+							animation: 'scale-up-animation',
+							nodes: this.nodesExceptShared,
+							nodeDelay: 100
 						}, {
 							name: 'slide-down-animation',
 							node: this.$.heading
@@ -115,7 +121,11 @@ class SectionDetail {
 							name: 'cascaded-animation',
 							animation: 'fade-out-animation',
 							nodes: this.nodesExceptShared,
-							nodeDelay: 0
+							nodeDelay: 100
+						}, {
+							name: 'slide-up-animation',
+							node: this.$.first,
+							timing: { delay: 50 }
 						}, {
 							name: 'slide-up-animation',
 							node: this.$.heading

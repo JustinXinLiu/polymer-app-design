@@ -16,9 +16,9 @@ class SectionCardList {
 	get listeners() {
 		return {
 			'entry-animation-start': '_onEntryStart',
-			// 'entry-animation-finish': '_onEntryFinish',
-			// 'exit-animation-start': '_onExitStart',
-			// 'exit-animation-finish': '_onExitFinish'
+			'entry-animation-finish': '_onEntryFinish',
+			'exit-animation-start': '_onExitStart',
+			'exit-animation-finish': '_onExitFinish'
 		};
 	}
 
@@ -80,7 +80,6 @@ class SectionCardList {
 						}, {
 							name: 'cascaded-animation',
 							animation: 'fade-in-animation',
-							nodes: this.nodesExceptShared,
 							nodeDelay: 0
 						}],
 
@@ -91,7 +90,6 @@ class SectionCardList {
 						}, {
 							name: 'cascaded-animation',
 							animation: 'fade-out-animation',
-							nodes: this.nodesExceptShared,
 							nodeDelay: 0
 						}]
 					};
@@ -102,14 +100,18 @@ class SectionCardList {
 
 	get nodesExceptShared() {
 		let nodes = Polymer.dom(this.root).querySelectorAll('section-card');
-		let index = nodes.indexOf(this.sharedElementsSection);
-		let nodesExceptShared = nodes.splice(index, 1);
-		console.log('nodes', nodesExceptShared);
-		return nodesExceptShared;
+		let index = nodes.indexOf(this.sharedElementsSection.hero);
+		nodes.splice(index, 1);
+
+		return nodes;
 	}
 
 	_onEntryStart(e) {
-		// console.log(' entry animation starts - from page ' + e.detail.from);
+		console.log(' entry animation starts - from page ' + e.detail.from);
+		
+		// Set the nodes that need to apply cascaded animation before
+		// navigating back to this page
+		// this._setCascadedAnimationNodes();
 		
 		// When coming back from the detail page, do nothing
 		if (e.detail.from === 'section' && this.cards) {
@@ -142,17 +144,27 @@ class SectionCardList {
 		}, 1000);
 	}
 
-// 	_onEntryFinish(e) {
-// 		console.log(e + ' entry animation finished');
-// 	}
-// 
-// 	_onExitStart(e) {
-// 		console.log(e + ' exit animation starts');
-// 	}
-// 
-// 	_onExitFinish(e) {
-// 		console.log(e + ' exit animation finished');
-// 	}
+	_onEntryFinish(e) {
+		console.log(e + ' entry animation finished');
+	}
+
+	_onExitStart(e) {
+		console.log(e + ' exit animation starts');
+		
+		// Set the nodes that need to apply cascaded animation before
+		// navigating away to section-detail page
+		 this._setCascadedAnimationNodes();
+	}
+
+	_onExitFinish(e) {
+		console.log(e + ' exit animation finished');
+	}
+	
+	_setCascadedAnimationNodes() {
+		let entryAnimation = this.animationConfigSection['entry'];
+		let exitAnimation = this.animationConfigSection['exit'];
+		entryAnimation[1].nodes = exitAnimation[1].nodes = this.nodesExceptShared;
+	}
 
 	_onCardTap(e) {
 		var target = e.target;
@@ -166,25 +178,11 @@ class SectionCardList {
 			'hero': target
 		};
 
-		console.log('sharedElementsSection', this.sharedElementsSection);
-
 		this.animationConfigSection['exit'][0].gesture = {
 			x: event.x || event.pageX,
 			y: event.y || event.pageY
 		};	
 		
-		// Retrieve other elements
-		// let nodes = Polymer.dom(this.root).querySelectorAll('section-card');
-		// let index = nodes.indexOf(target);
-		// let nodesExceptShared = nodes.splice(index, 1);
-		// console.log('nodesExceptShared', nodesExceptShared);
-		// 
-		// let entryAnimation = this.animationConfigSection['entry'];
-		// let exitAnimation = this.animationConfigSection['exit'];
-		// console.log('entryAnimation', entryAnimation);
-		// console.log('exitAnimation', exitAnimation);
-		// entryAnimation[1].nodes = exitAnimation[1].nodes = nodesExceptShared;
-		// 
 		// Navigation
 		app.pageAnimationForward();
 
