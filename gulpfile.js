@@ -14,6 +14,7 @@ var glob = require('glob-all');
 var historyApiFallback = require('connect-history-api-fallback');
 var packageJson = require('./package.json');
 var crypto = require('crypto');
+var ensureFiles = require('./tasks/ensure-files.js');
 // var ghPages = require('gulp-gh-pages');
 
 var AUTOPREFIXER_BROWSERS = [
@@ -61,7 +62,6 @@ var optimizeHtmlTask = function (src, dest) {
 
   return gulp.src(src)
   // Replace path for vulcanized assets
-    .pipe($.if('*.html', $.replace('elements/elements.html', 'elements/elements.vulcanized.html')))
     .pipe(assets)
   // Concatenate and minify JavaScript
     .pipe($.if('*.js', $.uglify({
@@ -86,16 +86,27 @@ var optimizeHtmlTask = function (src, dest) {
 };
 
 // Compile and automatically prefix stylesheets
-gulp.task('styles', function () {
+gulp.task('styles', function() {
   return styleTask('styles', ['**/*.css']);
 });
 
-gulp.task('elements', function () {
+gulp.task('elements', function() {
   return styleTask('elements', ['**/*.css']);
 });
 
+// Ensure that we are not missing required files for the project
+// "dot" files are specifically tricky due to them being hidden on
+// some systems.
+gulp.task('ensureFiles', function(cb) {
+  var requiredFiles = ['.jscsrc', '.jshintrc', '.bowerrc'];
+
+  ensureFiles(requiredFiles.map(function(p) {
+    return path.join(__dirname, p);
+  }), cb);
+});
+
 // Lint JavaScript
-gulp.task('lint', function () {
+gulp.task('lint', ['ensureFiles'], function() {
   return gulp.src([
     'app/scripts/**/*.js',
     'app/elements/**/*.js',
@@ -117,47 +128,36 @@ gulp.task('lint', function () {
 });
 
 // Optimize images
-gulp.task('images', function () {
+gulp.task('images', function() {
   return imageOptimizeTask('app/images/**/*', dist('images'));
 });
 
 // Copy all files at the root level (app)
-gulp.task('copy', function () {
+gulp.task('copy', function() {
   var app = gulp.src([
     'app/*',
     '!app/test',
+    '!app/elements',
+    '!app/bower_components',
     '!app/cache-config.json'
   ], {
       dot: true
     }).pipe(gulp.dest(dist()));
 
+  // Copy over only the bower_components we need
+  // These are things which cannot be vulcanized
   var bower = gulp.src([
-    'bower_components/**/*'
+    'app/bower_components/{webcomponentsjs,platinum-sw,sw-toolbox,promise-polyfill}/**/*'
   ]).pipe(gulp.dest(dist('bower_components')));
 
-  var elements = gulp.src(['app/elements/**/*.html',
-    'app/elements/**/*.css',
-    'app/elements/**/*.js'])
-    .pipe(gulp.dest(dist('elements')));
-
-  var swBootstrap = gulp.src(['bower_components/platinum-sw/bootstrap/*.js'])
-    .pipe(gulp.dest(dist('elements/bootstrap')));
-
-  var swToolbox = gulp.src(['bower_components/sw-toolbox/*.js'])
-    .pipe(gulp.dest(dist('sw-toolbox')));
-
-  var vulcanized = gulp.src(['app/elements/elements.html'])
-    .pipe($.rename('elements.vulcanized.html'))
-    .pipe(gulp.dest(dist('elements')));
-
-  return merge(app, bower, elements, vulcanized, swBootstrap, swToolbox)
+  return merge(app, bower)
     .pipe($.size({
       title: 'copy'
     }));
 });
 
 // Copy web fonts to dist
-gulp.task('fonts', function () {
+gulp.task('fonts', function() {
   return gulp.src(['app/fonts/**'])
     .pipe(gulp.dest(dist('fonts')))
     .pipe($.size({
@@ -166,22 +166,21 @@ gulp.task('fonts', function () {
 });
 
 // Scan your HTML for assets & optimize them
-gulp.task('html', function () {
+gulp.task('html', function() {
   return optimizeHtmlTask(
-    [dist('/**/*.html'), '!' + dist('/{elements,test}/**/*.html')],
+    [dist('/**/*.html'), '!' + dist('/{elements,test,bower_components}/**/*.html')],
     dist());
 });
 
 // Vulcanize granular configuration
-gulp.task('vulcanize', function () {
-  var DEST_DIR = dist('elements');
-  return gulp.src(dist('elements/elements.vulcanized.html'))
+gulp.task('vulcanize', function() {
+  return gulp.src('app/elements/elements.html')
     .pipe($.vulcanize({
       stripComments: true,
       inlineCss: true,
       inlineScripts: true
     }))
-    .pipe(gulp.dest(DEST_DIR))
+    .pipe(gulp.dest(dist('elements')))
     .pipe($.size({ title: 'vulcanize' }));
 });
 
@@ -214,13 +213,13 @@ gulp.task('cache-config', function (callback) {
 });
 
 // Clean output directory
-gulp.task('clean', function () {
+gulp.task('clean', function() {
   return del(['.tmp', dist()]);
 });
 
-// Transpile all JS to ES5.
-gulp.task('js', function () {
-  return gulp.src(['app/**/*.{js,html}'])
+// Transpile all JS to ES5
+gulp.task('js', function() {
+  return gulp.src(['app/**/*.{js,html}', '!app/bower_components/**/*'])
     .pipe($.sourcemaps.init())
     // .pipe($.if('*.html', $.crisper({
     //   scriptInHead: false
@@ -234,7 +233,7 @@ gulp.task('js', function () {
 });
 
 // Watch files for changes & reload
-gulp.task('serve', ['lint', 'styles', 'elements', 'js'], function () { // **TODO: add back 'images' task when needed**
+gulp.task('serve', ['lint', 'styles', 'elements', 'js'], function() { // **TODO: add back 'images' task when needed**
   browserSync({
     port: 5000,
     notify: false,
@@ -253,22 +252,19 @@ gulp.task('serve', ['lint', 'styles', 'elements', 'js'], function () { // **TODO
     // https: true,
     server: {
       baseDir: ['.tmp', 'app'],
-      middleware: [historyApiFallback()],
-      routes: {
-        '/bower_components': 'bower_components'
-      }
+      middleware: [historyApiFallback()]
     }
   });
 
   gulp.watch(['app/**/*.html'], ['js', reload]);
   gulp.watch(['app/styles/**/*.css'], ['styles', reload]);
   gulp.watch(['app/elements/**/*.css'], ['elements', reload]);
-  gulp.watch(['app/{scripts,elements}/**/*.js'], ['lint', 'js']);
+  gulp.watch(['app/{scripts,elements}/**/*.js'], ['lint', 'js']); // gulp.watch(['app/{scripts,elements}/**/{*.js,*.html}'], ['lint', 'js']);
   gulp.watch(['app/images/**/*'], reload);
 });
 
 // Build and serve the output from the dist build
-gulp.task('serve:dist', ['default'], function () {
+gulp.task('serve:dist', ['default'], function() {
   browserSync({
     port: 5001,
     notify: false,
@@ -310,7 +306,7 @@ gulp.task('build-deploy-gh-pages', function (cb) {
 });
 
 // Deploy to GitHub pages gh-pages branch
-gulp.task('deploy-gh-pages', function () {
+gulp.task('deploy-gh-pages', function() {
   return gulp.src(dist('**/*'))
     .pipe($.ghPages());
 });
