@@ -107,7 +107,7 @@ class SectionCardList {
 	}
 
 	_onEntryStart(e) {
-		console.log(' entry animation starts - from page ' + e.detail.from);
+		//console.log(' entry animation starts - from page ' + e.detail.from);
 		
 		// Set the nodes that need to apply cascaded animation before
 		// navigating back to this page
@@ -144,20 +144,20 @@ class SectionCardList {
 		}, 1000);
 	}
 
-	_onEntryFinish(e) {
-		console.log(e + ' entry animation finished');
+	_onEntryFinish() {
+		//console.log(e + ' entry animation finished');
 	}
 
-	_onExitStart(e) {
-		console.log(e + ' exit animation starts');
+	_onExitStart() {
+		//console.log(e + ' exit animation starts');
 		
 		// Set the nodes that need to apply cascaded animation before
 		// navigating away to section-detail page
 		 this._setCascadedAnimationNodes();
 	}
 
-	_onExitFinish(e) {
-		console.log(e + ' exit animation finished');
+	_onExitFinish() {
+		//console.log(e + ' exit animation finished');
 	}
 	
 	_setCascadedAnimationNodes() {

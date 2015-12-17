@@ -3,35 +3,6 @@
 ((document) => {
   'use strict';
 
-  // smooth scrolling
-  function scrollTo(element, to, duration) {
-    let start = element.scrollTop;
-    let change = to - start;
-    let increment = 20;
-
-    let animateScroll = (elapsedTime) => {
-      elapsedTime += increment;
-      let position = easeInOut(elapsedTime, start, change, duration);
-      element.scrollTop = position;
-      if (elapsedTime < duration) {
-        setTimeout(() => {
-          animateScroll(elapsedTime);
-        }, increment);
-      }
-    };
-
-    animateScroll(0);
-  }
-
-  function easeInOut(currentTime, start, change, duration) {
-    currentTime /= duration / 2;
-    if (currentTime < 1) {
-      return change / 2 * currentTime * currentTime + start;
-    }
-    currentTime -= 1;
-    return -change / 2 * (currentTime * (currentTime - 2) - 1) + start;
-  }
-
   // Grab a reference to our auto-binding template
   // and give it some initial binding values
   // Learn more about auto-binding templates at http://goo.gl/Dx1u2g
@@ -124,7 +95,7 @@
 
   // Scroll page to top and expand header
   app.scrollPageToTop = () => {
-    setTimeout(() => scrollTo(document.getElementById('mainContainer'), 0, 250), 400);
+    app.$.headerPanelMain.scrollToTop(true);
   };
 
   app.pageAnimationForward = () => {
