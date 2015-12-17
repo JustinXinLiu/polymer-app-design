@@ -124,11 +124,11 @@ class SectionCardList {
 		this.async(() => {
 			this.cards = [
 				{ 'name': 'section 1', numberData: [{ value: 37, desc: 'This Week', comparisonValue: 60, status: 'good' }, { value: 23, desc: 'This Week', comparisonValue: 30, status: 'bad' }] },
-				{ 'name': 'section 2', numberData: [{ value: 25, desc: 'This Week', comparisonValue: 71, status: 'bad' }, { value: 23, desc: 'This Week', comparisonValue: 34, status: 'bad' }] },
-				{ 'name': 'section 3', numberData: [{ value: 60, desc: 'This Week', comparisonValue: 92, status: 'bad' }, { value: 23, desc: 'This Week', comparisonValue: 45, status: 'good' }] },
-				{ 'name': 'section 4', numberData: [{ value: 33, desc: 'This Week', comparisonValue: 73, status: 'good' }, { value: 23, desc: 'This Week', comparisonValue: 96, status: 'good' }] },
-				{ 'name': 'section 5', numberData: [{ value: 87, desc: 'This Week', comparisonValue: 29, status: 'good' }, { value: 23, desc: 'This Week', comparisonValue: 17, status: 'bad' }] },
-				{ 'name': 'section 6', numberData: [{ value: 85, desc: 'This Week', comparisonValue: 80, status: 'bad' }, { value: 23, desc: 'This Week', comparisonValue: 12, status: 'good' }] }
+				{ 'name': 'section 2', numberData: [{ value: 25, desc: 'This Week', comparisonValue: 71, status: 'bad' }, { value: 21, desc: 'This Week', comparisonValue: 34, status: 'bad' }] },
+				{ 'name': 'section 3', numberData: [{ value: 60, desc: 'This Week', comparisonValue: 92, status: 'bad' }, { value: 19, desc: 'This Week', comparisonValue: 45, status: 'good' }] },
+				{ 'name': 'section 4', numberData: [{ value: 33, desc: 'This Week', comparisonValue: 73, status: 'good' }, { value: 76, desc: 'This Week', comparisonValue: 96, status: 'good' }] },
+				{ 'name': 'section 5', numberData: [{ value: 87, desc: 'This Week', comparisonValue: 29, status: 'good' }, { value: 44, desc: 'This Week', comparisonValue: 17, status: 'bad' }] },
+				{ 'name': 'section 6', numberData: [{ value: 85, desc: 'This Week', comparisonValue: 80, status: 'bad' }, { value: 59, desc: 'This Week', comparisonValue: 12, status: 'good' }] }
 			];
 			
 			// Animate report cards in

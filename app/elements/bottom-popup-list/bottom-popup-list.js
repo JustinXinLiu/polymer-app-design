@@ -3,7 +3,7 @@ let bottomPopupListBehaviors = Symbol('behaviors');
 class BottomPopupList {
 	get behaviors() {
 		return this[bottomPopupListBehaviors] || (this[bottomPopupListBehaviors] = [
-			Polymer.NeonAnimatableBehavior,
+			Polymer.NeonAnimationRunnerBehavior,
 			Polymer.NeonPageBehavior
 		]);
 	}
