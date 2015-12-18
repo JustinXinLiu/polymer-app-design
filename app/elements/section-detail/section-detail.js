@@ -15,7 +15,10 @@ class SectionDetail {
 	
 	get listeners() {
 		return {
-			'entry-animation-start': '_onEntryStart'
+			'entry-animation-start': '_onEntryStart',
+			'entry-animation-finish': '_onEntryFinish',
+			'exit-animation-start': '_onExitStart',
+			'exit-animation-finish': '_onExitFinish'
 		};
 	}
 	
@@ -34,6 +37,10 @@ class SectionDetail {
 				type: String,
 				notify: true,
 				observer: '_drillDownTypeChanged'
+			},
+			
+			data: {
+				type: Object
 			},
 
 			sharedData: {
@@ -202,6 +209,29 @@ class SectionDetail {
 	
 	_onEntryStart() {
 		this.sharedData = this.$.meta.byKey('section-shared');
+	}
+	
+	_onEntryFinish() {
+		app.showBusyIndicator();
+
+		this.async(() => {
+			this.data = {
+				first: [{ value: 21, desc: 'This Week', comparisonValue: 13, status: 'bad' }, 
+					{ value: 46, desc: 'This Week', comparisonValue: 87, status: 'bad' }]
+			};
+
+			app.hideBusyIndicator();
+		}, 1000);
+	}
+	
+	_onExitStart() {
+	}
+
+	_onExitFinish() {
+		this.data = {
+			first: [{ value: 0, desc: '???', comparisonValue: 5 }, 
+				{ value: 0, desc: '???', comparisonValue: 5 }]
+		};
 	}
 	
 	_drillDownTypeChanged(type) {

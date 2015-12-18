@@ -6,8 +6,12 @@ class NumbersPresenter {
 				type: String
 			},
 	
-			numberData: {
-				type: Array
+			data: {
+				type: Array,
+				value: () => { 
+					return [ 
+						{ value: 0, desc: '???', comparisonValue: 5 },
+						{ value: 0, desc: '???', comparisonValue: 5 } ];}
 			}
 		};
 	}

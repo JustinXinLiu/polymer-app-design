@@ -36,9 +36,9 @@
 
 		<section id="content" class="relative vertical layout">
 			<secondary-heading id="heading" class$="[[sticky]]" name="Something important here" first></secondary-heading>
-			<value-card-number id="first" name="value 1" main-figure-value="12" main-figure-desc="Last Week" main-figure-comparison-value="37"></value-card-number>
+			<value-card-number id="first" name="value description" data="[[data.first]]"></value-card-number>
 			<value-card-chart id="sharedChart" name="[[sharedData.name]]" type="line" chart-data="[[sharedData.ChartData]]" number-data="[[sharedData.numberData]]"></value-card-chart>
-			<value-card-chart id="second" name="value 3" type="bar" main-figure-value="77" main-figure-desc="Last Week" main-figure-comparison-value="37"></value-card-chart>
+			<value-card-chart id="second" name="value description" type="bar" chart-data="[[data.second.ChartData]]" number-data="[[data.second.numberData]]"></value-card-chart>
 			<value-card-grid id="third" name="detailed data" main-figure-value="7877000" main-figure-desc="Last Year"></value-card-grid>
 			<div id="overlay" class="fit"></div>
 		</section>

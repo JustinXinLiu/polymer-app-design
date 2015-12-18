@@ -6,20 +6,8 @@ class ValueCardNumber {
 				type: String
 			},
 
-			mainFigureValue: {
-				type: Number
-			},
-
-			mainFigureAbbr: {
-				type: String
-			},
-
-			mainFigureDesc: {
-				type: String
-			},
-			
-			mainFigureComparisonValue: {
-				type: Number				
+			data: {
+				type: Array
 			}
 		};
 	}
