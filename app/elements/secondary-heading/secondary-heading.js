@@ -1,23 +1,24 @@
 class SecondaryHeading {
-	beforeRegister() {
-		this.is = 'secondary-heading';
-		this.properties = {
-			name: {
-				type: String
-			},
+  beforeRegister() {
+    this.is = 'secondary-heading';
 
-			first: {
-				reflectToAttribute: true,
-				type: Boolean
-			}
-		};
-	}
+    this.properties = {
+      name: {
+        type: String
+      },
 
-	created() { }
-	ready() { }
-	attached() { }
-	detached() { }
-	attributeChanged() { }
+      first: {
+        reflectToAttribute: true,
+        type: Boolean
+      }
+    };
+  }
+
+  created() { }
+  ready() { }
+  attached() { }
+  detached() { }
+  attributeChanged() { }
 }
 
 Polymer(SecondaryHeading);

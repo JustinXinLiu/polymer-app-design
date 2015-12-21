@@ -1,22 +1,23 @@
 class ValueCardNumber {
-	beforeRegister() {
-		this.is = 'value-card-number';
-		this.properties = {
-			name: {
-				type: String
-			},
+  beforeRegister() {
+    this.is = 'value-card-number';
+    
+    this.properties = {
+      name: {
+        type: String
+      },
 
-			data: {
-				type: Array
-			}
-		};
-	}
+      data: {
+        type: Array
+      }
+    };
+  }
 
-	created() { }
-	ready() { }
-	attached() { }
-	detached() { }
-	attributeChanged() { } 
+  created() { }
+  ready() { }
+  attached() { }
+  detached() { }
+  attributeChanged() { }
 }
 
 Polymer(ValueCardNumber);

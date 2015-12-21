@@ -18,8 +18,8 @@ class RotateAnticlockwiseAnimation {
         }
 
         this._effect = new KeyframeEffect(node, [
-          { 'transform': 'rotate(0)' },
-          { 'transform': 'rotate(-360deg)' }
+          {'transform': 'rotate(0)'},
+          {'transform': 'rotate(-360deg)'}
         ], this.timingFromConfig(config));
 
         return this._effect;

@@ -118,11 +118,11 @@ gulp.task('lint', ['ensureFiles'], function() {
       once: true
     }))
 
-  // JSCS has not yet an extract option **TODO: uncomment the following**
+  // JSCS has not yet an extract option
     .pipe($.if('*.html', $.htmlExtract()))
     .pipe($.jshint())
-  // .pipe($.jscs())
-  // .pipe($.jscsStylish.combineWithHintResults())
+    .pipe($.jscs())
+    .pipe($.jscsStylish.combineWithHintResults())
     .pipe($.jshint.reporter('jshint-stylish'))
     .pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
 });

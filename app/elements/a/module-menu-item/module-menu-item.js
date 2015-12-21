@@ -1,30 +1,31 @@
 class ModuleMenuItem {
-	beforeRegister() {
-		this.is = 'module-menu-item';
-		this.properties = {
-			content: {
-				type: String
-			},		
-			
-			route: {
-				type: String
-			},
+  beforeRegister() {
+    this.is = 'module-menu-item';
 
-			path: {
-				type: String
-			},
-			
-			numberOfReports: {
-				type: Number
-			}
-		};
-	}
+    this.properties = {
+      content: {
+        type: String
+      },
 
-	created() { }
-	ready() { }
-	attached() { }
-	detached() { }
-	attributeChanged() { }
+      route: {
+        type: String
+      },
+
+      path: {
+        type: String
+      },
+
+      numberOfReports: {
+        type: Number
+      }
+    };
+  }
+
+  created() { }
+  ready() { }
+  attached() { }
+  detached() { }
+  attributeChanged() { }
 }
 
 Polymer(ModuleMenuItem);

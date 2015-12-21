@@ -1,26 +1,26 @@
 class ModuleCard {
-	beforeRegister() {
-		this.is = 'module-card';
-		this.properties = {
-			name: {
-				type: String
-			},
+  beforeRegister() {
+    this.is = 'module-card';
+    this.properties = {
+      name: {
+        type: String
+      },
 
-			numberOfReports: {
-				type: Number
-			},
-			
-			desc: {
-				type: String
-			}
-		};
-	}
+      numberOfReports: {
+        type: Number
+      },
 
-	created() { }
-	ready() { }
-	attached() { }
-	detached() { }
-	attributeChanged() { }
+      desc: {
+        type: String
+      }
+    };
+  }
+
+  created() { }
+  ready() { }
+  attached() { }
+  detached() { }
+  attributeChanged() { }
 }
 
 Polymer(ModuleCard);

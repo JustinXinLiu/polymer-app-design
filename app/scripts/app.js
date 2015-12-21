@@ -52,8 +52,11 @@
     let detail = e.detail;
     let heightDiff = detail.height - detail.condensedHeight;
     let yRatio = Math.min(1, detail.y / heightDiff);
-    let maxMiddleScale = 0.75;  // appName max size when condensed. The smaller the number the smaller the condensed size.
-    let scaleMiddle = Math.max(maxMiddleScale, (heightDiff - detail.y) / (heightDiff / (1 - maxMiddleScale)) + maxMiddleScale);
+    // appName max size when condensed. The smaller the number the smaller the condensed size.
+    let maxMiddleScale = 0.75;
+    let auxHeight = heightDiff - detail.y;
+    let auxScale = heightDiff / (1 - maxMiddleScale);
+    let scaleMiddle = Math.max(maxMiddleScale, auxHeight / auxScale + maxMiddleScale);
     let scaleBottom = 1 - yRatio;
 
     // Move/translate middleContainer

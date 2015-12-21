@@ -3,6 +3,6 @@
   "preset": "google",
   "disallowSpacesInAnonymousFunctionExpression": null,
   "disallowTrailingWhitespace": false,
-  "maximumLineLength": 160,
+  "maximumLineLength": 100,
   "excludeFiles": ["node_modules/**"]
 }

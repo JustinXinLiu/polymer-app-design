@@ -1,35 +1,36 @@
 class ValueCardChart {
-	beforeRegister() {
-		this.is = 'value-card-chart';
-		this.properties = {
-			name: {
-				type: String
-			},
-			
-			type: {
-				type: String
-			},
+  beforeRegister() {
+    this.is = 'value-card-chart';
 
-			chartData: {
-				type: Array
-			},
-			
-			numberData: {
-				type: Array
-			}
-		};
-	}
+    this.properties = {
+      name: {
+        type: String
+      },
 
-	attached() {
-	}
-	
-	_line(type) {
-		return type === 'line';
-	}
-	
-	_bar(type) {
-		return type === 'bar';
-	}
+      type: {
+        type: String
+      },
+
+      chartData: {
+        type: Array
+      },
+
+      numberData: {
+        type: Array
+      }
+    };
+  }
+
+  attached() {
+  }
+
+  _line(type) {
+    return type === 'line';
+  }
+
+  _bar(type) {
+    return type === 'bar';
+  }
 }
 
 Polymer(ValueCardChart);

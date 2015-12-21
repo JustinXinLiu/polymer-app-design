@@ -1,43 +1,44 @@
 class ReportCard {
-	beforeRegister() {
-		this.is = 'report-card';
-		this.properties = {
-			name: {
-				type: String
-			},
-			
-			keyItems: {
-				type: Array	
-			},
+  beforeRegister() {
+    this.is = 'report-card';
+    
+    this.properties = {
+      name: {
+        type: String
+      },
 
-			mainFigureValue: {
-				type: Number
-			},
+      keyItems: {
+        type: Array
+      },
 
-			mainFigureAbbr: {
-				type: String
-			},
+      mainFigureValue: {
+        type: Number
+      },
 
-			mainFigureDesc: {
-				type: String
-			},
-			
-			mainFigureComparisonValue: {
-				type: Number			
-			}
-		};
-	}
+      mainFigureAbbr: {
+        type: String
+      },
 
-	attached() { 
-	}
+      mainFigureDesc: {
+        type: String
+      },
 
-	_multiItemDesign(keyItems) {
-		return keyItems.length > 1;
-	}
-	
-	_singleItemDesign(keyItems) {
-		return keyItems.length === 1;
-	}
+      mainFigureComparisonValue: {
+        type: Number
+      }
+    };
+  }
+
+  attached() {
+  }
+
+  _multiItemDesign(keyItems) {
+    return keyItems.length > 1;
+  }
+
+  _singleItemDesign(keyItems) {
+    return keyItems.length === 1;
+  }
 }
 
 Polymer(ReportCard);

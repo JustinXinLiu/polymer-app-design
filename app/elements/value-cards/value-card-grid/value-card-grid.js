@@ -1,34 +1,35 @@
 class ValueCardGrid {
-	beforeRegister() {
-		this.is = 'value-card-grid';
-		this.properties = {
-			name: {
-				type: String
-			},
+  beforeRegister() {
+    this.is = 'value-card-grid';
 
-			mainFigureValue: {
-				type: Number
-			},
+    this.properties = {
+      name: {
+        type: String
+      },
 
-			mainFigureAbbr: {
-				type: String
-			},
+      mainFigureValue: {
+        type: Number
+      },
 
-			mainFigureDesc: {
-				type: String
-			},
-			
-			mainFigureComparisonValue: {
-				type: Number			
-			}
-		};
-	}
+      mainFigureAbbr: {
+        type: String
+      },
 
-	created() { }
-	ready() { }
-	attached() { }
-	detached() { }
-	attributeChanged() { }
+      mainFigureDesc: {
+        type: String
+      },
+
+      mainFigureComparisonValue: {
+        type: Number
+      }
+    };
+  }
+
+  created() { }
+  ready() { }
+  attached() { }
+  detached() { }
+  attributeChanged() { }
 }
 
 Polymer(ValueCardGrid);
