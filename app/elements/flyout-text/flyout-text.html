@@ -1,5 +1,3 @@
-<link rel="import" href="../../bower_components/polymer/polymer.html">
-
 <dom-module id="flyout-text">
 	<template>
 		<style include="shared-styles"></style>
@@ -30,74 +28,5 @@
 		</section>
 	</template>
 
-	<script>
-		var _loaded;
-		
-		Polymer({
-			is: 'flyout-text',		
-			behaviors: [ Polymer.NeonAnimationRunnerBehavior ],
-		
-			properties: {
-				animationConfig: {
-					value: function () {
-						return {
-							'flyout': [{
-								name: 'slide-up-animation',
-								node: this.$.old }, {
-								name: 'slide-up-animation',
-								node: this.$.new
-							}]
-						};
-					}
-				},
-	
-				text: {
-					type: String,
-					observer: '_textChanged'
-				},
-	
-				oldText: {
-					type: String,
-					readonly: true
-				},
-				
-				initialText: {
-					type: String,
-					value: 'welcome!'
-				}
-			},
-			
-			ready: function () {
-				this.oldText = this.initialText;	
-			},
-			
-			attached: function () {
-				// restraint the height of this element
-				var height = this.$.old.clientHeight;
-				this.$.container.style.height = height + 'px';
-			},
-			
-			listeners: {
-				'neon-animation-finish': '_onNeonAnimationFinish'
-			},
-			
-			_onNeonAnimationFinish: function () {
-				this.oldText = this.text;
-			},
-		
-			_textChanged: function() {
-				var ms = 0;
-				if (!_loaded) {
-					ms = 2000;
-					_loaded = true;
-				}
-				
-				this.async(function () {
-					this.playAnimation('flyout');
-				}, ms);
-			}
-		});
-	</script>
-
-	<!--<script src="flyout-text.js"></script>-->
+	<script src="flyout-text.js"></script>
 </dom-module>

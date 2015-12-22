@@ -1,21 +1,41 @@
+let flyoutTextBehaviors = Symbol('behaviors');
+let _loaded;
+
 class FlyoutText {
   get behaviors() {
-    return [Polymer.NeonAnimationRunnerBehavior];
+    return this[flyoutTextBehaviors] || (this[flyoutTextBehaviors] = [
+      Polymer.NeonAnimationRunnerBehavior
+    ]);
+  }
+
+  set behaviors(value) {
+    this[flyoutTextBehaviors] = value;
+  }
+
+  get listeners() {
+    return {
+      'neon-animation-finish': '_onNeonAnimationFinish'
+    };
   }
 
   beforeRegister() {
     this.is = 'flyout-text';
+
     this.properties = {
+      name: {
+        type: String
+      },
+
       animationConfig: {
-        value: () => {
+        value: function() {
           return {
             'flyout': [
               {
-                name: 'fade-out-animation',
-                node: this
+                name: 'slide-up-animation',
+                node: this.$.old
               }, {
-                name: 'fade-in-animation',
-                node: this
+                name: 'slide-up-animation',
+                node: this.$.new
               }
             ]
           };
@@ -28,28 +48,44 @@ class FlyoutText {
       },
 
       oldText: {
-        type: String
+        type: String,
+        readonly: true
+      },
+
+      initialText: {
+        type: String,
+        value: 'welcome!'
       }
     };
   }
 
   ready() {
-    // console.log('ironanimation1', new Polymer.IronMeta({type: 'animation'}));
+    this.oldText = this.initialText;
   }
 
-  _textChanged(newText) {
-    this.oldText = newText;
+  attached() {
+    // restraint the height of this element
+    let height = this.$.old.clientHeight;
+    this.$.container.style.height = height + 'px';
+  }
 
-    this.async(() => {
-      console.log('start animation');
+  _onNeonAnimationFinish() {
+    this.oldText = this.text;
+  }
 
-      this.cancelAnimation();
+  _textChanged() {
+    let ms = 0;
+
+    if (!_loaded) {
+      ms = 2000;
+      _loaded = true;
+    }
+
+    this.async(function() {
       this.playAnimation('flyout');
-			
-      // console.log('ironanimation2', new Polymer.IronMeta({type: 'animation'}));
-			
-    }, 2000);
+    }, ms);
   }
 }
 
 Polymer(FlyoutText);
+
