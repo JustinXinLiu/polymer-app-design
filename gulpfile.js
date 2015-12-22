@@ -31,54 +31,54 @@ var AUTOPREFIXER_BROWSERS = [
 
 var DIST = 'dist';
 
-var dist = function (subpath) {
+var dist = function(subpath) {
   return !subpath ? DIST : path.join(DIST, subpath);
 };
 
-var styleTask = function (stylesPath, srcs) {
-  return gulp.src(srcs.map(function (src) {
+var styleTask = function(stylesPath, srcs) {
+  return gulp.src(srcs.map(function(src) {
     return path.join('app', stylesPath, src);
   }))
-    .pipe($.changed(stylesPath, { extension: '.css' }))
+    .pipe($.changed(stylesPath, {extension: '.css'}))
     .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
     .pipe(gulp.dest('.tmp/' + stylesPath))
     .pipe($.minifyCss())
     .pipe(gulp.dest(dist(stylesPath)))
-    .pipe($.size({ title: stylesPath }));
+    .pipe($.size({title: stylesPath}));
 };
 
-var imageOptimizeTask = function (src, dest) {
+var imageOptimizeTask = function(src, dest) {
   return gulp.src(src)
     .pipe($.imagemin({
       progressive: true,
       interlaced: true
     }))
     .pipe(gulp.dest(dest))
-    .pipe($.size({ title: 'images' }));
+    .pipe($.size({title: 'images'}));
 };
 
-var optimizeHtmlTask = function (src, dest) {
+var optimizeHtmlTask = function(src, dest) {
   var assets = $.useref.assets();
 
   return gulp.src(src)
-  // Replace path for vulcanized assets
+    // Replace path for vulcanized assets
     .pipe(assets)
-  // Concatenate and minify JavaScript
+    // Concatenate and minify JavaScript
     .pipe($.if('*.js', $.uglify({
       preserveComments: 'some'
     })))
-  // Concatenate and minify styles
-  // In case you are still using useref build blocks
+    // Concatenate and minify styles
+    // In case you are still using useref build blocks
     .pipe($.if('*.css', $.minifyCss()))
     .pipe(assets.restore())
     .pipe($.useref())
-  // Minify any HTML
+    // Minify any HTML
     .pipe($.if('*.html', $.minifyHtml({
       quotes: true,
       empty: true,
       spare: true
     })))
-  // Output files
+    // Output files
     .pipe(gulp.dest(dest))
     .pipe($.size({
       title: 'html'
@@ -110,7 +110,8 @@ gulp.task('lint', ['ensureFiles'], function() {
   return gulp.src([
     'app/scripts/**/*.js',
     'app/elements/**/*.js',
-    'app/elements/**/*.html',
+    // TODO: uncomment this
+    // 'app/elements/**/*.html',
     'gulpfile.js'
   ])
     .pipe(reload({
@@ -118,13 +119,28 @@ gulp.task('lint', ['ensureFiles'], function() {
       once: true
     }))
 
-  // JSCS has not yet an extract option
+    // JSCS has not yet an extract option
     .pipe($.if('*.html', $.htmlExtract()))
     .pipe($.jshint())
     .pipe($.jscs())
     .pipe($.jscsStylish.combineWithHintResults())
     .pipe($.jshint.reporter('jshint-stylish'))
     .pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
+});
+
+// Transpile all JS to ES5
+gulp.task('js', function() {
+  return gulp.src(['app/**/*.{js,html}', '!app/bower_components/**/*'])
+    .pipe($.sourcemaps.init())
+    .pipe($.if('*.html', $.crisper({
+      scriptInHead: false
+    }))) // Extract JS from .html files
+    .pipe($.if('*.js', $.babel({
+      presets: ['es2015']
+    })))
+    .pipe($.sourcemaps.write('.'))
+    .pipe(gulp.dest('.tmp/'))
+    .pipe(gulp.dest(dist()));
 });
 
 // Optimize images
@@ -181,10 +197,10 @@ gulp.task('vulcanize', function() {
       inlineScripts: true
     }))
     .pipe(gulp.dest(dist('elements')))
-    .pipe($.size({ title: 'vulcanize' }));
+    .pipe($.size({title: 'vulcanize'}));
 });
 
-gulp.task('cache-config', function (callback) {
+gulp.task('cache-config', function(callback) {
   var dir = dist();
   var config = {
     cacheId: packageJson.name || path.basename(__dirname),
@@ -196,7 +212,7 @@ gulp.task('cache-config', function (callback) {
     './',
     'bower_components/webcomponentsjs/webcomponents-lite.min.js',
     '{elements,scripts,styles}/**/*.*'],
-    { cwd: dir }, function (error, files) {
+    {cwd: dir}, function(error, files) {
       if (error) {
         callback(error);
       } else {
@@ -217,23 +233,9 @@ gulp.task('clean', function() {
   return del(['.tmp', dist()]);
 });
 
-// Transpile all JS to ES5
-gulp.task('js', function() {
-  return gulp.src(['app/**/*.{js,html}', '!app/bower_components/**/*'])
-    .pipe($.sourcemaps.init())
-    // .pipe($.if('*.html', $.crisper({
-    //   scriptInHead: false
-    // }))) // Extract JS from .html files **TODO: fix this
-    .pipe($.if('*.js', $.babel({
-      presets: ['es2015']
-    })))
-    .pipe($.sourcemaps.write('.'))
-    .pipe(gulp.dest('.tmp/'))
-    .pipe(gulp.dest(dist()));
-});
-
 // Watch files for changes & reload
-gulp.task('serve', ['lint', 'styles', 'elements', 'js'], function() { // **TODO: add back 'images' task when needed**
+// TODO: add 'images' task back when needed
+gulp.task('serve', ['lint', 'styles', 'elements', 'js'], function() {
   browserSync({
     port: 5000,
     notify: false,
@@ -241,7 +243,7 @@ gulp.task('serve', ['lint', 'styles', 'elements', 'js'], function() { // **TODO:
     snippetOptions: {
       rule: {
         match: '<span id="browser-sync-binding"></span>',
-        fn: function (snippet) {
+        fn: function(snippet) {
           return snippet;
         }
       }
@@ -259,7 +261,8 @@ gulp.task('serve', ['lint', 'styles', 'elements', 'js'], function() { // **TODO:
   gulp.watch(['app/**/*.html'], ['js', reload]);
   gulp.watch(['app/styles/**/*.css'], ['styles', reload]);
   gulp.watch(['app/elements/**/*.css'], ['elements', reload]);
-  gulp.watch(['app/{scripts,elements}/**/*.js'], ['lint', 'js']); // gulp.watch(['app/{scripts,elements}/**/{*.js,*.html}'], ['lint', 'js']);
+  // TODO: gulp.watch(['app/{scripts,elements}/**/{*.js,*.html}'], ['lint', 'js']);
+  gulp.watch(['app/{scripts,elements}/**/*.js'], ['lint', 'js']);
   gulp.watch(['app/images/**/*'], reload);
 });
 
@@ -272,7 +275,7 @@ gulp.task('serve:dist', ['default'], function() {
     snippetOptions: {
       rule: {
         match: '<span id="browser-sync-binding"></span>',
-        fn: function (snippet) {
+        fn: function(snippet) {
           return snippet;
         }
       }
@@ -287,18 +290,18 @@ gulp.task('serve:dist', ['default'], function() {
 });
 
 // Build production files, the default task
-gulp.task('default', ['clean'], function (cb) {
+gulp.task('default', ['clean'], function(cb) {
   // Uncomment 'cache-config' if you are going to use service workers.
   runSequence(
     ['copy', 'styles'],
     ['elements', 'js'],
-    ['lint', 'fonts', 'html'], // **TODO: add back 'images' task when needed**
+    ['lint', 'fonts', 'html'], // TODO: add 'images' task back when needed
     'vulcanize', 'cache-config',
     cb);
 });
 
 // Build then deploy to GitHub pages gh-pages branch
-gulp.task('build-deploy-gh-pages', function (cb) {
+gulp.task('build-deploy-gh-pages', function(cb) {
   runSequence(
     'default',
     'deploy-gh-pages',
