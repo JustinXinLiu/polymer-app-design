@@ -233,6 +233,9 @@ class SectionDetail {
         ]
       };
 
+      // Re-evaluate custom properties (color) of paper-progress
+      this.async(() => this.updateStyles(), 200);
+      
       app.hideBusyIndicator();
     }, 1000);
   }
@@ -241,12 +244,6 @@ class SectionDetail {
   }
 
   _onExitFinish() {
-    this.data = {
-      first: [
-        {value: 0, desc: '???', comparisonValue: 5},
-        {value: 0, desc: '???', comparisonValue: 5}
-      ]
-    };
   }
 
   _drillDownTypeChanged(type) {
