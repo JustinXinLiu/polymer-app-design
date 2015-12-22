@@ -23,7 +23,7 @@ Configuration:
 
   Polymer({
     is: 'rotate-clockwise-animation',
-    behaviors: [ Polymer.NeonAnimationBehavior ],
+    behaviors: [Polymer.NeonAnimationBehavior],
 
     configure: function(config) {
       var node = config.node;
@@ -34,7 +34,7 @@ Configuration:
         this.setPrefixedProperty(node, 'transformOrigin', '50% 50%');
       }
 
-      this._effect = new KeyframeEffect(node, [ // jshint ignore:line
+      this._effect = new KeyframeEffect(node, [// jshint ignore:line
         {'transform': 'rotate(0)'},
         {'transform': 'rotate(360deg)'}
       ], this.timingFromConfig(config));

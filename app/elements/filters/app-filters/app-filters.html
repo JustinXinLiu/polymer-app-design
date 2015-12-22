@@ -1,123 +1,127 @@
 <dom-module id="app-filters">
-	<template>
-		<style include="shared-styles"></style>
-		<style>
-			:host {
-				display: block;
-			}
-			
-			paper-dialog {
-				color: var(--text-primary-color);
-				background-color: var(--primary-text-color);
-				position: fixed;
-				top: 0;
-				right: 0;
-				left: 0;
-				margin: 0;
-				padding: 0;
-			}
-			
-			.title {
-				color: var(--text-primary-color);
-				font-size: 16px;
-				font-weight: 800;
-				text-transform: uppercase;
-			}
-			
-			paper-dropdown-menu {
-				width: 100%;
-				--paper-input-container-label: {
-					color: var(--text-primary-color);
-				}
-			}
-		</style>
+  <template>
+    <style include="shared-styles"></style>
+    <style>
+      :host {
+        display: block;
+      }
+      
+      paper-dialog {
+        color: var(--text-primary-color);
+        background-color: var(--primary-text-color);
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        margin: 0;
+        padding: 0;
+      }
+      
+      .title {
+        color: var(--text-primary-color);
+        font-size: 16px;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+      
+      paper-dropdown-menu {
+        width: 100%;
+        --paper-input-container-label: {
+          color: var(--text-primary-color);
+        }
+      }
+    </style>
 
-		<paper-dialog id="dialog" modal>
-			<div class="center horizontal layout">
-				<div class="title">[[title]]</div>
-				<span class="flex"></span>
-				<paper-icon-button icon="close" dialog-dismiss></paper-icon-button>
-			</div>
+    <paper-dialog id="dialog" modal>
+      <div class="center horizontal layout">
+        <div class="title">[[title]]</div>
+        <span class="flex"></span>
+        <paper-icon-button icon="close" dialog-dismiss></paper-icon-button>
+      </div>
 
-			<paper-dialog-scrollable>
-				<paper-dropdown-menu label="Reporting Date">
-					<paper-menu class="dropdown-content">
-						<paper-item>Oct</paper-item>
-						<paper-item>Nov</paper-item>
-						<paper-item>Dec</paper-item>
-					</paper-menu>
-				</paper-dropdown-menu>
+      <paper-dialog-scrollable>
+        <paper-dropdown-menu label="Reporting Date">
+          <paper-menu class="dropdown-content">
+            <paper-item>Oct</paper-item>
+            <paper-item>Nov</paper-item>
+            <paper-item>Dec</paper-item>
+          </paper-menu>
+        </paper-dropdown-menu>
 
-				<paper-dropdown-menu label="Org Units">
-					<paper-menu class="dropdown-content">
-						<paper-item>Croissant</paper-item>
-						<paper-item>Donut</paper-item>
-						<paper-item>Financier</paper-item>
-						<paper-item>Madeleine</paper-item>
-					</paper-menu>
-				</paper-dropdown-menu>
+        <paper-dropdown-menu label="Org Units">
+          <paper-menu class="dropdown-content">
+            <paper-item>Croissant</paper-item>
+            <paper-item>Donut</paper-item>
+            <paper-item>Financier</paper-item>
+            <paper-item>Madeleine</paper-item>
+          </paper-menu>
+        </paper-dropdown-menu>
 
-				<paper-dropdown-menu label="Products">
-					<paper-menu class="dropdown-content">
-						<paper-item>Croissant</paper-item>
-						<paper-item>Donut</paper-item>
-						<paper-item>Financier</paper-item>
-						<paper-item>Madeleine</paper-item>
-					</paper-menu>
-				</paper-dropdown-menu>
-			</paper-dialog-scrollable>
-		</paper-dialog>
-	</template>
+        <paper-dropdown-menu label="Products">
+          <paper-menu class="dropdown-content">
+            <paper-item>Croissant</paper-item>
+            <paper-item>Donut</paper-item>
+            <paper-item>Financier</paper-item>
+            <paper-item>Madeleine</paper-item>
+          </paper-menu>
+        </paper-dropdown-menu>
+      </paper-dialog-scrollable>
+    </paper-dialog>
+  </template>
 
-	<script>
-		Polymer({
-			is: 'app-filters',
-			behaviors: [ Polymer.NeonAnimationRunnerBehavior ],	
-		
-			properties: {
-				title: {
-					type: String,
-					value: 'filters'			
-				},
-				
-				dialogAnimationConfig: {
-					type: Object,
-					value: function () {		
-						return {
-							'entry': [{
-								name: 'transform-animation',
-								node: this.$.dialog,
-								transformFrom: 'translateY(calc(-100% - 56px/2))',
-								transformTo: 'translateY(0)'
-							}],
-							
-							'exit': [{
-								name: 'slide-up-animation',
-								node: this.$.dialog,
-								transformFrom: 'translateY(0)',
-								transformTo: 'translateY(calc(-100% - 56px/2))'
-							}]
-						};
-					}
-				}	
-			},
-			
-			ready: function () {
-				this.$.dialog.animationConfig = this.dialogAnimationConfig;
-			},
-			
-			attached: function () {			
-			},
-			
-			open: function () {
-				this.$.dialog.open();
-			},
-			
-			close: function () {
-				this.$.dialog.close();
-			}	
-		});
-	</script>
+  <script>
+    Polymer({
+      is: 'app-filters',
+      behaviors: [Polymer.NeonAnimationRunnerBehavior],
 
-	<!--<script src="app-filters.js"></script>-->
+      properties: {
+        title: {
+          type: String,
+          value: 'filters'
+        },
+
+        dialogAnimationConfig: {
+          type: Object,
+          value: function() {
+            return {
+              'entry': [
+                {
+                  name: 'transform-animation',
+                  node: this.$.dialog,
+                  transformFrom: 'translateY(calc(-100% - 56px/2))',
+                  transformTo: 'translateY(0)'
+                }
+              ],
+
+              'exit': [
+                {
+                  name: 'slide-up-animation',
+                  node: this.$.dialog,
+                  transformFrom: 'translateY(0)',
+                  transformTo: 'translateY(calc(-100% - 56px/2))'
+                }
+              ]
+            };
+          }
+        }
+      },
+
+      ready: function() {
+        this.$.dialog.animationConfig = this.dialogAnimationConfig;
+      },
+
+      attached: function() {
+      },
+
+      open: function() {
+        this.$.dialog.open();
+      },
+
+      close: function() {
+        this.$.dialog.close();
+      }
+    });
+  </script>
+
+  <!--<script src="app-filters.js"></script>-->
 </dom-module>

@@ -1,72 +1,74 @@
 <dom-module id="home-menu-item">
-	<template>
-		<style include="shared-styles"></style>
-		<style>
-			:host {
-				display: block;
-				text-decoration: none;
-			}
-			
-			:host(.iron-selected) .content {
-				color: var(--primary-text-color);
-			}
-			
-			:host(.iron-selected) hr {
-				opacity: 1;
-			}
-			
-			:host(.iron-selected) iron-icon {
-				color: var(--dark-primary-color);	
-			}		
-			
-			iron-icon {
-				color: var(--disabled-text-color);
-				font-size: 14px;
-				font-weight: 600;
-				height: 28px;
-				width: 28px;
-				margin: 8px 12px 12px 16px;
-				padding: 2px;
-				transition: all .25s ease-out;
-			}
-			
-			.content {
-				color: var(--secondary-text-color);
-				font-size: 16px;
-				line-height: 16px;
-				text-transform: capitalize;
-			}
-			
-			hr {
-				border: 0;
-				border-top: 1px solid var(--secondary-text-color);
-				margin: 4px 0 0 0;
-				opacity: 0;
-				transition: all .25s ease-out;
-			}
-		</style>
+  <template>
+    <style include="shared-styles"></style>
+    <style>
+      :host {
+        display: block;
+        text-decoration: none;
+      }
+      
+      :host(.iron-selected) .content {
+        color: var(--primary-text-color);
+      }
+      
+      :host(.iron-selected) hr {
+        opacity: 1;
+      }
+      
+      :host(.iron-selected) iron-icon {
+        color: var(--dark-primary-color);
+      }
+      
+      iron-icon {
+        color: var(--disabled-text-color);
+        font-size: 14px;
+        font-weight: 600;
+        height: 28px;
+        width: 28px;
+        margin: 8px 12px 12px 16px;
+        padding: 2px;
+        transition: all .25s ease-out;
+      }
+      
+      .content {
+        color: var(--secondary-text-color);
+        font-size: 16px;
+        line-height: 16px;
+        text-transform: capitalize;
+      }
+      
+      hr {
+        border: 0;
+        border-top: 1px solid var(--secondary-text-color);
+        margin: 4px 0 0 0;
+        opacity: 0;
+        transition: all .25s ease-out;
+      }
+    </style>
 
-		<div class="horizontal layout">
-			<iron-icon icon="home"></iron-icon>
+    <div class="horizontal layout">
+      <iron-icon icon="home"></iron-icon>
 
-			<div class="content center-justified vertical layout">
-				<div>[[content]]</div>
-				<hr>
-			</div>
-		</div>
-	</template>
+      <div class="content center-justified vertical layout">
+        <div>[[content]]</div>
+        <hr>
+      </div>
+    </div>
+  </template>
 
-	<!--<script src="home-menu-item.js"></script>-->
+  <!--<script src="home-menu-item.js"></script>-->
 
-	<script>
-		Polymer({
-			is: 'home-menu-item',
-			extends: 'a',
-			properties: {
-				content: {
-					type: String
-				}
-			}
-		});
-	</script>
+  <script>
+    Polymer({
+      is: 'home-menu-item',
+
+      extends: 'a',
+
+      properties: {
+        content: {
+          type: String
+        }
+      }
+    });
+  </script>
 </dom-module>
