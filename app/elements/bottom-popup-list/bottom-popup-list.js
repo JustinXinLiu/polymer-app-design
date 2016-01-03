@@ -146,7 +146,7 @@ class BottomPopupList {
   }
 
   _onSelectTap() {
-
+    history.go(-1);
   }
 }
 

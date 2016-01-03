@@ -31,8 +31,11 @@ class HomeLastVisited {
     };
 
     this.section = {
-      name: 'section 1', mainFigureValue: 34, mainFigureAbbr: 'B',
-      mainFigureDesc: 'This Week', mainFigureComparisonValue: 12
+      name: 'section 1',
+      numberData: [
+        {value: 37, desc: 'This Week', comparisonValue: 60, status: 'good'},
+        {value: 23, desc: 'This Week', comparisonValue: 30, status: 'bad'}
+      ]
     };
   }
 
