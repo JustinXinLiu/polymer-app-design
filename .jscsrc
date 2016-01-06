@@ -2,7 +2,8 @@
   "esnext": true,
   "preset": "google",
   "disallowSpacesInAnonymousFunctionExpression": null,
-  "disallowTrailingWhitespace": false,
+  "disallowTrailingWhitespace": null,
+  "validateIndentation": null,
   "maximumLineLength": 100,
   "excludeFiles": ["node_modules/**"]
 }
