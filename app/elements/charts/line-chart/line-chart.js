@@ -1,5 +1,7 @@
 /* global Chart */
 
+'use strict';
+
 class LineChart {
   beforeRegister() {
     this.is = 'line-chart';

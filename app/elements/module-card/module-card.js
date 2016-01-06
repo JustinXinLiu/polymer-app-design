@@ -1,3 +1,5 @@
+'use strict';
+
 class ModuleCard {
   beforeRegister() {
     this.is = 'module-card';

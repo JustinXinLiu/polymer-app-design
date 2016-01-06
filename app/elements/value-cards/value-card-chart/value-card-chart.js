@@ -1,3 +1,5 @@
+'use strict';
+
 class ValueCardChart {
   beforeRegister() {
     this.is = 'value-card-chart';

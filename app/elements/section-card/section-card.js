@@ -1,3 +1,5 @@
+'use strict';
+
 class SectionCard {
   beforeRegister() {
     this.is = 'section-card';

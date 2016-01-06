@@ -1,3 +1,5 @@
+'use strict';
+
 class ValueCardNumber {
   beforeRegister() {
     this.is = 'value-card-number';

@@ -1,3 +1,5 @@
+'use strict';
+
 class ReportCard {
   beforeRegister() {
     this.is = 'report-card';

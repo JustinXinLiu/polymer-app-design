@@ -1,3 +1,5 @@
+'use strict';
+
 class HomeLastVisited {
   beforeRegister() {
     this.is = 'home-last-visited';

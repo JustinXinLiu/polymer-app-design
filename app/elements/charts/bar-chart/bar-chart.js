@@ -1,5 +1,7 @@
 /* global Chart */
 
+'use strict';
+
 class BarChart {
   beforeRegister() {
     this.is = 'bar-chart';

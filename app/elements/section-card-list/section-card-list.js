@@ -1,3 +1,5 @@
+'use strict';
+
 let sectionCardListBehaviors = Symbol('behaviors');
 
 class SectionCardList {

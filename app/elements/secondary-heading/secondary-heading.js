@@ -1,3 +1,5 @@
+'use strict';
+
 class SecondaryHeading {
   beforeRegister() {
     this.is = 'secondary-heading';

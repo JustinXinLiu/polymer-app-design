@@ -1,3 +1,5 @@
+'use strict';
+
 let flyoutTextBehaviors = Symbol('behaviors');
 let _loaded;
 

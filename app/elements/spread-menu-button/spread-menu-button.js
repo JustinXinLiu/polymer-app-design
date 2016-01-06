@@ -1,3 +1,5 @@
+'use strict';
+
 let spreadMenuButtonBehaviors = Symbol('behaviors');
 
 class SpreadMenuButton {

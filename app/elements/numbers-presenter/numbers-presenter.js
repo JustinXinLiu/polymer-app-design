@@ -1,3 +1,5 @@
+'use strict';
+
 class NumbersPresenter {
   beforeRegister() {
     this.is = 'numbers-presenter';

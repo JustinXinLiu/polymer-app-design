@@ -1,3 +1,5 @@
+'use strict';
+
 class IconTransitionButton {
   beforeRegister() {
     this.is = 'icon-transition-button';

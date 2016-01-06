@@ -1,3 +1,5 @@
+'use strict';
+
 class ValueCardGrid {
   beforeRegister() {
     this.is = 'value-card-grid';

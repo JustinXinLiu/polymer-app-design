@@ -1,6 +1,8 @@
 /* global page */
 /* global app */
 
+'use strict';
+
 let reportCardListbehaviors = Symbol('behaviors');
 
 class ReportCardList {

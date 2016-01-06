@@ -1,3 +1,5 @@
+'use strict';
+
 class DataGrid {
   beforeRegister() {
     this.is = 'data-grid';

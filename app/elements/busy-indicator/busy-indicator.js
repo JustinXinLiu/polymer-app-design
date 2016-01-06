@@ -1,3 +1,5 @@
+'use strict';
+
 class BusyIndicator {
   beforeRegister() {
     this.is = 'busy-indicator';
