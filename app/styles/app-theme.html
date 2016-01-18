@@ -46,22 +46,28 @@
     --drawer-toolbar-border-color: 0 solid transparent;
 
     /* paper-menu */
-    --paper-menu-background-color: #fff;
+    --paper-menu-background-color: var(--primary-text-color);
     --menu-link-color: #111111;
   }
 
   /* General styles */
+  
+  #drawer {
+    background-color: var(--primary-text-color);
+  }
 
   #drawerToolbar {
     color: var(--secondary-text-color);
     background-color: var(--drawer-menu-color);
     border-bottom: var(--drawer-toolbar-border-color);
+    margin-left: 1px;
   }
   
   #drawerToolbar .capital {
     color: var(--text-primary-color);
     font-weight: 600;
     text-transform: uppercase; 
+    margin-left: 4px;
   }
 
   paper-scroll-header-panel, neon-animated-pages {

@@ -1,30 +1,54 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 
 <dom-module id="home-last-visited">
-	<template>
-		<style include="shared-styles"></style>
-		<style>
-			:host {
-				display: block;
-				@apply(--layout-vertical);
-			}
-			
-			report-card,
-			section-card {
-				margin-top: 0;
-			}
-		</style>
+  <template>
+    <style include="shared-styles"></style>
+    <style>
+      :host {
+        display: block;
+        @apply(--layout-vertical);
+      }
+      
+      report-card,
+      section-card {
+        margin-top: 0;
+      }
+      
+      /* Small */
+      @media (max-width: 600px) {
+        module-card,
+        report-card,
+        section-card {
+          max-width: none;
+          margin-left: 0;
+        }
+      }
+      
+      /* Tablet+ */
+      @media (min-width: 601px) {
+        module-card,
+        report-card,
+        section-card {
+         max-width: 375px;
+         margin-left: 48px;
+        }
+      }
+      
+        report-card {
+         max-width: 475px;       
+        }
+    </style>
 
-		<secondary-heading name="Your last visited module" first></secondary-heading>
-		<module-card name="[[module.name]]" number-of-reports="[[module.numberOfReports]]" desc="[[module.desc]]" on-tap="_onModuleTap"></module-card>
+    <secondary-heading name="Your last visited module" first></secondary-heading>
+    <module-card name="[[module.name]]" number-of-reports="[[module.numberOfReports]]" desc="[[module.desc]]" on-tap="_onModuleTap"></module-card>
 
-		<secondary-heading name="Your last visited report"></secondary-heading>
-		<report-card name="[[report.name]]" key-items="[[report.keyItems]]" main-figure-value="[[report.mainFigureValue]]" main-figure-abbr="[[report.mainFigureAbbr]]"
-		main-figure-comparison-value="[[report.mainFigureComparisonValue]]" main-figure-desc="[[report.mainFigureDesc]]" on-tap="_onReportTap"></report-card>
+    <secondary-heading name="Your last visited report"></secondary-heading>
+    <report-card name="[[report.name]]" key-items="[[report.keyItems]]" main-figure-value="[[report.mainFigureValue]]" main-figure-abbr="[[report.mainFigureAbbr]]"
+    main-figure-comparison-value="[[report.mainFigureComparisonValue]]" main-figure-desc="[[report.mainFigureDesc]]" on-tap="_onReportTap"></report-card>
 
-		<secondary-heading name="Your last visited section"></secondary-heading>
-		<section-card name="[[section.name]]" number-data=[[section.numberData]] on-tap="_onSectionTap"></section-card>
-	</template>
+    <secondary-heading name="Your last visited section"></secondary-heading>
+    <section-card name="[[section.name]]" number-data=[[section.numberData]] on-tap="_onSectionTap"></section-card>
+  </template>
 
-	<script src="home-last-visited.js"></script>
+  <script src="home-last-visited.js"></script>
 </dom-module>
