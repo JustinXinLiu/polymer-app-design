@@ -1,89 +1,108 @@
 <dom-module id="bottom-popup-list">
-	<template>
-		<style include="shared-styles"></style>
-		<style>
-			:host {
-				display: block;
-				@apply(--layout-vertical);
-			}
-			
-			#background {
-				background-color: var(--primary-text-color);
-				@apply(--layout-fit);
-				z-index: -1;
-			}
-			
-			.sticky {
-				position: fixed;
-				top: 44px;
-				left: 0;
-				right: 0;
-				z-index: 100;
-				opacity: 0.9;
-				transition: all .25s ease-out;
-			}
-			
-			paper-listbox {
-				--paper-listbox-color: var(--light-primary-color);
-				--paper-listbox-background-color: transparent;
-			}
-			
-			paper-listbox paper-item {
-				padding: 0 32px;
-				--paper-item-selected: {
-					transition: all .25s ease-out;
-					background-color: var(--semitransparent-secondary-accent-color);
-				};
-			}
-			
-			#actions {
-				position: fixed;
-				left: 0;
-				right: 0;
-				bottom: 0;
-			}
-			
-			#actions paper-fab {
-				margin: 24px;
-			}
-			
-			paper-fab#select {
-				--paper-fab-background: var(--good-color);
-				--paper-fab-keyboard-focus-background: var(--secondary-accent-color);
-			}
-		</style>
+  <template>
+    <style include="shared-styles"></style>
+    <style>
+      :host {
+        display: block;
+        @apply(--layout-vertical);
+      }
+      
+      #background {
+        background-color: var(--primary-text-color);
+        @apply(--layout-fit);
+        z-index: -1;
+      }
+      
+      .sticky {
+        position: fixed;
+        top: 44px;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        opacity: 0.9;
+        transition: all .25s ease-out;
+      }
+      
+      paper-listbox {
+        --paper-listbox-color: var(--light-primary-color);
+        --paper-listbox-background-color: transparent;
+      }
+      
+      paper-listbox paper-item {
+        padding: 0 32px;
+        --paper-item-selected: {
+          transition: all .25s ease-out;
+          background-color: var(--semitransparent-secondary-accent-color);
+        }
+        ;
+      }
+      
+      #actions {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+      
+      #actions paper-fab {
+        margin: 24px;
+      }
+      
+      paper-fab#select {
+        --paper-fab-background: var(--good-color);
+        --paper-fab-keyboard-focus-background: var(--secondary-accent-color);
+      }
+      
+      /* Small */
+      @media (max-width: 600px) {
+        #actions {
+          padding-left: 0;
+        }
+        /*:host([first]) {
+        }*/
+      }
+      
+      /* Tablet+ */
+      @media (min-width: 601px) {
+        #actions {
+          padding-left: 256px;
+        }
+        /*:host([first]) {
+        }*/
+      }
+    </style>
 
-		<section id="content">
-			<secondary-heading id="heading" class$="[[sticky]]" name="[[name]]" first></secondary-heading>
+    <section id="content">
+      <secondary-heading id="heading" class$="[[sticky]]" name="[[name]]" first></secondary-heading>
 
-			<paper-listbox selected="{{selected}}">
-				<paper-item>Item 1</paper-item>
-				<paper-item>Item 2</paper-item>
-				<paper-item>Item 3</paper-item>
-				<paper-item>Item 4</paper-item>
-				<paper-item>Item 5</paper-item>
-				<paper-item>Item 6</paper-item>
-				<paper-item>Item 7</paper-item>
-				<paper-item>Item 8</paper-item>
-				<paper-item>Item 9</paper-item>
-				<paper-item>Item 10</paper-item>
-				<paper-item>Item 11</paper-item>
-				<paper-item>Item 12</paper-item>
-				<paper-item>Item 13</paper-item>
-				<paper-item>Item 14</paper-item>
-				<paper-item>Item 15</paper-item>
-				<paper-item>Item 16</paper-item>
-			</paper-listbox>
+      <paper-listbox selected="{{selected}}">
+        <paper-item>Item 1</paper-item>
+        <paper-item>Item 2</paper-item>
+        <paper-item>Item 3</paper-item>
+        <paper-item>Item 4</paper-item>
+        <paper-item>Item 5</paper-item>
+        <paper-item>Item 6</paper-item>
+        <paper-item>Item 7</paper-item>
+        <paper-item>Item 8</paper-item>
+        <paper-item>Item 9</paper-item>
+        <paper-item>Item 10</paper-item>
+        <paper-item>Item 11</paper-item>
+        <paper-item>Item 12</paper-item>
+        <paper-item>Item 13</paper-item>
+        <paper-item>Item 14</paper-item>
+        <paper-item>Item 15</paper-item>
+        <paper-item>Item 16</paper-item>
+      </paper-listbox>
 
-			<div id="background"></div>
-		</section>
+      <div id="background"></div>
+    </section>
 
-		<section id="actions" class="center-center horizontal layout">
-			<paper-fab id="up" icon="expand-less" on-tap="_onGoUpTap"></paper-fab>
-			<paper-fab id="down" icon="expand-more" on-tap="_onGoDownTap"></paper-fab>
-			<paper-fab id="select" icon="done" on-tap="_onSelectTap"></paper-fab>
-		</section>
-	</template>
+    <section id="actions" class="center-center horizontal layout">
+      <paper-fab id="up" icon="expand-less" on-tap="_onGoUpTap"></paper-fab>
+      <paper-fab id="down" icon="expand-more" on-tap="_onGoDownTap"></paper-fab>
+      <paper-fab id="select" icon="done" on-tap="_onSelectTap"></paper-fab>
+    </section>
+  </template>
 
-	<script src="bottom-popup-list.js"></script>
+  <script src="bottom-popup-list.js"></script>
 </dom-module>

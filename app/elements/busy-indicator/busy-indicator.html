@@ -28,11 +28,29 @@
 				--paper-spinner-layer-3-color: var(--light-primary-color);
 				--paper-spinner-layer-4-color: var(--light-primary-color);
 			}
+      
+      /* Small */
+      @media (max-width: 600px) {
+        .spinner-wrapper {
+          padding-left: 0;
+        }
+        /*:host([first]) {
+        }*/
+      }
+      
+      /* Tablet+ */
+      @media (min-width: 601px) {
+        .spinner-wrapper {
+          padding-left: 256px;
+        }
+        /*:host([first]) {
+        }*/
+      }
 		</style>
 
 		<div id="overlay" class="fit"></div>
 
-		<div class="fit center-center vertical layout">
+		<div class="spinner-wrapper fit center-center vertical layout">
 			<paper-spinner alt="Loading..." active="[[active]]"></paper-spinner>
 			<paper-button class="cancel" on-tap="_onCancelTap">Cancel</paper-button>
 		</div>
